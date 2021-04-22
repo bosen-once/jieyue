@@ -1,0 +1,290 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Basic page needs
+    ============================================ -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>捷阅网</title>
+    <meta name="description" content="">
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- fonts
+    ============================================ -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
+
+    <!-- CSS  -->
+
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
+
+    <!-- font-awesome CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
+
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
+
+    <!-- owl.theme CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
+
+    <!-- owl.transitions CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
+
+    <!-- fancybox CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
+
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
+
+    <!-- meanmenu CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all"/>
+
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
+
+    <!-- RS-slider CSS
+    ============================================ -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen"/>
+
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/main.css}">
+
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/style.css}">
+
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
+
+    <!-- modernizr js
+    ============================================ -->
+    <script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
+
+    <style>
+        input {
+            height: 36px;
+            width: 80px;
+            border-radius: 10px;
+        }
+        input:hover{
+            background: lightgrey;
+        }
+        .pay-a {
+            color: blue;
+        }
+        .pay-a:hover {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- header start -->
+<header th:include="user/common/model::header"></header>
+<!-- header end -->
+<!-- entry-header-area start -->
+<div class="entry-header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="entry-header">
+                    <h1 class="entry-title">购买记录</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- entry-header-area end -->
+
+<!-- order-area start -->
+<div class="wishlist-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="wishlist-content">
+                    <div class="wishlist-table table-responsive">
+                        <table th:if="${orderList.size()} == 0">
+                            <tr style="height: 400px">
+                                <td style="font-size: 24px">
+                                    您还未在本网站购买任何商品
+                                </td>
+                            </tr>
+                        </table>
+                        <form th:action="@{/user/order}" method="get">
+                            <table th:if="${orderList.size()} != 0">
+                                <thead>
+                                <tr>
+                                    <th class="product-thumbnail">图示</th>
+                                    <th class="product-name"><span class="nobr">商品名称</span></th>
+                                    <th class="product-remove"><span class="nobr">数量</span></th>
+                                    <th class="product-price"><span class="nobr">订单总额</span></th>
+                                    <th class="product-stock-stauts"><span class="nobr">支付时间</span></th>
+                                    <th class="product-add-to-cart"><span class="nobr">订单编号</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="order,stat : ${orderList}">
+                                    <td class="product-thumbnail">
+                                        <a target="_blank"
+                                           th:href="@{/user/product(id=${goodsList.get(stat.index).getId()})}">
+                                            <img th:src="@{${goodsList.get(stat.index).getImg()}}" alt=""/>
+                                        </a>
+                                    </td>
+                                    <td class="product-name">
+                                        <a target="_blank"
+                                           th:href="@{/user/product(id=${goodsList.get(stat.index).getId()})}"
+                                           th:text="${goodsList.get(stat.index).getName()}">
+                                        </a>
+                                    </td>
+                                    <td class="product-thumbnail">
+                                        [[${order.getGoodsNum()}]]
+                                    </td>
+                                    <td class="product-price"><span class="amount">￥[[${order.getOrderPrice()}]]</span>
+                                    </td>
+                                    <td th:if="${order.getOrderState()==1}" class="product-stock-status">
+                                        <span th:text="${#dates.format(order.getPayTime(), 'yyyy-MM-dd HH:mm:ss')}"
+                                              class="wishlist-in-stock"></span>
+                                    </td>
+                                    <td th:if="${order.getOrderState()==0}" class="product-stock-status">
+                                        <span class="wishlist-in-stock">
+                                            <a class="pay-a" th:href="@{/user/wxpay/index(mark=${order.getOrderMark()})}">未支付(点击跳转支付)</a>
+                                        </span>
+                                    </td>
+                                    <td class="product-name" th:text="${order.getOrderId()}"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <input type="submit" value="上一页" onclick="delPage()">
+                                        [[${page}]]/[[${allPage}]]
+                                        <input type="submit" value="下一页" onclick="addPage()">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="wishlist-share">
+                                            <h4 class="wishlist-share-title">Share on:</h4>
+                                            <ul>
+                                                <li><a class="facebook" href="#"></a></li>
+                                                <li><a class="twitter" href="#"></a></li>
+                                                <li><a class="pinterest" href="#"></a></li>
+                                                <li><a class="googleplus" href="#"></a></li>
+                                                <li><a class="email" href="#"></a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <input type="number" hidden name="page" id="page" th:value="${page}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- order-area end -->
+<script th:inline="javascript">
+    var page = document.getElementById('page');
+    var flag = document.getElementById('flag');
+
+    function addPage() {
+        if (page.value < [[${allPage}]]) {
+            page.value = page.value - 1 + 2;
+        } else {
+            alert("当前是最后一页");
+        }
+    }
+
+    function delPage() {
+        if (page.value > 1) {
+            page.value = page.value - 1;
+        } else {
+            alert("当前是第一页");
+        }
+    }
+
+    function updateFlag(temp) {
+        flag.value = temp;
+        location.href = "/admin/order?flag=" + temp;
+    }
+</script>
+<!-- footer start -->
+<footer th:include="user/common/model::footer"></footer>
+<!-- footer end -->
+
+<!-- JS -->
+<script th:include="user/common/model::alertMsg"></script>
+<!-- jquery js -->
+<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
+
+<!-- price-slider js -->
+<script th:src="@{/js/user/home/price-slider.js}"></script>
+
+<!-- bootstrap js -->
+<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
+
+<!-- owl.carousel.min js -->
+<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
+
+<!-- jquery.scrollUp js -->
+<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
+
+<!-- jquery.collapse js -->
+<script th:src="@{/js/user/home/jquery.collapse.js}"></script>
+<!-- mixitup js -->
+
+<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
+
+<!-- fancybox js -->
+<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
+
+<!-- jquery-counterup js -->
+<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
+<script th:src="@{/js/user/home/waypoints.min.js}"></script>
+
+<!-- jquery-meanmenu js -->
+<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
+
+<!-- RS-Plugin JS
+============================================ -->
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
+
+<!-- plugins js -->
+<script th:src="@{/js/user/home/plugins.js}"></script>
+
+<!-- main js -->
+<script th:src="@{/js/user/home/main.js}"></script>
+
+
+</body>
+</html>

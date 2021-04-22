@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>广告设置</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/js/Lightweight-Chart/cssCharts.css}">
+    <style th:include="admin/common/model::input"></style>
+    <style>
+        form{
+            display: inline;
+        }
+        h4{
+            display: inline;
+        }
+        table td {
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div th:include="admin/common/model::nav"></div>
+
+        <div id="page-wrapper">
+			<div class="header">
+				<ol class="breadcrumb"></ol>
+			</div>
+            <table style="position:relative;left:50%;width: 80%;transform: translate(-50%,0)">
+                <tr>
+                    <td colspan="4">
+                        <h4>推荐尺寸：1920x737</h4>
+                        <form th:action="@{/admin/up-image}" method="post" enctype="multipart/form-data" style="text-align: right">
+                            <input type="file" name="file" style="display: none;" id="input1920" onchange="showImg(this,'img1920')">
+                            <input type="submit" value="修改">
+                            <input type="number" value="1920" name="width" hidden="hidden">
+                            <input type="number" value="737" name="height" hidden="hidden">
+                        </form>
+                        <form th:action="@{/admin/del-image}" method="post" style="text-align: right">
+                            <input type="number" value="1920" name="width" hidden="hidden">
+                            <input type="number" value="737" name="height" hidden="hidden">
+                            <input type="submit" value="删除" onclick="if (confirm('确认删除?')==false)return false; "/>
+                        </form>
+                        <div style="width: 100%;text-align: center">
+                            <!--1920*737-->
+                            <img style="width: 1000px" th:if="${imgMap.get('1920')} eq null" th:src="@{/image/user/home/slider/slide-img1.jpg}" id="img1920" onclick="upImg('input1920')" width="50%">
+                            <img style="width: 1000px" th:if="${imgMap.get('1920')} ne null" th:src="@{${imgMap.get('1920').getUrl()}}" id="img1920" onclick="upImg('input1920')" width="50%">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <h4>推荐尺寸：1230x535</h4>
+                        <form th:action="@{/admin/up-image}" method="post" enctype="multipart/form-data" style="text-align: right">
+                            <input type="file" name="file" style="display: none;" id="input1230" onchange="showImg(this,'img1230')">
+                            <input type="number" value="1230" name="width" hidden="hidden">
+                            <input type="number" value="535" name="height" hidden="hidden">
+                            <input type="submit" value="修改">
+                        </form>
+                        <form th:action="@{/admin/del-image}" method="post" style="text-align: right">
+                            <input type="number" value="1230" name="width" hidden="hidden">
+                            <input type="number" value="535" name="height" hidden="hidden">
+                            <input type="submit" value="删除" onclick="if (confirm('确认删除?')==false)return false; "/>
+                        </form>
+                        <div style="width: 100%;text-align: center">
+                            <!--1230*535-->
+                            <img style="width: 1000px" th:if="${imgMap.get('1230')} eq null" th:src="@{/image/user/home/slider/slide-img2.jpg}" id="img1230" onclick="upImg('input1230')"  >
+                            <img style="width: 1000px" th:if="${imgMap.get('1230')} ne null" th:src="@{${imgMap.get('1230').getUrl()}}" id="img1230" onclick="upImg('input1230')"  >
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>推荐尺寸：315x282</h4>
+                        <form th:action="@{/admin/up-image}" method="post" enctype="multipart/form-data" style="text-align: right">
+                            <input type="file" name="file" style="display: none;" id="input3151" onchange="showImg(this,'img3151')">
+                            <input type="number" value="3151" name="width" hidden="hidden">
+                            <input type="number" value="282" name="height" hidden="hidden">
+                            <input type="submit" value="修改">
+                        </form>
+                        <form th:action="@{/admin/del-image}" method="post" style="text-align: right">
+                            <input type="number" value="3151" name="width" hidden="hidden">
+                            <input type="number" value="282" name="height" hidden="hidden">
+                            <input type="submit" value="删除" onclick="if (confirm('确认删除?')==false)return false; "/>
+                        </form>
+                        <div style="width: 100%;text-align: center">
+                            <img th:if="${imgMap.get('3151')} eq null" th:src="@{/image/user/home/banner/3.jpg}" id="img3151" onclick="upImg('input3151')"  >
+                            <img th:if="${imgMap.get('3151')} ne null" th:src="@{${imgMap.get('3151').getUrl()}}"  style="width: 315px;height: 282px" id="img3151" onclick="upImg('input3151')" >
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>推荐尺寸：315x282</h4>
+                        <form th:action="@{/admin/up-image}" method="post" enctype="multipart/form-data" style="text-align: right">
+                            <input type="file" name="file" style="display: none;" id="input3152" onchange="showImg(this,'img3152')">
+                            <input type="number" value="3152" name="width" hidden="hidden">
+                            <input type="number" value="282" name="height" hidden="hidden">
+                            <input type="submit" value="修改">
+                        </form>
+                        <form th:action="@{/admin/del-image}" method="post" style="text-align: right">
+                            <input type="number" value="3152" name="width" hidden="hidden">
+                            <input type="number" value="282" name="height" hidden="hidden">
+                            <input type="submit" value="删除" onclick="if (confirm('确认删除?')==false)return false; "/>
+                        </form>
+                        <div style="width: 100%;text-align: center">
+                            <img th:if="${imgMap.get('3152')} eq null" th:src="@{/image/user/home/banner/3.jpg}" id="img3152" onclick="upImg('input3152')"  >
+                            <img th:if="${imgMap.get('3152')} ne null" th:src="@{${imgMap.get('3152').getUrl()}}"  style="width: 315px;height: 282px" id="img3152" onclick="upImg('input3152')" >
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>推荐尺寸：475x570</h4>
+                        <form th:action="@{/admin/up-image}" method="post" enctype="multipart/form-data" style="text-align: right">
+                            <input type="file" name="file" style="display: none;" id="input475" onchange="showImg(this,'img475')">
+                            <input type="number" value="475" name="width" hidden="hidden">
+                            <input type="number" value="570" name="height" hidden="hidden">
+                            <input type="submit" value="修改">
+                        </form>
+                        <form th:action="@{/admin/del-image}" method="post" style="text-align: right">
+                            <input type="number" value="475" name="width" hidden="hidden">
+                            <input type="number" value="570" name="height" hidden="hidden">
+                            <input type="submit" value="删除" onclick="if (confirm('确认删除?')==false)return false; "/>
+                        </form>
+                        <div style="width: 100%;text-align: center">
+                            <img th:if="${imgMap.get('475')} eq null" th:src="@{/image/user/home/banner/1.jpg}" id="img475" onclick="upImg('input475')" >
+                            <img th:if="${imgMap.get('475')} ne null" th:src="@{${imgMap.get('475').getUrl()}}" style="width: 470px;height: 570px" id="img475" onclick="upImg('input475')" >
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>推荐尺寸：674x264</h4>
+                        <form th:action="@{/admin/up-image}" method="post" enctype="multipart/form-data" style="text-align: right">
+                            <input type="file" name="file" style="display: none;" id="input674" onchange="showImg(this,'img674')">
+                            <input type="number" value="674" name="width" hidden="hidden">
+                            <input type="number" value="264" name="height" hidden="hidden">
+                            <input type="submit" value="修改">
+                        </form>
+                        <form th:action="@{/admin/del-image}" method="post" style="text-align: right">
+                            <input type="number" value="674" name="width" hidden="hidden">
+                            <input type="number" value="264" name="height" hidden="hidden">
+                            <input type="submit" value="删除" onclick="if (confirm('确认删除?')==false)return false; "/>
+                        </form>
+                        <div style="width: 100%;text-align: center">
+                            <img th:if="${imgMap.get('674')} eq null" th:src="@{/image/user/home/banner/2.jpg}" id="img674" onclick="upImg('input674')"  >
+                            <img th:if="${imgMap.get('674')} ne null" th:src="@{${imgMap.get('674').getUrl()}}"  style="width: 674px;height: 264px" id="img674" onclick="upImg('input674')" >
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br/><br/><br/>
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+	<!-- Bootstrap Js -->
+    <script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+	
+	<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+	
+    <!-- Metis Menu Js -->
+    <script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+    <!-- Morris Chart Js -->
+    <script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+    <script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+	
+	
+	<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+	<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+	
+	<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+	
+    <!-- Custom Js -->
+    <script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+    <script th:src="@{/js/admin/jquery.min.js}"></script>
+	<script>
+		function go(){
+            $('html,body').animate({scrollTop: 750});
+        }
+	</script>
+    <script th:include="admin/common/model::alertMsg"></script>
+    <script>
+        function showImg(input,id) {
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            // 图片读取成功回调函数
+            reader.onload = function(e) {
+                document.getElementById(id).src=e.target.result
+            };
+            reader.readAsDataURL(file)
+        }
+        function upImg(upImg){
+            document.getElementById(upImg).click();
+        }
+    </script>
+</body>
+
+</html>

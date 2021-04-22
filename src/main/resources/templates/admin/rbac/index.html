@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>权限管理</title>
+    <script th:src="@{https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js}">
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/js/Lightweight-Chart/cssCharts.css}">
+    <style th:include="admin/common/model::input"></style>
+        <style>
+        button {
+            width: 250px;
+            height: 60px;
+            color: white;
+            font-size: 14px;
+            border-radius: 10px;
+            background: deepskyblue;
+        }
+        button:hover{
+            background: lightskyblue;
+        }
+        #main{
+            position:absolute;
+            z-index: 777;
+            height: 100%;
+            width: 100%;
+            opacity: 0.3;
+            display: none;
+            background: black;
+        }
+        .body {
+            position: fixed;
+            z-index: 999;
+            height: 70%;
+            width: 60%;
+            display: none;
+            background: white;
+            left: 50%;
+            top: 50%;
+            opacity: 1;
+            border-radius: 20px;
+            overflow-y: auto;
+            transform: translate(-50%,-50%);
+        }
+        .close {
+            position: relative;
+            right: 5px;
+            top: 5px;
+            width: 50px;
+            height: 50px;
+            font-size: 36px;
+        }
+        table {
+            position: relative;
+            border: 1px solid lightgrey;
+            text-align: center;
+            width: 98%;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        th,td {
+            border: 1px solid lightgrey;
+            text-align: center;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main"></div>
+<div class="body" id="user">
+    <button style="position:relative;background: white;left: 5px;top: 5px;font-size: 18px;color: deepskyblue">
+        <b>管理员列表</b>
+    </button>
+    <button class="close" onclick="closeBody()">×</button>
+    <br/>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>昵称</th>
+            <th>邮箱</th>
+            <th>角色</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="admin,stat:${adminList}">
+            <td th:text="${admin.getId()}"></td>
+            <td th:text="${admin.getName()}"></td>
+            <td th:text="${admin.getEmail()}"></td>
+            <td>
+                <form style="display: inline;">
+                    <label style="display: inline;">
+                        <select name="role" style="display: inline;width: 150px">
+                            <option th:each="role : ${roleList}" th:value=" ${role.getId()}">
+                                [[${role.getName()}]]
+                            </option>
+                        </select>
+                        <input name="admin" th:value="${admin.getId()}" hidden="hidden">
+                        <input value="修改" type="submit" style="width: 50px;height: 30px">
+                    </label>
+                </form>
+            </td>
+            <td>
+                <a onclick="if (confirm('确认删除此管理员？')==false)return false;" th:href="@{/admin/del-admin(id=${admin.getId()})}">删除</a>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <a th:if="${admin.getMark()==0}" th:href="@{/admin/on-admin(id=${admin.getId()})}">启用</a>
+                <a th:if="${admin.getMark()!=0}" th:href="@{/admin/off-admin(id=${admin.getId()})}">停用</a>
+            </td>
+        </tr>
+    </table>
+    <br/><br/>
+</div>
+<div class="body" id="role">
+    <button style="position:relative;background: white;left: 5px;top: 5px;font-size: 18px;color: deepskyblue">
+        <b>角色管理</b>
+    </button>
+    <button class="close" onclick="closeBody()">×</button>
+    <form th:action="@{/admin/add-role}" method="post" style="display: inline;position: relative;float: right">
+        <input id="roleName" name="name" placeholder="输入要添加的角色名..."
+               style="position:relative;width: 150px;top: 10px;">
+        <button class="close" onclick="if (document.getElementById('roleName').value==''){alert('请输入角色名');return false;}">+</button>
+    </form>
+    <br/>
+    <table th:if="${roleList.size()}!=0">
+        <tr>
+            <th>ID</th>
+            <th>角色名</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="role : ${roleList}">
+            <td th:text="${role.getId()}"></td>
+            <td th:text="${role.getName()}"></td>
+            <td th:if="${role.getStatus()}==1">已启用</td>
+            <td th:if="${role.getStatus()}==0">未启用</td>
+            <td>
+                <a onclick="if (confirm('确认删除此角色？')==false)return false;" th:href="@{/admin/del-role(id=${role.getId()})}">删除</a>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <a th:if="${role.getStatus()==0}" th:href="@{/admin/on-role(id=${role.getId()})}">启用</a>
+                <a th:if="${role.getStatus()!=0}" th:href="@{/admin/off-role(id=${role.getId()})}">停用</a>
+                &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/admin/role-access(id=${role.getId()})}">设置权限</a>
+            </td>
+        </tr>
+    </table>
+    <div th:if="${roleList.size()}==0" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);color: deepskyblue">
+        <h3><b>暂无角色信息</b></h3>
+    </div>
+    <br/><br/>
+</div>
+<div class="body" id="access">
+    <button style="position:relative;background: white;left: 5px;top: 5px;font-size: 18px;color: deepskyblue">
+        <b>权限管理</b>
+    </button>
+    <button class="close" onclick="closeBody()">×</button>
+    <form th:action="@{/admin/add-access}" method="post" style="display: inline;position: relative;float: right">
+        <input id="accessName" name="name" placeholder="输入要添加的权限名..."
+               style="position:relative;width: 150px;top: 10px;">
+        <input id="accessUrl" name="url" placeholder="输入要添加的权限地址..."
+               style="position:relative;width: 180px;top: 10px;">
+        <button class="close"
+                onclick="if (document.getElementById('accessName').value=='' ||document.getElementById('accessUrl').value=='' ){
+                    alert('必填信息不能为空');return false;}">+</button>
+    </form>
+    <br/>
+    <table th:if="${accessList.size()}!=0">
+        <tr>
+            <th>ID</th>
+            <th>权限</th>
+            <th>地址</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="access : ${accessList}">
+            <form th:action="@{/admin/update-access(id=${access.getId()})}" method="post">
+                <td th:text="${access.getId()}"></td>
+                <td>
+                    <input name="name" th:value="${access.getName()}">
+                </td>
+                <td>
+                    <input name="url" th:value="${access.getUrl()}">
+                </td>
+                <td th:if="${access.getStatus()}==1">已启用</td>
+                <td th:if="${access.getStatus()}==0">未启用</td>
+                <td>
+                    <a onclick="if (confirm('确认删除此权限？')==false)return false;" th:href="@{/admin/del-access(id=${access.getId()})}">删除</a>
+                    &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                    <a th:if="${access.getStatus()==0}" th:href="@{/admin/on-access(id=${access.getId()})}">启用</a>
+                    <a th:if="${access.getStatus()!=0}" th:href="@{/admin/off-access(id=${access.getId()})}">停用</a>
+                    &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="编辑" style="color: white;background: deepskyblue;height: 30px;width: 70px"/>
+                </td>
+            </form>
+        </tr>
+    </table>
+    <div th:if="${accessList.size()}==0" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);color: deepskyblue">
+        <h3><b>暂无权限信息</b></h3>
+    </div>
+    <br/><br/>
+</div>
+<div id="wrapper">
+    <div th:include="admin/common/model::nav"></div>
+    <div id="page-wrapper">
+        <div class="header">
+            <ol class="breadcrumb"></ol>
+        </div>
+        <div style="position:absolute;left: 50%;top: 25%;transform: translate(-50%,-50%)">
+            <button onclick="showUser()">用户管理</button>
+            <br/><br/><br/>
+            <button onclick="showRole()">角色管理</button>
+            <br/><br/><br/>
+            <button onclick="showAccess()">权限管理</button>
+        </div>
+        <br/><br/><br/>
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<script>
+    var wrapper = document.getElementById("wrapper");
+    var main = document.getElementById("main");
+    main.style.height = 55+wrapper.offsetHeight+'px';
+    var role = document.getElementById("role");
+    var user = document.getElementById("user");
+    var access = document.getElementById("access");
+    function showUser() {
+        main.style.display = "block";
+        user.style.display = "block";
+        role.style.display = "none";
+        access.style.display = "none";
+    }
+    function showRole() {
+        main.style.display = "block";
+        user.style.display = "none";
+        role.style.display = "block";
+        access.style.display = "none";
+    }
+    function showAccess() {
+        main.style.display = "block";
+        user.style.display = "none";
+        role.style.display = "none";
+        access.style.display = "block";
+    }
+    function closeBody(){
+        main.style.display = "none";
+        user.style.display = "none";
+        role.style.display = "none";
+        access.style.display = "none";
+    }
+    function onAdmin(id){
+
+    }
+</script>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+<!-- Bootstrap Js -->
+<script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+
+<!-- Metis Menu Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+<!-- Morris Chart Js -->
+<script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+
+
+<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+
+<!-- Custom Js -->
+<script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+<script th:src="@{/js/admin/jquery.min.js}"></script>
+<script>
+    function go(){
+        $('html,body').animate({scrollTop: 750});
+    }
+</script>
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+
+</html>

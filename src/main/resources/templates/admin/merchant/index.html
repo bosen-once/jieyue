@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商户相关</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/js/Lightweight-Chart/cssCharts.css}">
+    <style>
+        form input {
+            background: whitesmoke;
+            color: grey;
+            height: 35px;
+            width: 80px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+        form input:hover{
+            background: lightgrey;
+        }
+        form {
+            display: inline;
+        }
+        h4{
+            display: inline;
+        }
+        table tr {
+            border: 1px solid lightgrey;
+        }
+        table td {
+            background: white;
+            color: black;
+            height: 60px;
+            text-align: center;
+        }
+        table th {
+            background: orangered;
+            color: whitesmoke;
+            height: 36px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div th:include="admin/common/model::nav"></div>
+
+    <div id="page-wrapper" style="text-align: center;">
+        <div class="header">
+            <br/>
+        </div>
+        <h3 th:if="${mtList.size()==0}" style="color:grey;position:absolute;left: 50%;top: 20%;transform: translate(-50%,-50%)">
+            这里还没有任何商户信息！！
+        </h3>
+        <!-- /. PAGE INNER  -->
+        <table style="text-align: center;background:ghostwhite;font-size: 18px;position: relative;left: 5%;width: 90%">
+            <tr style="height: 35px;background: orangered;color: white">
+                <th>商户logo</th>
+                <th>ID</th>
+                <th>商户名称</th>
+                <th>商户邮箱</th>
+                <th>状态</th>
+                <th>费率</th>
+                <th>操作</th>
+            </tr>
+            <!--/*@thymesVar id="mtList" type="jdk"*/-->
+            <tr th:each="mt : ${mtList} " style="height: 100px">
+                <td>
+                    <img th:src="@{${mt.getHeader()}}" style="border-radius: 100%;width: 80px">
+                </td>
+                <td>[[${mt.getId()}]]</td>
+                <td>[[${mt.getName()}]]</td>
+                <td>[[${mt.getEmail()}]]</td>
+                <td th:if="${mt.getState()}==1">已启用</td>
+                <td th:if="${mt.getState()}==0">未启用</td>
+                <td>
+                    <form th:action="@{/admin/merchant/update-ratio}" method="post">
+                        <br/>
+                        <input type="text" name="ratio" th:value="${mt.getRatio()}" style="width: 50px">
+                        <input hidden name="id" th:value="${mt.getId()}">
+                        <input type="submit" value="修改" style="width: 65px"
+                               onclick="if (confirm('确认修改？')==false)return false; ">
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/admin/merchant/delete-merchant(id=${mt.getId()})}" method="post">
+                        <input type="submit" value="删除" style="width: 65px;"
+                               onclick="if (confirm('确认删除该商户？')==false)return false;">
+                    </form>
+                    <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=0)}" method="post">
+                        <input th:if="${mt.getState()}==1" type="submit" value="停用" style="width: 65px;background: deepskyblue;color: white"
+                               onclick="if (confirm('确认停用该商户？')==false)return false; ">
+                    </form>
+                    <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=1)}" method="post">
+                        <input th:if="${mt.getState()}==0" type="submit" value="启用" style="width: 65px;background: gold;color: white"
+                               onclick="if (confirm('确认启用商户？')==false)return false; ">
+                    </form>
+                </td>
+            </tr>
+            <tr style="height: 80px">
+                <td colspan="7">
+                    <form th:action="@{/admin/merchant}">
+                        <!--/*@thymesVar id="preNum" type="java.lang.Integer"*/-->
+                        <input hidden th:value="${preNum}" name="num">
+                        <input type="submit" value="上一页">
+                    </form>
+                    <form th:action="@{/admin/merchant}">
+                        <!--/*@thymesVar id="nextNum" type="java.lang.Integer"*/-->
+                        <input hidden th:value="${nextNum}" name="num">
+                        <input type="submit" value="下一页">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <br/><br/><br/>
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+<!-- Bootstrap Js -->
+<script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+
+<!-- Metis Menu Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+<!-- Morris Chart Js -->
+<script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+
+
+<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+
+<!-- Custom Js -->
+<script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+
+</html>

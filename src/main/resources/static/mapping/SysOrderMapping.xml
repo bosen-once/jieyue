@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysOrderMapper">
+
+    <resultMap id="SysOrderMap" type="com.example.jieyue.common.entity.SysOrder">
+        <id property="id" jdbcType="INTEGER" column="id" />
+        <result property="orderId" jdbcType="VARCHAR" column="order_id" />
+        <result property="createTime" jdbcType="BIGINT" column="create_time" />
+        <result property="payTime" jdbcType="BIGINT" column="pay_time" />
+        <result property="goodsNum" jdbcType="INTEGER" column="goods_num" />
+        <result property="orderState" jdbcType="INTEGER" column="order_state" />
+        <result property="orderMark" jdbcType="VARCHAR" column="order_mark" />
+        <result property="orderMerchant" jdbcType="INTEGER" column="order_merchant" />
+        <result property="orderUser" jdbcType="INTEGER" column="order_user" />
+        <result property="goodsId" jdbcType="INTEGER" column="goods_id" />
+        <result property="orderPrice" jdbcType="DECIMAL" column="order_price" />
+        <result property="orderNotes" jdbcType="VARCHAR" column="order_notes" />
+        <result property="userName" jdbcType="VARCHAR" column="user_name" />
+        <result property="userAddress" jdbcType="VARCHAR" column="user_address" />
+        <result property="userPhone" jdbcType="VARCHAR" column="user_phone" />
+        <result property="couponCode" jdbcType="VARCHAR" column="coupon_code" />
+        <result property="payWay" jdbcType="INTEGER" column="pay_way" />
+        <result property="payCodeUrl" jdbcType="INTEGER" column="pay_code_url" />
+        <result property="cartId" jdbcType="INTEGER" column="cart_id" />
+        <result property="merchantRatio" jdbcType="FLOAT" column="merchant_ratio" />
+    </resultMap>
+
+    <select id="findLimit" resultMap="SysOrderMap">
+        select * from sys_order order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findPayLimit" resultMap="SysOrderMap">
+        select * from sys_order where order_state=1 order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findNotPayLimit" resultMap="SysOrderMap">
+        select * from sys_order where order_state=0 order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findLimitByMt" resultMap="SysOrderMap">
+        select * from sys_order where order_merchant = #{merchantId} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findPayLimitByMt" resultMap="SysOrderMap">
+        select * from sys_order where order_state=1 and order_merchant = #{merchantId} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findNotPayLimitByMt" resultMap="SysOrderMap">
+        select * from sys_order where order_state=0 and order_merchant = #{merchantId} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findByUser" resultMap="SysOrderMap">
+        select * from sys_order where order_user = #{user} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="findByMerchant" resultMap="SysOrderMap">
+        select * from sys_order where order_merchant = #{merchant} order by id desc limit #{num};
+    </select>
+
+    <select id="findByOrderId" resultMap="SysOrderMap">
+        select * from sys_order where order_id = #{orderId};
+    </select>
+
+    <select id="findByOrderIdAndMt" resultMap="SysOrderMap">
+        select * from sys_order where order_id = #{orderId} and order_merchant = #{merchant};
+    </select>
+
+    <select id="findByOrderMark" resultMap="SysOrderMap">
+        select * from sys_order where order_mark = #{orderMark};
+    </select>
+    
+    <select id="merchantProfitCount" resultType="FLOAT">
+        select sum((order_price-merchant_ratio*order_price)/1) from sys_order where order_merchant = #{merchantId} and order_state = 1;
+    </select>
+
+    <select id="websiteProfitCount" resultType="FLOAT">
+        select sum((merchant_ratio*order_price)/1) from sys_order where order_state = 1;
+    </select>
+    
+    <update id="updateCodeUrl">
+        update sys_order set pay_code_url = #{codeUrl} where order_mark = #{orderMark};
+    </update>
+
+    <delete id="deleteById">
+        delete from sys_order where id = #{id} and order_state = 0;
+    </delete>
+
+    <select id="findByState" resultMap="SysOrderMap">
+        select * from sys_order where order_state = #{state};
+    </select>
+
+    <select id="findAll" resultMap="SysOrderMap">
+        select * from sys_order;
+    </select>
+
+    <update id="updateState">
+        update sys_order set pay_time = #{pay_time},order_state = 1 where order_mark = #{orderMark};
+    </update>
+
+    <insert id="insert1">
+        insert into sys_order(order_id,create_time,goods_num,order_mark,order_user,order_merchant,order_price,
+        goods_id,order_notes,user_address,user_name,user_phone,coupon_code,pay_way,merchant_ratio) values(#{orderId},
+        #{createTime},#{goodsNum},#{orderMark},#{orderUser},#{orderMerchant},#{orderPrice},#{goodsId},
+        #{orderNotes},#{userAddress},#{userName},#{userPhone},#{couponCode},#{payWay},#{merchantRatio});
+    </insert>
+
+    <insert id="insert2">
+        insert into sys_order(order_id,create_time,goods_num,order_mark,order_user,order_merchant,order_price,
+        goods_id,order_notes,user_address,user_name,user_phone,coupon_code,pay_way,cart_id,merchant_ratio) values(#{orderId},
+        #{createTime},#{goodsNum},#{orderMark},#{orderUser},#{orderMerchant},#{orderPrice},#{goodsId},
+        #{orderNotes},#{userAddress},#{userName},#{userPhone},#{couponCode},#{payWay},#{cartId},#{merchantRatio});
+    </insert>
+
+    <select id="orderCount" resultType="INTEGER">
+        select count(*) from sys_order;
+    </select>
+
+    <select id="orderCountByUser" resultType="INTEGER">
+        select count(*) from sys_order where order_state = 1 and order_user = #{userId};
+    </select>
+
+    <select id="payCount" resultType="INTEGER">
+        select count(*) from sys_order where order_state = 1;
+    </select>
+
+    <select id="notPayCount" resultType="INTEGER">
+        select count(*) from sys_order where order_state = 0;
+    </select>
+
+    <select id="orderCountByMt" resultType="INTEGER">
+        select count(*) from sys_order where order_merchant = #{merchantId};
+    </select>
+
+    <select id="payCountByMt" resultType="INTEGER">
+        select count(*) from sys_order where order_state = 1 and order_merchant = #{merchantId};
+    </select>
+
+    <select id="notPayCountByMt" resultType="INTEGER">
+        select count(*) from sys_order where order_state = 0 and order_merchant = #{merchantId};
+    </select>
+
+</mapper>

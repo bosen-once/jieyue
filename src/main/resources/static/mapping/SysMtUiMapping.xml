@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysMtUiMapper">
+
+    <resultMap id="SysAdminMap" type="com.example.jieyue.common.entity.SysMtUi">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="mark" jdbcType="INTEGER" property="mark" />
+    </resultMap>
+
+    <select id="findByMark" resultType="com.example.jieyue.common.entity.SysMtUi">
+        select * from sys_mt_ui where width = #{width} and height = #{height} and merchant = #{merchant};
+    </select>
+
+    <select id="findById" resultType="com.example.jieyue.common.entity.SysMtUi">
+        select * from sys_mt_ui where id = #{id};
+    </select>
+
+    <select id="findLimit" resultType="com.example.jieyue.common.entity.SysMtUi">
+        select * from sys_mt_ui where width = #{width} and height = #{height} order by rand() limit #{num};
+    </select>
+
+    <insert id="insert">
+        insert into sys_mt_ui(id,url,width,height,merchant) values(default,#{url},#{width},#{height},#{merchant});
+    </insert>
+
+    <delete id="deleteByMark">
+        delete from sys_mt_ui where width = #{width} and height = #{height} and merchant = #{merchant};
+    </delete>
+
+    <delete id="deleteById">
+        delete from sys_mt_ui where id = #{id};
+    </delete>
+
+    <update id="updateUrl">
+        update sys_mt_ui set url = #{url} where width = #{width} and height = #{height} and merchant = #{merchant};
+    </update>
+</mapper>

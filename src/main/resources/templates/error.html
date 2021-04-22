@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>出错啦！</title>
+    <link rel="stylesheet" th:href="@{/css/error/style-freedom.css}">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<section class="w3l-errorpage">
+    <div class="error404">
+        <div class="wrapper">
+            <div class="logo-brand">
+                <h1><a class="brand-logo-text">Candy <div class="position-head"><span class="">E</span>rror
+                </div>Page</a></h1>
+
+                <!-- if logo is image enable this
+                <a class="brand-logo" href="#index.html">
+                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                </a> -->
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="midle-page">
+                <section class="error-container">
+                    <span><span>4</span></span>
+                    <span>0</span>
+                    <span><span>4</span></span>
+                </section>
+                <h1>Page Not Found</h1><br/>
+                <a th:href="@{/}">点击此处返回至商城主页面</a>
+                <p class="zoom-area para">
+                    We're sorry, the page you requested could not be found, Please go back to the
+                    homepage or contact us.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>会员列表</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/js/Lightweight-Chart/cssCharts.css}">
+    <style th:include="admin/common/model::input"></style>
+    <style>
+        form{
+            display: inline;
+        }
+        h4{
+            display: inline;
+        }
+        table tr {
+            border: 1px solid lightgrey;
+        }
+        table td {
+            background: white;
+            color: black;
+            height: 60px;
+            text-align: center;
+        }
+        table th {
+            background: orangered;
+            color: whitesmoke;
+            height: 36px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div th:include="admin/common/model::nav"></div>
+
+    <div id="page-wrapper">
+        <div class="header">
+            <ol class="breadcrumb"></ol>
+        </div>
+        <h3 th:if="${userList.size()==0}" style="color:grey;position:absolute;left: 50%;top: 20%;transform: translate(-50%,-50%)">
+            这里还没有任何会员信息！！
+        </h3>
+        <form th:action="@{/admin/user}" method="get">
+            <table th:if="${userList.size()!=0}" style="position:relative;left:50%;width: 95%;transform: translate(-50%,0)">
+                <tr>
+                    <th>会员头像</th>
+                    <th>会员ID</th>
+                    <th>会员名称</th>
+                    <th>会员邮箱</th>
+                    <th>会员标记</th>
+                </tr>
+                <tr th:each="user : ${userList}" style="height: 100px">
+                    <td>
+                        <img th:src="@{${user.getHeader()}}" style="width: 80px;border-radius: 100%">
+                    </td>
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getUsername()}"></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td th:text="${user.getMark()}"></td>
+                </tr>
+                <tr style="height: 100px">
+                    <td colspan="5">
+                        <input type="submit" value="上一页" onclick="delPage()">
+                        [[${page}]]/[[${allPage}]]
+                        <input type="submit" value="下一页" onclick="addPage()">
+                    </td>
+                </tr>
+            </table>
+            <input type="number" hidden name="page" id="page" th:value="${page}">
+        </form>
+        <br/><br/><br/>
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<script th:inline="javascript">
+    var page = document.getElementById('page');
+    var flag = document.getElementById('flag');
+    function addPage(){
+        if (page.value < [[${allPage}]]){
+            page.value = page.value-1+2;
+        }else{
+            alert("当前是最后一页");
+        }
+    }
+    function delPage(){
+        if (page.value > 1){
+            page.value = page.value-1;
+        }else{
+            alert("当前是第一页");
+        }
+    }
+</script>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+<!-- Bootstrap Js -->
+<script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+
+<!-- Metis Menu Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+<!-- Morris Chart Js -->
+<script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+
+
+<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+
+<!-- Custom Js -->
+<script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+<script th:src="@{/js/admin/jquery.min.js}"></script>
+<script>
+    function go(){
+        $('html,body').animate({scrollTop: 750});
+    }
+</script>
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+
+</html>

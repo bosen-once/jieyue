@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysUiMapper">
+
+    <resultMap id="SysAdminMap" type="com.example.jieyue.common.entity.SysUi">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="mark" jdbcType="INTEGER" property="mark" />
+    </resultMap>
+
+    <select id="findByMark" resultType="com.example.jieyue.common.entity.SysUi">
+        select * from sys_ui where width = #{width} and height = #{height};
+    </select>
+
+    <insert id="insert">
+        insert into sys_ui(id,url,width,height) values(default,#{url},#{width},#{height});
+    </insert>
+
+    <delete id="deleteByMark">
+        delete from sys_ui where width = #{width} and height = #{height};
+    </delete>
+
+    <update id="updateUrl">
+        update sys_ui set url = #{url} where width = #{width} and height = #{height};
+    </update>
+</mapper>

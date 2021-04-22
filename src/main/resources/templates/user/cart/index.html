@@ -1,0 +1,326 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Basic page needs
+    ============================================ -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>购物车</title>
+    <meta name="description" content="">
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- fonts
+    ============================================ -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
+
+    <!-- CSS  -->
+
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
+
+    <!-- font-awesome CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
+
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
+
+    <!-- owl.theme CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
+
+    <!-- owl.transitions CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
+
+    <!-- fancybox CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
+
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
+
+    <!-- meanmenu CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all"/>
+
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
+
+    <!-- RS-slider CSS
+    ============================================ -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen"/>
+
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/main.css}">
+
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/style.css}">
+
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
+
+    <!-- modernizr js
+    ============================================ -->
+    <script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- header start -->
+<header th:include="user/common/model::header"></header>
+<!-- header end -->
+<!-- entry-header-area start -->
+<div class="entry-header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="entry-header">
+                    <h1 class="entry-title">购物车</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- entry-header-area end -->
+
+<!-- cart-main-area start -->
+<div class="cart-main-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <form id="checkout" method="post">
+                    <input hidden name="ids" value="" id="ids">
+                    <div class="table-content table-responsive">
+                        <table th:if="${cartList.size() == 0}">
+                            <tr style="height: 400px">
+                                <th style="font-size: 24px">
+                                    您的购物车还是空的，快去浏览你喜欢的商品吧~~
+                                </th>
+                            </tr>
+                        </table>
+                        <table th:if="${cartList.size() != 0}">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <p style="font-size: 10px">全选</p>
+                                        <input style="width: 15px;height: 15px"
+                                               id="allChecked" onclick="allCheckbox()" type="checkbox">
+                                    </label>
+                                </th>
+                                <th class="product-thumbnail">商品图示</th>
+                                <th class="product-name">商品名称</th>
+                                <th class="product-price">单品价格</th>
+                                <th class="product-quantity">所属商户</th>
+                                <th class="product-subtotal">库存</th>
+                                <th class="product-subtotal">数量</th>
+                                <th class="product-remove">移除</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cart,stat : ${cartList}">
+                                <input hidden th:id="'goodsId'+${stat.index}" th:value="${cart.get('goodsId')}"/>
+                                <input hidden th:id="'goodsPrice'+${stat.index}" th:value="${cart.get('goodsPrice')}"/>
+                                <input hidden th:id="'cartId'+${stat.index}" th:value="${cart.get('cartId')}"/>
+                                <td style="width: 56px">
+                                    <label>
+                                        <input onclick="cartGoods()" style="width: 15px;height: 15px" th:id="'checkbox'+${stat.index}" type="checkbox">
+                                    </label>
+                                </td>
+                                <td class="product-thumbnail">
+                                    <a th:href="@{/user/product(id=${cart.get('goodsId')})}">
+                                        <img th:src="@{${cart.get('goodsImg')}}" alt=""/>
+                                    </a>
+                                </td>
+                                <td class="product-name">
+                                    <a th:href="@{/user/product(id=${cart.get('goodsId')})}">
+                                        [[${cart.get("goodsName")}]]
+                                        <p style="color: red" th:if="${cart.get('goodsState') eq '0'}">
+                                            (已下架)
+                                        </p>
+                                    </a>
+                                </td>
+                                <td class="product-price">
+											<span class="amount">
+												￥[[${cart.get("goodsPrice")}]]
+											</span>
+                                </td>
+                                <td class="product-quantity">
+                                    [[${cart.get("goodsMerchant")}]]
+                                </td>
+                                <td class="product-subtotal">
+                                    <input hidden="hidden" th:id="'goodsStock'+${stat.index}" th:value="${cart.get('goodsStock')}">
+                                    <input hidden="hidden" th:id="'goodsState'+${stat.index}" th:value="${cart.get('goodsState')}">
+                                    [[${cart.get("goodsStock")}]]
+                                </td>
+                                <td class="product-subtotal">
+                                    <input onclick="cartGoods()" th:id="'goodsNum'+${stat.index}" type="number" min="1" th:value="${cart.get('goodsNum')}"/>
+                                </td>
+                                <td class="product-remove">
+                                    <a onclick="if (confirm('将该商品移出购物车？')==false)return false; "
+                                       th:href="@{/user/del-cart(id=${cart.get('cartId')})}">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-7 col-xs-12">
+                            <div class="buttons-cart">
+                                <a th:href="@{/}">点击跳转至商城主页面购物</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-5 col-xs-12">
+                            <div class="cart_totals">
+                                <h2>购物车结算</h2>
+                                <br/>
+                                <table>
+                                    <tbody>
+                                    <tr class="order-total">
+                                        <th>总计：</th>
+                                        <td>
+                                            <strong><span class="amount" id="allPrice">￥0.00</span></strong>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br/><br/>
+                                <div class="wc-proceed-to-checkout">
+                                    <a onclick="checkout()" style="float: right">
+                                        结算购物车商品
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart-main-area end -->
+<script th:inline="javascript">
+    cartGoods();
+    function cartGoods(){
+        var allPrice = document.getElementById("allPrice");
+        allPrice.value = 0;
+        var ids = [];
+        for (var i = 0; i < [[${cartList.size()}]]; i++) {
+            var goodsNum = document.getElementById("goodsNum" + i);
+            if (goodsNum.value <= 0 || parseFloat(goodsNum.value).toString() == "NaN"){
+                alert("请出入合法的商品数量");
+                return;
+            }
+            var goodsStock = document.getElementById("goodsStock" + i);
+            var goodsState = document.getElementById("goodsState" + i);
+            var checkbox = document.getElementById("checkbox" + i);
+            if (goodsStock.value < 1 || goodsStock.value < goodsNum.value || goodsState.value != 1){
+                checkbox.checked = false;
+                alert("购物车中存在库存不足，或已下架的商品！");
+            }
+            if (checkbox.checked){
+                var goodsId = document.getElementById("goodsId" + i);
+                var goodsPrice = document.getElementById("goodsPrice" + i);
+                var cartId = document.getElementById("cartId" + i);
+                ids.push(goodsId.value+":"+goodsNum.value+":"+cartId.value);
+                allPrice.value = (Number(allPrice.value) + Number((goodsNum.value * goodsPrice.value))).toFixed(2);
+            }
+        }
+        if (allPrice.value == 0){
+            allPrice.value = "0.00";
+        }
+        allPrice.value = "￥" + allPrice.value;
+        allPrice.innerHTML = allPrice.value;
+        document.getElementById("ids").value = ids;
+    }
+    function checkout() {
+        var checkout = document.getElementById("checkout");
+        checkout.action = "/user/checkout";
+        checkout.submit();
+    }
+    function allCheckbox(){
+        var allChecked = document.getElementById("allChecked");
+        for (var i = 0; i < [[${cartList.size()}]]; i++) {
+            var checkbox = document.getElementById("checkbox" + i);
+            if (allChecked.checked){
+                checkbox.checked = true;
+            }else{
+                checkbox.checked = false;
+            }
+        }
+        cartGoods();
+    }
+</script>
+<!-- footer start -->
+<footer th:include="user/common/model::footer"></footer>
+<!-- footer end -->
+
+<!-- JS -->
+<script th:include="user/common/model::alertMsg"></script>
+<!-- jquery js -->
+<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
+
+<!-- price-slider js -->
+<script th:src="@{/js/user/home/price-slider.js}"></script>
+
+<!-- bootstrap js -->
+<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
+
+<!-- owl.carousel.min js -->
+<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
+
+<!-- jquery.scrollUp js -->
+<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
+
+<!-- jquery.collapse js -->
+<script th:src="@{/js/user/home/jquery.collapse.js}"></script>
+<!-- mixitup js -->
+
+<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
+
+<!-- fancybox js -->
+<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
+
+<!-- jquery-counterup js -->
+<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
+<script th:src="@{/js/user/home/waypoints.min.js}"></script>
+
+<!-- jquery-meanmenu js -->
+<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
+
+<!-- RS-Plugin JS
+============================================ -->
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
+
+<!-- plugins js -->
+<script th:src="@{/js/user/home/plugins.js}"></script>
+
+<!-- main js -->
+<script th:src="@{/js/user/home/main.js}"></script>
+</body>
+</html>

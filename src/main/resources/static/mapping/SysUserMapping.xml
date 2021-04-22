@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysUserMapper">
+
+    <resultMap id="SysUserMap" type="com.example.jieyue.common.entity.SysUser">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mark" jdbcType="INTEGER" property="mark" />
+        <result column="header" jdbcType="VARCHAR" property="header" />
+    </resultMap>
+
+    <select id="selectById" resultType="com.example.jieyue.common.entity.SysUser">
+        select * from sys_user where id = #{id};
+    </select>
+
+    <select id="selectByEmail" resultType="com.example.jieyue.common.entity.SysUser">
+        select email,password from sys_user where email = #{email};
+    </select>
+
+    <select id="getUserInfo" resultType="com.example.jieyue.common.entity.SysUser">
+        select id,email,username,mark,header from sys_user where email = #{email} and mark != 0;
+    </select>
+
+    <select id="findAll" resultType="com.example.jieyue.common.entity.SysUser">
+        select * from sys_user;
+    </select>
+
+    <select id="userCount" resultType="INTEGER">
+        select count(*) from sys_user;
+    </select>
+
+    <select id="findLimit" resultType="com.example.jieyue.common.entity.SysUser">
+        select * from sys_user order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <update id="updateMark">
+        update sys_user set mark = #{mark} where email = #{email};
+    </update>
+
+    <update id="update">
+        update sys_user set username = #{username},password = #{password} where email = #{email};
+    </update>
+
+    <update id="updateById">
+        update sys_user set username = #{username},password = #{password}, email = #{email},header = #{header} where id = #{id};
+    </update>
+
+    <insert id="insert">
+        insert into sys_user(id,username,password,email,mark,header) values(default,#{username},#{password},#{email},#{mark},default);
+    </insert>
+</mapper>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>捷阅网后台登陆</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+
+    <link rel="stylesheet" th:href="@{/css/admin/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="info">
+        <h1>捷阅网后台登陆</h1>
+    </div>
+</div>
+<div class="form">
+    <div class="thumbnail"><img th:src="@{/css/admin/hat.svg}"/></div>
+    <form class="register-form" th:action="@{/admin/sign-up}" method="post">
+        <input type="text" placeholder="昵称" name="name"/>
+        <input type="password" placeholder="密码" name="password"/>
+        <input type="text" placeholder="邮箱" name="email"/>
+        <button>注册</button>
+        <p class="message">已注册账号? <a href="#">登录</a></p>
+    </form>
+    <form class="login-form" th:action="@{/admin/do-login}" method="post">
+        <input type="text" placeholder="邮箱" name="email"/>
+        <input type="password" placeholder="密码" name="password"/>
+        <button>登录</button>
+        <p class="message">还未有账号? <a href="#">创建用户</a></p>
+    </form>
+</div>
+<script th:src="@{/js/admin/jquery.min.js}"></script>
+<script th:src="@{/js/admin/index.js}"></script>
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+</html>

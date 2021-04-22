@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysMtMapper">
+
+    <resultMap id="SysAdminMap" type="com.example.jieyue.common.entity.SysMt">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="ratio" jdbcType="FLOAT" property="ratio" />
+        <result column="state" jdbcType="INTEGER" property="state" />
+        <result column="header" jdbcType="VARCHAR" property="header" />
+    </resultMap>
+
+    <select id="findAll" resultType="com.example.jieyue.common.entity.SysMt">
+        select * from sys_mt;
+    </select>
+
+    <delete id="deleteById">
+        delete from sys_mt where id = #{id};
+    </delete>
+
+    <select id="findByEmail" resultType="com.example.jieyue.common.entity.SysMt">
+        select id,email,password,name,ratio,state,header from sys_mt where email = #{email};
+    </select>
+
+    <select id="findById" resultType="com.example.jieyue.common.entity.SysMt">
+        select id,name,header from sys_mt where id = #{id};
+    </select>
+
+    <select id="findPage" resultType="com.example.jieyue.common.entity.SysMt">
+        select id,email,password,name,ratio,state,header from sys_mt limit #{curRow},#{pageSize};
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from sys_mt;
+    </select>
+    
+    <insert id="insert">
+        insert into sys_mt(id,name,email,password,ratio,state) values(default,#{name},#{email},#{password},#{ratio},#{state});
+    </insert>
+
+    <update id="update">
+        update sys_mt set name = #{name},password = #{password} where email = #{email};
+    </update>
+
+    <update id="updateRatio">
+        update sys_mt set ratio = #{ratio} where id = #{id};
+    </update>
+
+    <update id="updateState">
+        update sys_mt set state = #{state} where email = #{email};
+    </update>
+
+    <update id="updateHeader">
+        update sys_mt set header = #{header} where id = #{id};
+    </update>
+
+</mapper>

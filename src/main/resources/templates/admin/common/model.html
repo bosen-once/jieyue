@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style th:fragment="input">
+    input {
+        background: whitesmoke;
+        color: grey;
+        border-radius: 10px;
+        width: 100px;
+        height: 36px;
+    }
+    input:hover{
+        background: lightgrey;
+    }
+</style>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand waves-effect waves-dark" th:href="@{/admin/home}">
+                <i class="large material-icons">track_changes</i><strong>Admin</strong></a>
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>[[${session.admin.getName()}]]</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </nav>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a th:href="@{/admin/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        </li>
+    </ul>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse" style="position:relative;left: 10px">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <a th:href="@{/admin/home}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';">
+                        <i class="fa fa-dashboard"></i>后台主页
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/ui}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';" class="waves-effect waves-dark">
+                        <i class="fa fa-desktop"></i>广告设置
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/order}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';" class="waves-effect waves-dark">
+                        <i class="fa fa-bar-chart-o"></i>订单列表
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/merchant/}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';" class="waves-effect waves-dark">
+                        <i class="fa fa-qrcode"></i>商户相关
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/admin/user}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';" class="waves-effect waves-dark">
+                        <i class="fa fa-table"></i>会员相关
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/rbac}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';" class="waves-effect waves-dark">
+                        <i class="fa fa-edit"></i>权限管理
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/notice}" onmouseover="this.style.color = 'orangered';" onmouseleave="this.style.color = 'grey';" class="waves-effect waves-dark">
+                        <i class="fa fa-fw fa-file"></i>系统消息
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+</div>
+<script th:fragment="alertMsg" th:inline="javascript">
+
+    window.onload = function () {
+        if ("[[${param.msg}]]" != "") {
+            alert("[[${param.msg}]]");
+
+            // 去除msg参数
+
+            var url = window.location.href;    //页面url
+            var urlParam = window.location.search.substr(1);   //页面参数
+            var beforeUrl = url.substr(0, url.indexOf("?"));   //页面主地址（参数之前地址）
+            var nextUrl = "";
+
+            var arr = new Array();
+            if (urlParam != "") {
+                var urlParamArr = urlParam.split("&"); //将参数按照&符分成数组
+                for (var i = 0; i < urlParamArr.length; i++) {
+                    var paramArr = urlParamArr[i].split("="); //将参数键，值拆开
+                    //如果键雨要删除的不一致，则加入到参数中
+                    if (paramArr[0] != "msg") {
+                        arr.push(urlParamArr[i]);
+                    }
+                }
+            }
+            if (arr.length > 0) {
+                nextUrl = "?" + arr.join("&");
+            }
+            url = beforeUrl + nextUrl;
+            window.location.href = url;
+        }
+    };
+</script>
+
+</html>

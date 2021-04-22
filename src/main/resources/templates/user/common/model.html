@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header">
+    <!-- header-top-area start -->
+    <div class="header-top-area hidden-xs">
+        <div class="container">
+            <div class="row">
+                <!-- header-top-left start -->
+                <div class="col-lg-6 col-md-6 col-sm-7">
+                    <div class="header-top-left">
+                        <div class="top-message">欢迎访问捷阅网</div>
+                        <div class="phone-number"> 平台联系电话: <span>123 456  789</span></div>
+                    </div>
+                </div>
+                <!-- header-top-left end -->
+                <!-- header-top-right start -->
+                <div class="col-lg-6 col-md-6 col-sm-5">
+                    <div class="header-top-right">
+                        <div class="lang-select">
+                            <ul>
+                                <li>
+                                    <a th:if="${session.user} == null" th:href="@{/user/login}"><img th:src="@{/data/header/user/default.jpg}" alt="" width="40" style="border-radius: 100%"/></a>
+                                    <a th:if="${session.user} != null" th:href="@{/user/info}"><img th:src="@{${session.user.getHeader()}}" alt="" width="40" style="border-radius: 100%"/></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="top-menu">
+                            <ul>
+                                <li><a th:href="@{/user/info}">我的账户</a></li>
+                                <li><a th:href="@{/user/notice}">系统消息</a></li>
+                                <li><a th:href="@{/user/order}">购买记录</a></li>
+                                <li><a th:href="@{/user/cart}">购物车</a></li>
+                                <li>
+                                    <a th:if="${session.user} == null" th:href="@{/user/login}">点击登陆</a>
+                                    <a th:if="${session.user} != null" th:href="@{/user/logout}"
+                                       onclick="if (confirm('确认退出登录？')==false)return false; ">
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- header-top-right end -->
+            </div>
+        </div>
+    </div>
+    <!-- header-top-area end -->
+    <!-- header-mid-area start -->
+    <div class="header-mid-area">
+        <div class="container">
+            <div class="row">
+                <!-- logo start -->
+                <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+                    <div class="logo">
+                        <a th:href="@{/}"><img th:src="@{/image/user/home/logo/logo.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- logo end -->
+                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                    <!-- cart-total start -->
+                    <div class="cart-total">
+                        <ul>
+                            <li><a th:href="@{/user/cart}"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">我的购物车</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- cart-total end -->
+                    <!-- header-search start -->
+                    <div class="header-search">
+                        <form th:action="@{/user/search}">
+                            <input name="keyword" type="text" placeholder="搜索商品..." />
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <!-- header-search end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header-mid-area end -->
+    <!-- mainmenu-area start -->
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="mainmenu">
+                        <nav>
+                            <ul>
+                                <li><a th:href="@{/}">商城主页</a></li>
+                                <li><a target="_blank" th:href="@{/user/about}">关于作者</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- mobile-menu-area end -->
+</header>
+
+<div th:fragment="brand" class="brand-area pad-60">
+    <div class="container">
+        <!-- section-heading start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h1>我们的品牌</h1>
+                    <div class="title-icon">
+                        <span><i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- section-heading end -->
+        <div class="row">
+            <div class="brand-curosel">
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+                <!-- single-brand start -->
+                <div class="col-md-2">
+                    <div class="single-brand">
+                        <a href="#"><img th:src="@{/image/user/home/brand/1.png}" alt="" /></a>
+                    </div>
+                </div>
+                <!-- single-brand end -->
+            </div>
+        </div>
+    </div>
+    <br/><br/><br/>
+</div>
+
+<footer th:fragment="footer">
+    <!-- footer-top-area start -->
+    <div class="footer-top-area">
+        <div class="container">
+            <div class="row">
+                <!-- footer-widget start -->
+                <div class="col-lg-3 col-md-3 col-sm-4">
+                    <div class="footer-widget">
+                        <img th:src="@{/image/user/home/logo/logo.png}" alt="" />
+                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. .</p>
+                        <div class="widget-icon">
+                            <a><i class="fa fa-facebook"></i></a>
+                            <a><i class="fa fa-twitter"></i></a>
+                            <a><i class="fa fa-linkedin"></i></a>
+                            <a><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-widget end -->
+                <!-- footer-widget start -->
+                <div class="col-lg-3 col-md-3 hidden-sm">
+                    <div class="footer-widget">
+                        <h3>Our services</h3>
+                        <ul class="footer-menu">
+                            <li><a>Shipping & Returns</a></li>
+                            <li><a>Secure Shopping</a></li>
+                            <li><a>International Shipping</a></li>
+                            <li><a>Affiliates</a></li>
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- footer-widget end -->
+                <!-- footer-widget start -->
+                <div class="col-lg-3 col-md-3 col-sm-4">
+                    <div class="footer-widget">
+                        <h3>Our services</h3>
+                        <ul class="footer-menu">
+                            <li><a>Shipping & Returns</a></li>
+                            <li><a>Secure Shopping</a></li>
+                            <li><a>International Shipping</a></li>
+                            <li><a>Affiliates</a></li>
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- footer-widget end -->
+                <!-- footer-widget start -->
+                <div class="col-lg-3 col-md-3 col-sm-4">
+                    <div class="footer-widget">
+                        <h3>CONTACT US</h3>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fa fa-map-marker"> </i>
+                                Addresss: China-Guangzhou
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"> </i>
+                                Email: bosen_once@163.com
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"> </i>
+                                Phone: +123 456 789
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- footer-widget end -->
+            </div>
+        </div>
+    </div>
+    <!-- footer-top-area end -->
+    <!-- footer-bottom-area start -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="copyright">
+                        <p>Copyright &copy; 2020.JIEYUE All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="payment-img">
+                        <img th:src="@{/image/user/home/payment.png}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer-bottom-area end -->
+</footer>
+
+<script th:fragment="alertMsg" th:inline="javascript">
+    window.onload = function () {
+        if ("[[${param.msg}]]" != "") {
+            alert("[[${param.msg}]]");
+
+            // 去除msg参数
+
+            var url = window.location.href;    //页面url
+            var urlParam = window.location.search.substr(1);   //页面参数
+            var beforeUrl = url.substr(0, url.indexOf("?"));   //页面主地址（参数之前地址）
+            var nextUrl = "";
+
+            var arr = new Array();
+            if (urlParam != "") {
+                var urlParamArr = urlParam.split("&"); //将参数按照&符分成数组
+                for (var i = 0; i < urlParamArr.length; i++) {
+                    var paramArr = urlParamArr[i].split("="); //将参数键，值拆开
+                    //如果键雨要删除的不一致，则加入到参数中
+                    if (paramArr[0] != "msg") {
+                        arr.push(urlParamArr[i]);
+                    }
+                }
+            }
+            if (arr.length > 0) {
+                nextUrl = "?" + arr.join("&");
+            }
+            url = beforeUrl + nextUrl;
+            window.location.href = url;
+        }
+    };
+</script>
+</html>

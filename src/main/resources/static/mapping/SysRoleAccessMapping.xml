@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysRoleAccessMapper">
+
+    <resultMap id="SysRoleAccessMap" type="com.example.jieyue.common.entity.SysRoleAccess">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="access_id" jdbcType="INTEGER" property="accessId" />
+        <result column="role_id" jdbcType="INTEGER" property="roleId" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+    </resultMap>
+
+    <select id="findAll" resultMap="SysRoleAccessMap">
+        select * from sys_role_access;
+    </select>
+
+    <select id="findByRoleId" resultMap="SysRoleAccessMap">
+        select * from sys_role_access where role_id = #{roleId};
+    </select>
+
+    <insert id="insert">
+        insert into sys_role_access(id,access_id,role_id,status) values(default,#{accessId},#{roleId},default);
+    </insert>
+
+    <delete id="deleteById">
+        delete from sys_role_access where id = #{id};
+    </delete>
+
+    <update id="updateStatus">
+        update sys_role_access set status = #{status} where id = #{id};
+    </update>
+
+    <delete id="deleteByAccessId">
+        delete from sys_role_access where access_id = #{accessId};
+    </delete>
+
+    <delete id="deleteByRoleId">
+        delete from sys_role_access where role_id = #{roleId};
+    </delete>
+
+</mapper>

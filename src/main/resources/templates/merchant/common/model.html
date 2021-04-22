@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--header start-->
+<header th:fragment="header" class="header fixed-top clearfix">
+    <!--logo start-->
+    <div class="brand">
+        <a th:href="@{/merchant/home}" class="logo">
+            Merchant
+        </a>
+    </div>
+    <div class="top-nav clearfix">
+        <!--search & user info start-->
+        <ul class="nav pull-right top-menu">
+            <!-- user login dropdown start-->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="" th:src="@{${session.merchant.getHeader()}}">
+                    <span class="username">[[${session.merchant.getName()}]]</span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu extended logout">
+                    <li><a th:href="@{/merchant/ui}"><i class="fa fa-cog"></i>商户设置</a></li>
+                    <li><a th:href="@{/merchant/logout}"><i class="fa fa-key"></i>退出登录</a></li>
+                </ul>
+            </li>
+            <!-- user login dropdown end -->
+        </ul>
+        <!--search & user info end-->
+    </div>
+</header>
+<!--header end-->
+<!--sidebar start-->
+<aside th:fragment="aside">
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a class="active" th:href="@{/merchant/home}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>商户主页</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript;">
+                        <i class="fa fa-book"></i>
+                        <span>店铺相关</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/merchant/ui}">店铺UI设计</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript;">
+                        <i class="fa fa-th"></i>
+                        <span>商品相关</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/merchant/goods}">商品管理</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>优惠相关</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="javascript:alert('暂未开放此功能');">满减卷</a></li>
+                        <li><a href="javascript:alert('暂未开放此功能');">立减卷</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javasctipt;">
+                        <i class=" fa fa-bar-chart-o"></i>
+                        <span>会员相关</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/merchant/user}">会员列表</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class=" fa fa-bar-chart-o"></i>
+                        <span>订单相关</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/merchant/order}">订单列表</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+<script th:fragment="alertMsg" th:inline="javascript">
+
+    window.onload = function () {
+        if ("[[${param.msg}]]" != "") {
+            alert("[[${param.msg}]]");
+
+            // 去除msg参数
+
+            var url = window.location.href;    //页面url
+            var urlParam = window.location.search.substr(1);   //页面参数
+            var beforeUrl = url.substr(0, url.indexOf("?"));   //页面主地址（参数之前地址）
+            var nextUrl = "";
+
+            var arr = new Array();
+            if (urlParam != "") {
+                var urlParamArr = urlParam.split("&"); //将参数按照&符分成数组
+                for (var i = 0; i < urlParamArr.length; i++) {
+                    var paramArr = urlParamArr[i].split("="); //将参数键，值拆开
+                    //如果键雨要删除的不一致，则加入到参数中
+                    if (paramArr[0] != "msg") {
+                        arr.push(urlParamArr[i]);
+                    }
+                }
+            }
+            if (arr.length > 0) {
+                nextUrl = "?" + arr.join("&");
+            }
+            url = beforeUrl + nextUrl;
+            window.location.href = url;
+        }
+    };
+</script>
+
+</html>

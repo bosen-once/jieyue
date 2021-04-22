@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>捷阅网用户登陆</title>
+  <script th:src="@{https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/user/style.css}">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+</head>
+<body>
+<div class="cotn_principal">
+  <div class="cont_centrar">
+    <div class="cont_login">
+      <div class="cont_info_log_sign_up">
+        <div class="col_md_login">
+          <div class="cont_ba_opcitiy">
+            <h2>LOGIN</h2>
+            <p>已有账号，点此登录</p>
+            <button class="btn_login" onClick="cambiar_login()">登录</button>
+          </div>
+        </div>
+        <div class="col_md_sign_up">
+          <div class="cont_ba_opcitiy">
+            <h2>SIGN UP</h2>
+            <p>未有账号，点此注册</p>
+            <button class="btn_sign_up" onClick="cambiar_sign_up()">注册</button>
+          </div>
+        </div>
+      </div>
+      <div class="cont_back_info">
+        <div class="cont_img_back_grey"> <img th:src="@{/image/user/po.jpg}" alt="" /> </div>
+      </div>
+      <div class="cont_forms" >
+        <div class="cont_img_back_"> <img th:src="@{/image/user/po.jpg}" alt="" /> </div>
+        <div class="cont_form_login"> <a href="#" onClick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
+          <h2>LOGIN</h2>
+          <form th:action="@{/user/do-login}" method="post">
+            <input type="text" placeholder="邮箱" name="email"/>
+            <input type="password" placeholder="密码" name="password"/>
+            <button class="btn_login" onClick="cambiar_login()">登录</button>
+          </form>
+        </div>
+        <div class="cont_form_sign_up"> <a href="#" onClick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
+          <h2>SIGN UP</h2>
+          <form th:action="@{/user/sign-up}" method="post">
+            <input type="text" placeholder="邮箱" name="email"/>
+            <input type="text" placeholder="昵称" name="username"/>
+            <input type="password" placeholder="密码" name="password"/>
+            <input type="password" placeholder="确认密码" name="repwd"/>
+            <button class="btn_sign_up" onClick="cambiar_sign_up()">注册</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script th:src="@{/js/user/index.js}"></script>
+<script th:include="user/common/model::alertMsg"></script>
+</body>
+</html>
+

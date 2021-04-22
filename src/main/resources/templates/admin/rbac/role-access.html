@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>权限管理</title>
+    <script th:src="@{https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js}">
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/js/Lightweight-Chart/cssCharts.css}">
+    <style>
+        button {
+            width: 250px;
+            height: 60px;
+            color: white;
+            font-size: 14px;
+            border-radius: 10px;
+            background: deepskyblue;
+        }
+        button:hover{
+            background: lightskyblue;
+        }
+        #main{
+            position:fixed;
+            z-index: 777;
+            height: 100%;
+            width: 100%;
+            opacity: 0.3;
+            background: black;
+        }
+        .body {
+            position: fixed;
+            z-index: 999;
+            height: 70%;
+            width: 60%;
+            background: white;
+            left: 50%;
+            top: 50%;
+            opacity: 1;
+            border-radius: 20px;
+            overflow-y: auto;
+            transform: translate(-50%,-50%);
+        }
+        .close {
+            position: relative;
+            right: 5px;
+            top: 5px;
+            width: 50px;
+            height: 50px;
+            font-size: 36px;
+        }
+        table {
+            position: relative;
+            text-align: center;
+            width: 90%;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        th,td {
+            text-align: center;
+            height: 50px;
+        }
+        input[type="checkbox"]{
+            color: deepskyblue;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main"></div>
+<div class="body" id="role">
+    <button style="position:relative;background: white;left: 5px;top: 5px;font-size: 18px;color: deepskyblue">
+        <b>设置[[${role.getName()}]]的权限</b>
+    </button>
+    <button class="close" onclick="window.location.href='/admin/rbac'">×</button>
+
+    <table>
+        <form th:action="@{/admin/role-access/action}" method="post">
+            <input hidden="hidden" name="role" th:value="${role.getId()}">
+            <tr th:each="access,stat : ${allAccessList}">
+                <td style="width: 45%"></td>
+                <td style="position:relative;text-align: left;width: 55%;color: grey">
+                    <label>
+                        <input th:if="${roleAccessMap.get(access.getId())!=null}" checked
+                               type="checkbox" name="ids" th:value="${access.getId()}">
+                        <input th:if="${roleAccessMap.get(access.getId())==null}"
+                               type="checkbox" name="ids" th:value="${access.getId()}">
+                        [[${access.getName()}]]
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="确认设置"
+                           style="color: white;background: deepskyblue;border-radius: 10px;height: 35px;font-weight: bold">
+                </td>
+            </tr>
+        </form>
+    </table>
+
+    <div th:if="${allAccessList.size()}==0" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);color: deepskyblue">
+        <h3><b>暂无权限信息</b></h3>
+    </div>
+    <br/><br/>
+</div>
+<div id="wrapper">
+    <div th:include="admin/common/model::nav"></div>
+    <div id="page-wrapper">
+        <div class="header">
+            <ol class="breadcrumb"></ol>
+        </div>
+        <div style="position:absolute;left: 50%;top: 25%;transform: translate(-50%,-50%)">
+        </div>
+        <br/><br/><br/>
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+<!-- Bootstrap Js -->
+<script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+
+<!-- Metis Menu Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+<!-- Morris Chart Js -->
+<script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+
+
+<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+
+<!-- Custom Js -->
+<script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+<script th:src="@{/js/admin/jquery.min.js}"></script>
+<script>
+    function go(){
+        $('html,body').animate({scrollTop: 750});
+    }
+</script>
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+
+</html>

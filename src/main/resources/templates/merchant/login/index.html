@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>捷阅网商户登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--图标库-->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'>
+
+    <!--响应式框架-->
+    <link rel='stylesheet' th:href='@{/css/merchant/bootstrap.min.css}'>
+
+    <!--主要样式-->
+    <link rel="stylesheet" th:href="@{/css/merchant/style.css}">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card-wrap">
+
+        <div class="card border-0 shadow card--welcome is-show" id="welcome">
+            <div class="card-body">
+                <h2 class="card-title">捷阅网商户登录</h2>
+                <p>欢迎进入登录页面</p>
+                <div class="btn-wrap"><a class="btn btn-lg btn-register js-btn" data-target="register">注册</a><a class="btn btn-lg btn-login js-btn" data-target="login">登录</a></div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow card--register" id="register">
+            <div class="card-body">
+                <h2 class="card-title">商户注册</h2>
+                <p>请使用您的电子邮箱进行注册</p>
+                <form th:action="@{/merchant/sign-up}" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="名称" name="name">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="email" placeholder="邮箱" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" placeholder="密码" name="password">
+                    </div>
+                    <button class="btn btn-lg">注册</button>
+                </form>
+            </div>
+            <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+        </div>
+
+        <div class="card border-0 shadow card--login" id="login">
+            <div class="card-body">
+                <h2 class="card-title">欢迎登录！</h2>
+                <p>请使用邮箱登录</p>
+                <form th:action="@{/merchant/do-login}" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="email" placeholder="邮箱" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" placeholder="密码" name="password">
+                    </div>
+                    <p><a href="#">忘记密码?</a></p>
+                    <button class="btn btn-lg">登录</button>
+                </form>
+            </div>
+            <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+        </div>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/merchant/index.js}"></script>
+
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:inline="javascript">
+    $(document).ready(function(){
+        if ([[${param.msg}]] != null){
+            alert([[${param.msg}]]);
+        }
+    });
+</script>
+</body>
+</html>

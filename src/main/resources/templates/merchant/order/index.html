@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>订单列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" th:href="@{/lib/merchant/css/bootstrap.min.css}" >
+    <!-- //bootstrap-css -->
+    <!-- Custom CSS -->
+    <link th:href="@{/lib/merchant/css/style.css}" rel='stylesheet' type='text/css' />
+    <link th:href="@{/lib/merchant/css/style-responsive.css}" rel="stylesheet"/>
+    <!-- font CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" th:href="@{/lib/merchant/css/font.css}" type="text/css"/>
+    <link th:href="@{/lib/merchant/css/font-awesome.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/merchant/css/morris.css}" type="text/css"/>
+    <!-- calendar -->
+    <link rel="stylesheet" th:href="@{/lib/merchant/css/monthly.css}">
+    <!-- //calendar -->
+    <!-- //font-awesome icons -->
+    <script th:src="@{/lib/merchant/js/jquery2.0.3.min.js}"></script>
+    <script th:src="@{/lib/merchant/js/raphael-min.js}"></script>
+    <script th:src="@{/lib/merchant/js/morris.js}"></script>
+
+    <style>
+        input {
+            background: whitesmoke;
+            width: 175px;
+        }
+        input:hover{
+            background: lightgrey;
+        }
+        table {
+            background: white;
+            border: 3px solid crimson;
+        }
+        table tr {
+            border: 1px solid grey;
+        }
+        table th {
+            background: #8b5c9e;
+            text-align: center;
+            color: white;
+        }
+        table td {
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section id="container">
+    <!--header start-->
+    <header class="header fixed-top clearfix" th:include="merchant/common/model::header"></header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside  th:include="merchant/common/model::aside"></aside>
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <select style="display: inline;width: 100px;position: relative;left: 2.5%">
+                <option selected th:if="${flag==2}" onclick="updateFlag(2)">全部订单</option>
+                <option th:if="${flag!=2}" onclick="updateFlag(2)">全部订单</option>
+                <option selected th:if="${flag==1}" onclick="updateFlag(1)">已支付</option>
+                <option th:if="${flag!=1}" onclick="updateFlag(1)">已支付</option>
+                <option selected th:if="${flag==0}" onclick="updateFlag(0)">未支付</option>
+                <option th:if="${flag!=0}" onclick="updateFlag(0)">未支付</option>
+            </select>
+            <form th:action="@{/merchant/search-order}" style="position: relative;left: 32px;display: inline" method="post">
+                <input id="order" name="order" style="display: inline;width: 200px;background: white;height: 24px" placeholder="通过订单号查找...">
+                <input type="submit" value="搜索" style="height: 24px;transform: translate(0,2px)"
+                       onclick="if (document.getElementById('order').value==''){alert('请输入订单号');return false;} ">
+            </form>
+            <h3 th:if="${orderList.size()==0}" style="color:grey;position:absolute;left: 55%;top: 50%;transform: translate(-50%,-50%)">
+                这里还没有任何订单信息！！
+            </h3>
+            <form th:action="@{/merchant/order}" method="get">
+                <table th:if="${orderList.size()!=0}" style="position:relative;left:50%;width: 95%;transform: translate(-50%,0)">
+                    <tr style="height: 36px">
+                        <th>订单编号</th>
+                        <th>总额</th>
+                        <th>创建时间</th>
+                        <th>订单状态</th>
+                        <th>支付方式</th>
+                        <th>支付时间</th>
+                        <th>商品数量</th>
+                        <th>商品ID</th>
+                        <th>商户ID</th>
+                        <th>会员ID</th>
+                        <th>收件人</th>
+                        <th>联系方式</th>
+                    </tr>
+                    <tr style="height: 80px" th:each="order : ${orderList}">
+                        <td th:text="${order.getOrderId()}"></td>
+                        <td th:text="'￥'+${order.getOrderPrice()}"></td>
+                        <td th:text="${#dates.format(order.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
+
+                        <td th:if="${order.getOrderState()==1}">已支付</td>
+                        <td th:if="${order.getOrderState()!=1}">未支付</td>
+
+                        <td th:if="${order.getPayWay()==1}">支付宝</td>
+                        <td th:if="${order.getPayWay()==0}">微信支付</td>
+
+                        <td th:if="${order.getOrderState()==1}" th:text="${#dates.format(order.getPayTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:if="${order.getOrderState()!=1}">未支付</td>
+
+                        <td th:text="${order.getGoodsNum()}"></td>
+                        <td th:text="${order.getGoodsId()}"></td>
+                        <td th:text="${order.getOrderMerchant()}"></td>
+                        <td th:text="${order.getOrderUser()}"></td>
+                        <td th:text="${order.getUserName()}"></td>
+                        <td th:text="${order.getUserPhone()}"></td>
+                    </tr>
+                    <tr style="height: 100px;text-align: right">
+                        <td colspan="12">
+                            <input type="submit" value="上一页" onclick="delPage()">
+                            [[${page}]]/[[${allPage}]]
+                            <input type="submit" value="下一页" onclick="addPage()">
+                        </td>
+                    </tr>
+                </table>
+                <input type="number" hidden name="flag" id="flag" th:value="${flag}">
+                <input type="number" hidden name="page" id="page" th:value="${page}">
+            </form>
+            <br/><br/><br/>
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<script th:inline="javascript">
+    var page = document.getElementById('page');
+    var flag = document.getElementById('flag');
+    function addPage(){
+        if (page.value < [[${allPage}]]){
+            page.value = page.value-1+2;
+        }else{
+            alert("当前是最后一页");
+        }
+    }
+    function delPage(){
+        if (page.value > 1){
+            page.value = page.value-1;
+        }else{
+            alert("当前是第一页");
+        }
+    }
+</script>
+<script th:include="merchant/common/model :: alertMsg"></script>
+
+<script th:src="@{/lib/merchant/js/bootstrap.js}"></script>
+<script th:src="@{/lib/merchant/js/jquery.dcjqaccordion.2.7.js}"></script>
+<script th:src="@{/lib/merchant/js/scripts.js}"></script>
+<script th:src="@{/lib/merchant/js/jquery.slimscroll.js}"></script>
+<script th:src="@{/lib/merchant/js/jquery.nicescroll.js}"></script>
+<script type="text/javascript" th:src="@{/lib/merchant/js/flot-chart/excanvas.min.js}"></script>
+<script th:src="@{/lib/merchant/js/jquery.scrollTo.js}"></script>
+<!-- morris JavaScript -->
+<script>
+    $(document).ready(function() {
+        //BOX BUTTON SHOW AND CLOSE
+        jQuery('.small-graph-box').hover(function() {
+            jQuery(this).find('.box-button').fadeIn('fast');
+        }, function() {
+            jQuery(this).find('.box-button').fadeOut('fast');
+        });
+        jQuery('.small-graph-box .box-close').click(function() {
+            jQuery(this).closest('.small-graph-box').fadeOut(200);
+            return false;
+        });
+
+        //CHARTS
+        function gd(year, day, month) {
+            return new Date(year, month - 1, day).getTime();
+        }
+
+        graphArea2 = Morris.Area({
+            element: 'hero-area',
+            padding: 10,
+            behaveLikeLine: true,
+            gridEnabled: false,
+            gridLineColor: '#dddddd',
+            axes: true,
+            resize: true,
+            smooth:true,
+            pointSize: 0,
+            lineWidth: 0,
+            fillOpacity:0.85,
+            data: [
+                {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
+                {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
+                {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
+                {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
+                {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
+                {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
+                {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
+                {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
+                {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
+
+            ],
+            lineColors:['#eb6f6f','#926383','#eb6f6f'],
+            xkey: 'period',
+            redraw: true,
+            ykeys: ['iphone', 'ipad', 'itouch'],
+            labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
+            pointSize: 2,
+            hideHover: 'auto',
+            resize: true
+        });
+
+
+    });
+</script>
+<!-- calendar -->
+<script type="text/javascript" th:src="@{/lib/merchant/js/monthly.js}"></script>
+<script type="text/javascript">
+    $(window).load( function() {
+
+        $('#mycalendar').monthly({
+            mode: 'event',
+
+        });
+
+        $('#mycalendar2').monthly({
+            mode: 'picker',
+            target: '#mytarget',
+            setWidth: '250px',
+            startHidden: true,
+            showTrigger: '#mytarget',
+            stylePast: true,
+            disablePast: true
+        });
+
+        switch(window.location.protocol) {
+            case 'http:':
+            case 'https:':
+                // running on a server, should be good.
+                break;
+            case 'file:':
+        }
+
+    });
+</script>
+<script th:inline="javascript">
+    var page = document.getElementById('page');
+    var flag = document.getElementById('flag');
+    function addPage(){
+        if (page.value < [[${allPage}]]){
+            page.value = page.value-1+2;
+        }else{
+            alert("当前是最后一页");
+        }
+    }
+    function delPage(){
+        if (page.value > 1){
+            page.value = page.value-1;
+        }else{
+            alert("当前是第一页");
+        }
+    }
+    function updateFlag(temp){
+        flag.value = temp;
+        location.href = "/merchant/order?flag="+temp;
+    }
+</script>
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:include="merchant/common/model :: alertMsg"></script>
+
+<!-- //calendar -->
+</body>
+</html>

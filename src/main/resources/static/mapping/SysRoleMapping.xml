@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysRoleMapper">
+
+    <resultMap id="SysRoleMap" type="com.example.jieyue.common.entity.SysRole">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+    </resultMap>
+
+    <select id="findAll" resultMap="SysRoleMap">
+        select * from sys_role;
+    </select>
+
+    <select id="findById" resultMap="SysRoleMap">
+        select * from sys_role where id = #{id};
+    </select>
+
+    <select id="countByName" resultType="INTEGER">
+        select count(*) from sys_role where name = #{name};
+    </select>
+
+    <insert id="insert">
+        insert into sys_role(id,name,status) values(default,#{name},default);
+    </insert>
+
+    <delete id="deleteById">
+        delete from sys_role where id = #{id};
+    </delete>
+
+    <update id="updateStatus">
+        update sys_role set status = #{status} where id = #{id};
+    </update>
+
+</mapper>

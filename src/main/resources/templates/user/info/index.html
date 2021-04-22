@@ -1,0 +1,254 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Basic page needs
+    ============================================ -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>我的账户</title>
+    <meta name="description" content="">
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- fonts
+    ============================================ -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
+
+    <!-- CSS  -->
+
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
+
+    <!-- font-awesome CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
+
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
+
+    <!-- owl.theme CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
+
+    <!-- owl.transitions CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
+
+    <!-- fancybox CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
+
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
+
+    <!-- meanmenu CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all" />
+
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
+
+    <!-- RS-slider CSS
+    ============================================ -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen" />
+
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/main.css}">
+
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/style.css}">
+
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
+
+    <!-- modernizr js
+    ============================================ -->
+    <script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
+
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- header start -->
+<header th:include="user/common/model::header"></header>
+<!-- header end -->
+<!-- entry-header-area start -->
+<div class="entry-header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="entry-header">
+                    <h1 class="entry-title">我的信息</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- entry-header-area end -->
+
+<!-- cart-main-area start -->
+<div class="cart-main-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <form method="post" id="form" enctype="multipart/form-data">
+                    <input th:value="${session.user.getId()}" name="id" hidden>
+                    <div class="table-content table-responsive">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img id="header" th:src="@{${session.user.getHeader()}}" width="350" style="border-radius: 100%" onclick="upImg()">
+                                    <br>
+                                    点击头像上传图片
+                                    <input id="upImg" name="img" type="file" style="width: 200px;display: none" onchange="showImg(this,'header')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+                                    <input type="text" th:value="${session.user.getUsername()}" style="width: 300px" name="username"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
+                                    <input type="text" th:value="${session.user.getEmail()}" style="width: 300px" name="email"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <b>修改密码</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    输入原密码：<input type="password" style="width: 300px" name="oldPwd"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    输入新密码：<input type="password" style="width: 300px" name="newPwd"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    确认原密码：<input type="password" style="width: 300px" name="rePwd"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="退出登录" onclick="logout()" style="width: 100px;background: orangered;color: white">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="submit" value="修改信息" onclick="submitForm()" style="width: 100px;background: deepskyblue;color: white">
+                                    <script>
+                                        function logout(){
+                                            if (confirm("确认退出登录？")==false){
+                                                return false;
+                                            } else {
+                                                window.location = "/user/logout";
+                                            }
+                                        }
+                                        function submitForm(){
+                                            var form = document.getElementById("form");
+                                            form.action = "/user/update-info";
+                                            form.submit();
+                                        }
+
+                                        function showImg(input,id) {
+                                            var file = input.files[0];
+                                            var reader = new FileReader();
+
+                                            // 图片读取成功回调函数
+                                            reader.onload = function(e) {
+                                                document.getElementById(id).src=e.target.result
+                                            };
+                                            reader.readAsDataURL(file)
+                                        }
+
+                                        function upImg(){
+                                            var upImg = document.getElementById("upImg");
+                                            upImg.click();
+                                        }
+
+                                    </script>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart-main-area end -->
+
+<!-- footer start -->
+<footer th:include="user/common/model::footer"></footer>
+<!-- footer end -->
+
+<!-- JS -->
+<script th:include="user/common/model::alertMsg"></script>
+
+<!-- jquery js -->
+<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
+
+<!-- price-slider js -->
+<script th:src="@{/js/user/home/price-slider.js}"></script>
+
+<!-- bootstrap js -->
+<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
+
+<!-- owl.carousel.min js -->
+<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
+
+<!-- jquery.scrollUp js -->
+<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
+
+<!-- jquery.collapse js -->
+<script th:src="@{/js/user/home/jquery.collapse.js}"></script>
+<!-- mixitup js -->
+
+<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
+
+<!-- fancybox js -->
+<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
+
+<!-- jquery-counterup js -->
+<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
+<script th:src="@{/js/user/home/waypoints.min.js}"></script>
+
+<!-- jquery-meanmenu js -->
+<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
+
+<!-- RS-Plugin JS
+============================================ -->
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
+
+<!-- plugins js -->
+<script th:src="@{/js/user/home/plugins.js}"></script>
+
+<!-- main js -->
+<script th:src="@{/js/user/home/main.js}"></script>
+
+</body>
+</html>

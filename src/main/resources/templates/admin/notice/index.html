@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>系统消息</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <style th:include="admin/common/model::input"></style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div th:include="admin/common/model::nav"></div>
+
+    <div id="page-wrapper">
+        <div class="header">
+            <ol class="breadcrumb"></ol>
+        </div>
+
+        <form class="raido" th:action="@{/admin/send-notice}" method="post" style="width: 80%;position:absolute;left: 50%;top: 25%;transform: translate(-50%,-50%);">
+            <h3 style="color: dodgerblue">群发系统消息功能</h3>
+            <br/><br/>
+            <textarea style="background: white;height: 50px" name="title" placeholder="通知标题"></textarea>
+            <textarea style="background: white;height: 300px" name="context" placeholder="通知内容"></textarea>
+            <label>
+                <input name="type" value="0" type="radio" style="width: 10px;height: 10px" checked="checked"><b style="color: red;">管理员</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+            <label>
+                <input name="type" value="1" type="radio" style="width: 10px;height: 10px"><b style="color: mediumpurple;">商户</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+            <label>
+                <input name="type" value="2" type="radio" style="width: 10px;height: 10px"><b style="color: limegreen;">会员</b>
+            </label>
+            <label style="float: right">
+                <input style="background: deepskyblue;color: white;font-weight: bold" value="发送" type="submit">
+            </label>
+        </form>
+        <br/><br/><br/>
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+<!-- Bootstrap Js -->
+<script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+
+<!-- Metis Menu Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+<!-- Morris Chart Js -->
+<script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+
+
+<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+
+<!-- Custom Js -->
+<script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+<script th:src="@{/js/admin/jquery.min.js}"></script>
+<script>
+    function go(){
+        $('html,body').animate({scrollTop: 750});
+    }
+</script>
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+
+</html>

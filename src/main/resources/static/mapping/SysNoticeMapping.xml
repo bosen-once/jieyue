@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysNoticeMapper">
+
+    <resultMap id="SysNoticeMap" type="com.example.jieyue.common.entity.SysNotice">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="context" jdbcType="VARCHAR" property="context" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="receive" jdbcType="INTEGER" property="receive" />
+        <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    </resultMap>
+
+    <select id="findByReceiveTypeLimit" resultMap="SysNoticeMap">
+        select * from sys_notice where receive = #{receive} and `type` = #{type} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <delete id="deleteById">
+        delete from sys_notice where id = #{id};
+    </delete>
+
+    <insert id="insert">
+        insert into sys_notice(id,title,context,type,receive,create_time)
+        values(default,#{title},#{context},#{type},#{receive},#{createTime});
+    </insert>
+
+</mapper>

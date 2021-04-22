@@ -1,0 +1,50 @@
+site-url: http://127.0.0.1
+server:
+  port: 80
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  error:
+    include-exception: true
+spring:
+  jmx:
+    enabled: false
+  application:
+    name: jieyue
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jieyue?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+  mvc:
+    static-path-pattern: /*/**
+  mail:
+    host: smtp.163.com
+    username: bosen_once@163.com
+    password: IORQCTROCDAKWPZS
+    properties.mail.smtp.port: 25
+    from: bosen_once@163.com
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    cache: false
+    suffix: .html
+    mode: HTML5
+  redis:
+    database: 0
+    port: 6379
+    host: 127.0.0.1
+mybatis:
+  mapper-locations: classpath:/static/mapping/*Mapping.xml
+  type-aliases-package: com.example.jieyue.common.entity

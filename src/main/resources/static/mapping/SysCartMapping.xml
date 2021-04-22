@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysCartMapper">
+
+    <resultMap id="SysCartMap" type="com.example.jieyue.common.entity.SysCart">
+        <id property="id" jdbcType="INTEGER" column="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+        <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    </resultMap>
+
+    <select id="findAll" resultMap="SysCartMap">
+        select * from sys_cart where id > 0;
+    </select>
+
+    <select id="findByUserIdLimit" resultMap="SysCartMap">
+        select * from sys_cart where user_id = #{userId} order by id desc;
+    </select>
+
+    <insert id="insert">
+        insert into sys_cart values(default,#{goodsId},#{userId},#{goodsNum});
+    </insert>
+
+    <delete id="deleteById">
+        delete from sys_cart where id = #{id};
+    </delete>
+
+    <select id="countByUserIdAndGoodsId" resultType="INTEGER">
+        select count(*) from sys_cart where user_id = #{userId} and goods_id = #{goodsId};
+    </select>
+
+</mapper>

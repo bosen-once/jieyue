@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>订单列表</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/materialize/css/materialize.min.css}" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{/lib/admin/home/assets/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{/lib/admin/home/assets/css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" th:href="@{/lib/admin/home/assets/js/Lightweight-Chart/cssCharts.css}">
+    <style th:include="admin/common/model::input"></style>
+    <style>
+        form{
+            display: inline;
+        }
+        h4{
+            display: inline;
+        }
+        table tr {
+            border: 1px solid lightgrey;
+        }
+        table td {
+            background: white;
+            color: black;
+            height: 60px;
+            text-align: center;
+        }
+        table th {
+            background: orangered;
+            color: whitesmoke;
+            height: 36px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div th:include="admin/common/model::nav"></div>
+
+    <div id="page-wrapper">
+        <div class="header">
+            <ol class="breadcrumb"></ol>
+        </div>
+        <select style="display: inline;width: 100px;position: relative;left: 2.5%;">
+            <option selected th:if="${flag==2}" onclick="updateFlag(2)">全部订单</option>
+            <option th:if="${flag!=2}" onclick="updateFlag(2)">全部订单</option>
+            <option selected th:if="${flag==1}" onclick="updateFlag(1)">已支付</option>
+            <option th:if="${flag!=1}" onclick="updateFlag(1)">已支付</option>
+            <option selected th:if="${flag==0}" onclick="updateFlag(0)">未支付</option>
+            <option th:if="${flag!=0}" onclick="updateFlag(0)">未支付</option>
+        </select>
+        <form th:action="@{/admin/search-order}" style="position: relative;left: 32px;display: inline" method="post">
+            <input id="order" name="order" style="display: inline;width: 200px;background: white;height: 24px" placeholder="通过订单号查找...">
+            <input type="submit" value="查找" style="height: 36px"
+                   onclick="if (document.getElementById('order').value==''){alert('请输入订单号');return false;} ">
+        </form>
+        <h3 th:if="${orderList.size()==0}" style="color:grey;position:absolute;left: 50%;top: 25%;transform: translate(-50%,-50%)">
+            这里还没有任何订单信息！！
+        </h3>
+        <form th:action="@{/admin/order}" method="get">
+            <table th:if="${orderList.size()!=0}" style="position:relative;left:50%;width: 95%;transform: translate(-50%,0)">
+                <tr>
+                    <th>订单编号</th>
+                    <th>总额</th>
+                    <th>创建时间</th>
+                    <th>订单状态</th>
+                    <th>支付方式</th>
+                    <th>支付时间</th>
+                    <th>商品数量</th>
+                    <th>商品ID</th>
+                    <th>商户ID</th>
+                    <th>会员ID</th>
+                    <th>收件人</th>
+                    <th>联系方式</th>
+                </tr>
+                <tr th:each="order : ${orderList}">
+                    <td th:text="${order.getOrderId()}"></td>
+                    <td th:text="'￥'+${order.getOrderPrice()}"></td>
+                    <td th:text="${#dates.format(order.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
+
+                    <td th:if="${order.getOrderState()==1}">已支付</td>
+                    <td th:if="${order.getOrderState()!=1}">未支付</td>
+
+                    <td th:if="${order.getPayWay()==1}">支付宝</td>
+                    <td th:if="${order.getPayWay()==0}">微信支付</td>
+
+                    <td th:if="${order.getOrderState()==1}" th:text="${#dates.format(order.getPayTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:if="${order.getOrderState()!=1}">未支付</td>
+
+                    <td th:text="${order.getGoodsNum()}"></td>
+                    <td th:text="${order.getGoodsId()}"></td>
+                    <td th:text="${order.getOrderMerchant()}"></td>
+                    <td th:text="${order.getOrderUser()}"></td>
+                    <td th:text="${order.getUserName()}"></td>
+                    <td th:text="${order.getUserPhone()}"></td>
+                </tr>
+                <tr style="height: 100px">
+                    <td colspan="12">
+                        <input type="submit" value="上一页" onclick="delPage()">
+                        [[${page}]]/[[${allPage}]]
+                        <input type="submit" value="下一页" onclick="addPage()">
+                    </td>
+                </tr>
+            </table>
+            <input type="number" hidden name="flag" id="flag" th:value="${flag}">
+            <input type="number" hidden name="page" id="page" th:value="${page}">
+        </form>
+        <br/><br/><br/>
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<script th:inline="javascript">
+    var page = document.getElementById('page');
+    var flag = document.getElementById('flag');
+    function addPage(){
+        if (page.value < [[${allPage}]]){
+            page.value = page.value-1+2;
+        }else{
+            alert("当前是最后一页");
+        }
+    }
+    function delPage(){
+        if (page.value > 1){
+            page.value = page.value-1;
+        }else{
+            alert("当前是第一页");
+        }
+    }
+    function updateFlag(temp){
+        flag.value = temp;
+        location.href = "/admin/order?flag="+temp;
+    }
+</script>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery-1.10.2.js}"></script>
+
+<!-- Bootstrap Js -->
+<script th:src="@{/lib/admin/home/assets/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/materialize/js/materialize.min.js}"></script>
+
+<!-- Metis Menu Js -->
+<script th:src="@{/lib/admin/home/assets/js/jquery.metisMenu.js}"></script>
+<!-- Morris Chart Js -->
+<script th:src="@{/lib/admin/home/assets/js/morris/raphael-2.1.0.min.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/morris/morris.js}"></script>
+
+
+<script th:src="@{/lib/admin/home/assets/js/easypiechart.js}"></script>
+<script th:src="@{/lib/admin/home/assets/js/easypiechart-data.js}"></script>
+
+<script th:src="@{/lib/admin/home/assets/js/Lightweight-Chart/jquery.chart.js}"></script>
+
+<!-- Custom Js -->
+<script th:src="@{/lib/admin/home/assets/js/custom-scripts.js}"></script>
+
+<script th:src="@{/js/admin/jquery.min.js}"></script>
+<script>
+    function go(){
+        $('html,body').animate({scrollTop: 750});
+    }
+</script>
+<script th:include="admin/common/model::alertMsg"></script>
+</body>
+
+</html>

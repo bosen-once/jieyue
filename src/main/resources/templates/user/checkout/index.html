@@ -1,0 +1,373 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Basic page needs
+    ============================================ -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>订单信息</title>
+    <meta name="description" content="">
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- fonts
+    ============================================ -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
+
+    <!-- CSS  -->
+
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
+
+    <!-- font-awesome CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
+
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
+
+    <!-- owl.theme CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
+
+    <!-- owl.transitions CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
+
+    <!-- fancybox CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
+
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
+
+    <!-- meanmenu CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all"/>
+
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
+
+    <!-- RS-slider CSS
+    ============================================ -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen"/>
+
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/main.css}">
+
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/style.css}">
+
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
+
+    <!-- modernizr js
+    ============================================ -->
+    <script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- header start -->
+<header th:include="user/common/model::header"></header>
+<!-- header end -->
+<!-- entry-header-area start -->
+<div class="entry-header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="entry-header">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- entry-header-area end -->
+<!-- checkout-area start -->
+<div class="checkout-area">
+    <div class="container">
+        <div class="row">
+            <form name="pay" method="post">
+                <!-- coupon-area start -->
+                <div class="coupon-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="coupon-accordion">
+                                    <!-- ACCORDION START -->
+                                    <h3>拥有优惠卷？<span id="showcoupon">点此输入优惠卷代码</span></h3>
+                                    <div id="checkout_coupon" class="coupon-checkout-content">
+                                        <div class="coupon-info">
+                                            <p class="checkout-coupon">
+                                                <input type="text" placeholder="输入您的优惠卷代码" name="code"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- ACCORDION END -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- coupon-area end -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="checkbox-form">
+                        <br/><br/>
+                        <h3>结算明细</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>收件人姓名（必填）<span class="required">*</span></label>
+                                    <input id="name" type="text" placeholder="收件人姓名" name="name"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>收货地址（必填）<span class="required">*</span></label>
+                                    <input id="address" type="text" placeholder="收货地址" name="address"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>收件人手机号码（必填）<span class="required">*</span></label>
+                                    <input id="phone" type="number" placeholder="手机号码" name="phone"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="different-address">
+                            <div class="order-notes">
+                                <div class="checkout-form-list">
+                                    <label>订购补充（选填）</label>
+                                    <textarea id="checkout-mess" cols="30" rows="10" placeholder="有关订单的注释，例如：交货的特殊注释。"
+                                              name="notes"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input id="nums" name="nums" hidden>
+                        <input id="users" name="users" hidden>
+                        <input id="carts" name="carts" hidden>
+                        <input id="goods" name="goods" hidden>
+                        <input id="prices" name="prices" hidden>
+                        <input id="merchants" name="merchants" hidden>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="your-order">
+                        <h3>您的订单</h3>
+                        <div class="your-order-table table-responsive">
+                            <table>
+                                <tbody>
+                                <tr th:each="goods,stat : ${goodsMap.keySet()}" class="cart_item">
+                                    <td class="product-name" style="text-align: left">
+                                        [[${goods.getName()}]]
+                                    </td>
+                                    <td style="text-align: left">
+                                        <strong class="product-quantity">
+                                            × [[${goodsMap.get(goods)}]]
+                                            <input th:id="'num'+${stat.index}" hidden th:value="${goodsMap.get(goods)}">
+                                            <input th:id="'user'+${stat.index}" hidden th:value="${session.user.getId()}">
+                                            <input th:id="'cart'+${stat.index}" hidden th:value="${carts.get(stat.index)}">
+                                            <input th:id="'goods'+${stat.index}" hidden th:value="${goods.getId()}">
+                                            <input th:id="'price'+${stat.index}" hidden th:value="${goods.getPrice()}">
+                                            <input th:id="'merchant'+${stat.index}" hidden
+                                                   th:value="${goods.getMerchant()}">
+                                        </strong>
+                                    </td>
+                                    <td class="product-total" style="text-align: right">
+                                        <span class="amount">￥[[${goods.getPrice()}*${goodsMap.get(goods)}]]</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr class="shipping">
+                                    <th style="text-align: left">快递运输费</th>
+                                    <td></td>
+                                    <td style="text-align: right">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" checked="checked"/>
+                                                <label>免运费</label>
+                                            </li>
+                                            <li></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th style="text-align: left">
+                                        <label>订单总金额</label>
+                                    </th>
+                                    <td></td>
+                                    <td style="text-align: right"><strong><span class="amount">
+												￥[[${allPrice}]]
+												<input th:value="${allPrice}" name="price" hidden>
+											</span></strong>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-accordion">
+                                <!-- ACCORDION START -->
+                                <h3>直接银行转帐</h3>
+                                <div class="payment-content">
+                                    <p>将款项直接存入我们的银行帐户。请使用您的订单ID作为付款参考。在我们的帐户中的资金清除后，您的订单才会发货。（暂不支持此支付方式）</p>
+                                </div>
+                                <!-- ACCORDION END -->
+                                <!-- ACCORDION START -->
+                                <h3>支票付款</h3>
+                                <div class="payment-content">
+                                    <p>请将支票发送到商店名称，商店街道，商店镇，商店州/县，商店邮政编码。（暂不支持此支付方式）</p>
+                                </div>
+                                <!-- ACCORDION END -->
+                            </div>
+                            <input hidden type="number" value="" name="way" id="way">
+                            <div class="order-button-payment">
+                                <input type="submit" onclick="
+                                var address = document.getElementById('address');
+                                var name = document.getElementById('name');
+                                var phone = document.getElementById('phone');
+
+                                if (address.value=='' || name.value=='' || phone.value=='') {
+                                alert('必填信息不能为为空！');return false;
+                                }else{wei();}" value="微信支付" style="background: lightgreen"/>
+                            </div>
+                            <div class="order-button-payment">
+                                <input type="submit" onclick="
+                                var address = document.getElementById('address');
+                                var name = document.getElementById('name');
+                                var phone = document.getElementById('phone');
+
+                                if (address.value=='' || name.value=='' || phone.value=='') {
+                                alert('必填信息不能为为空！');return false;
+                                }else{ali();return false;}" value="支付宝支付"
+                                       style="background: deepskyblue"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br/><br/><br/>
+<!-- checkout-area end -->
+<script th:inline="javascript">
+    cartInfo();
+    function cartInfo() {
+        var nums = [];
+        var users = [];
+        var goods = [];
+        var carts = [];
+        var prices = [];
+        var merchants = [];
+        for (var i = 0; i < [[${goodsMap.keySet().size()}]]; i++) {
+            var num = document.getElementById("num" + i);
+            var user = document.getElementById("user" + i);
+            var cart = document.getElementById("cart" + i);
+            var good = document.getElementById("goods" + i);
+            var price = document.getElementById("price" + i);
+            var merchant = document.getElementById("merchant" + i);
+            nums.push(num.value);
+            users.push(user.value);
+            carts.push(cart.value);
+            goods.push(good.value);
+            prices.push(price.value);
+            merchants.push(merchant.value);
+        }
+        document.getElementById("nums").value = nums;
+        document.getElementById("carts").value = carts;
+        document.getElementById("users").value = users;
+        document.getElementById("goods").value = goods;
+        document.getElementById("prices").value = prices;
+        document.getElementById("merchants").value = merchants;
+    }
+</script>
+<!-- footer start -->
+<footer th:include="user/common/model::footer"></footer>
+<!-- footer end -->
+<!-- JS -->
+<script th:include="user/common/model::alertMsg"></script>
+<script>
+    function wei() {
+        var way = document.getElementById("way");
+        way.value = 0;
+        document.pay.action = "pay/wx";
+        document.pay.submit();
+    }
+
+    function ali() {
+/*
+        var ali = document.getElementById("way");
+        way.value = 1;
+        document.pay.action = "pay/ali";
+        document.pay.submit();
+*/
+        alert("暂不支持支付宝支付")
+    }
+</script>
+<!-- jquery js -->
+<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
+
+<!-- price-slider js -->
+<script th:src="@{/js/user/home/price-slider.js}"></script>
+
+<!-- bootstrap js -->
+<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
+
+<!-- owl.carousel.min js -->
+<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
+
+<!-- jquery.scrollUp js -->
+<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
+
+<!-- jquery.collapse js -->
+<script th:src="@{/js/user/home/jquery.collapse.js}"></script>
+<!-- mixitup js -->
+
+<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
+
+<!-- fancybox js -->
+<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
+
+<!-- jquery-counterup js -->
+<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
+<script th:src="@{/js/user/home/waypoints.min.js}"></script>
+
+<!-- jquery-meanmenu js -->
+<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
+
+<!-- RS-Plugin JS
+============================================ -->
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
+
+<!-- plugins js -->
+<script th:src="@{/js/user/home/plugins.js}"></script>
+
+<!-- main js -->
+<script th:src="@{/js/user/home/main.js}"></script>
+<script th:src="@{/js/user/index.js}"></script>
+
+</body>
+</html>

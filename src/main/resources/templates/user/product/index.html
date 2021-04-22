@@ -1,0 +1,696 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+		<!-- Basic page needs
+		============================================ -->	
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>[[${goods.getName()}]]</title>
+        <meta name="description" content="">
+		
+		<!-- Mobile specific metas
+		============================================ -->		
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- fonts
+		============================================ -->		
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>	
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+		<!-- Favicon
+		============================================ -->
+		<link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
+
+		<!-- CSS  -->
+
+		<!-- Bootstrap CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
+
+		<!-- font-awesome CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
+
+		<!-- owl.carousel CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
+
+		<!-- owl.theme CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
+
+		<!-- owl.transitions CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
+
+		<!-- fancybox CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
+
+		<!-- animate CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
+
+		<!-- meanmenu CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all" />
+
+		<!-- normalize CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
+
+		<!-- RS-slider CSS
+		============================================ -->
+		<link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen" />
+
+		<!-- main CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/main.css}">
+
+		<!-- style CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/style.css}">
+
+		<!-- responsive CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
+
+		<!-- modernizr js
+		============================================ -->
+		<script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
+
+		<!-- jquery-ui CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/jquery-ui.css}">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+     
+	<!-- header start -->
+		<header th:include="user/common/model::header"></header>
+	<!-- header end -->
+	<!-- breadcrumb-area start -->
+	<div class="breadcrumb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="breadcrumb">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- breadcrumb-area end -->
+	<!-- product-simple-area start -->
+	<div class="product-simple-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="single-product-image">
+						<div class="single-product-tab">
+						  <!-- Tab panes -->
+						  <div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home">
+								<!--/*@thymesVar id="getImg" type="java.lang.String"*/-->
+								<img th:src="@{${goods.getImg()}}">
+							</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="single-product-info">
+						<div class="product-nav">
+							<a th:href="@{/user/shop(id=${goods.getMerchant()})}">
+								<i class="fa fa-angle-right" style="width: 100px">
+									进入店铺
+								</i>
+							</a>
+						</div>
+						<h1 class="product_title" th:text="${goods.getName()}" style="font-size: 21px"></h1>
+						<div class="price-box">
+							<span class="new-price" th:text="'￥'+${goods.getPrice()}"></span>
+							<span class="old-price">￥9999.99</span>
+						</div>
+						<div class="pro-rating">
+							<a><i class="fa fa-star"></i></a>
+							<a><i class="fa fa-star"></i></a>
+							<a><i class="fa fa-star"></i></a>
+							<a><i class="fa fa-star"></i></a>
+							<a><i class="fa fa-star"></i></a>
+						</div>
+						<div class="short-description">
+							<p th:text="${goods.getDescribe()}" style="font-size: 16px;"></p>
+						</div>
+						<div class="stock-status">
+							<label>商品状态</label>:
+							<strong th:if="${goods.getState()==1}">&nbsp;&nbsp;热销中</strong>
+							<strong th:if="${goods.getState()==0}">&nbsp;&nbsp;已下架</strong>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<label>商品库存</label>:  <strong>&nbsp;&nbsp;[[${goods.getStock()}]]</strong>
+						</div>
+						<form method="post" id="buyOrCart">
+							<div class="quantity" style="display: inline">
+								<input type="number" name="num" id="num" onclick="updateNum()" min="1" value="1"/>
+								<input type="text" name="ids" id="ids" hidden th:value="${goods.getId()}+':1:0'">
+								<input type="text" name="id" id="id" hidden th:value="${goods.getId()}">
+								<button onclick="addCart()" type="submit">加入购物车</button>
+							</div>
+							<div class="add-to-wishlist" style="display: inline">
+								<div class="quantity" style="display: inline">
+									<button id="buy" style="background: #ec4445"
+											onmouseover="document.getElementById('buy').style.background='gold';"
+											onmouseleave="document.getElementById('buy').style.background='#ec4445';">
+										<a style="color: white" onclick="buy()">
+											立即购买
+										</a>
+									</button>
+								</div>
+							</div>
+							<script th:inline="javascript">
+								var buyOrCart = document.getElementById("buyOrCart");
+								var num = document.getElementById("num");
+								function buy(){
+									if ([[${goods.getState()}]] != 1){
+										alert("此商品已下架！");
+									}else if([[${goods.getStock()}]] < 1 || [[${goods.getStock()}]] < num.value){
+										alert("商品库存不足！");
+									}else{
+										buyOrCart.action = '/user/checkout';
+										buyOrCart.submit();
+									}
+								}
+								function addCart() {
+									if ([[${goods.getState()}]] != 1){
+										alert("此商品已下架！");
+									}else if([[${goods.getStock()}]] < 1 || [[${goods.getStock()}]] < num.value){
+										alert("商品库存不足！");
+									}else{
+										buyOrCart.action = '/user/add-cart';
+										buyOrCart.submit();
+									}
+								}
+								function updateNum() {
+									var num = document.getElementById("num");
+									var ids = document.getElementById("ids");
+									ids.value = [[${goods.getId()}]]+':'+num.value+':0';
+								}
+							</script>
+						</form>
+						<div class="share_buttons">
+							<a><img th:src="@{/image/user/home/share-img.png}" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- product-simple-area end -->
+	<div class="product-tab-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 col-md-9">
+					<div class="product-tabs">
+						<div>
+						  <!-- Nav tabs -->
+						  <ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">有关评论</a></li>
+						  </ul>
+						  <!-- Tab panes -->
+						  <div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="tab-desc">
+								<div class="product-tab-desc">
+									<div class="product-page-comments">
+										<div class="review-form-wrapper">
+											<table th:if="${commentList.size()==0}" style="border: 1px solid grey">
+												<tr th:height="200px">
+													<td style="text-align: center;font-size: 18px">
+														该商品还未有评论，赶紧评论抢占沙发吧！
+													</td>
+												</tr>
+											</table>
+											<table th:if="${commentList.size()!=0}" th:each="comment : ${commentList}" style="border: 1px solid grey">
+												<tr>
+													<th style="width: 6%">
+														<img th:src="@{${comment.get('userHeader')}}" style="border-radius: 100%;width: 100%">
+													</th>
+													<th style="width: 85%" th:text="'用户：'+${comment.get('userName')}"></th>
+													<th style="text-align: center"
+														th:if="${session.user} != null">
+														<form th:action="@{/user/product/del-comment(id=${comment.get('commentId')})}" method="post">
+															<input th:if="${session.user.getId()+''} eq ${comment.get('userId')}" type="submit" value="删除">
+															<input hidden="hidden" th:value="${goods.getId()}" name="goods">
+														</form>
+													</th>
+												</tr>
+												<tr style="height: 10px">
+													<td colspan="3"
+														th:text="${comment.get('createTime')}">
+													</td>
+												</tr>
+												<tr>
+													<td colspan="3" style="font-size: 18px"
+														th:text="${comment.get('context')}">
+													</td>
+												</tr>
+											</table>
+
+											<form id="form" method="post" th:if="${commentList.size()!=0}">
+												<input type="submit" onclick="delPage()" value="<" style="display: inline;">
+												<p id="page" th:text="${page}+'/'+${allPage}" style="display: inline;"></p>
+												<input hidden name="page" value="" id="pageInput">
+												<input hidden name="id" th:value="${goods.getId()}">
+												<input type="submit" onclick="addPage()" value=">" style="display: inline;">
+												<script th:inline="javascript">
+													var form = document.getElementById("form");
+													var page = [[${page}]];
+													var allPage = [[${allPage}]];
+													var pageInput = document.getElementById("pageInput");
+
+													function delPage(){
+														if (page > 1){
+															pageInput.value = page-1;
+														}else{
+															pageInput.value = page;
+															alert("当前是第一页！");
+														}
+													}
+
+													function addPage(){
+														if (page < allPage){
+															pageInput.value = page+1;
+														}else{
+															pageInput.value = page;
+															alert("当前是最后一页！");
+														}
+													}
+												</script>
+											</form>
+
+											<form th:action="@{/user/product/add-comment}" method="post">
+												<textarea name="context" style="border: 1px solid grey" id="product-message" cols="30" rows="10" placeholder="在此输入您想对此商品的评论..."></textarea>
+												<input hidden="hidden" type="number" name="goods" th:value="${goods.getId()}">
+												<input hidden="hidden" type="number" name="merchant" th:value="${goods.getMerchant()}">
+												<input type="submit" value="发表评论" style="float: right"/>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						  </div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="upsells_products_widget">
+						<div class="section-heading">
+							<h3>商品推荐</h3>
+							<div class="title-icon">
+								<span><i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i></span>
+							</div>
+						</div>
+						<div class="row">
+							<!-- single-product start -->
+							<div class="col-lg-3 col-md-4 col-sm-4">
+								<div class="single-product">
+									<span class="sale-text">特卖</span>
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('0')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('0').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('0').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('0').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('0')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/17.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/18.jpg}" alt="" />
+										</a>
+										<div class="actions">
+											<div class="action-buttons">
+												<div class="add-to-cart">
+													<a th:href="@{/user/product(id=${randGoodsMap.get('0').getId()})}">&nbsp;点击查看详情&nbsp;</a>
+												</div>
+												<div class="add-to-cart">
+													<a th:href="@{/user/add-cart(id=${randGoodsMap.get('0').getId()})}">&nbsp;加入到购物车&nbsp;</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('0')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('0').getId()})}">
+													[[${randGoodsMap.get('0').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('0').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('0')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- single-product end -->
+							<!-- single-product start -->
+							<div class="col-lg-3 col-md-4 col-sm-4">
+								<div class="single-product">
+									<span class="sale-text">特卖</span>
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('1')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('1').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('1').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('1').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('1')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/17.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/18.jpg}" alt="" />
+										</a>
+										<div class="actions">
+											<div class="action-buttons">
+												<div class="add-to-cart">
+													<a th:href="@{/user/product(id=${randGoodsMap.get('1').getId()})}">&nbsp;点击查看详情&nbsp;</a>
+												</div>
+												<div class="add-to-cart">
+													<a th:href="@{/user/add-cart(id=${randGoodsMap.get('1').getId()})}">&nbsp;加入到购物车&nbsp;</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('1')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('1').getId()})}">
+													[[${randGoodsMap.get('1').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('1').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('1')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- single-product end -->
+							<!-- single-product start -->
+							<div class="col-lg-3 col-md-4 col-sm-4">
+								<div class="single-product">
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('2')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('2').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('2').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('2').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('2')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/17.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/18.jpg}" alt="" />
+										</a>
+										<div class="actions">
+											<div class="action-buttons">
+												<div class="add-to-cart">
+													<a th:href="@{/user/product(id=${randGoodsMap.get('2').getId()})}">&nbsp;点击查看详情&nbsp;</a>
+												</div>
+												<div class="add-to-cart">
+													<a th:href="@{/user/add-cart(id=${randGoodsMap.get('2').getId()})}">&nbsp;加入到购物车&nbsp;</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('2')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('2').getId()})}">
+													[[${randGoodsMap.get('2').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('2').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('2')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- single-product end -->
+							<!-- single-product start -->
+							<div class="col-lg-3 hidden-md hidden-sm">
+								<div class="single-product">
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('3')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('3').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('3').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('3').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('3')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/17.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/18.jpg}" alt="" />
+										</a>
+										<div class="actions">
+											<div class="action-buttons">
+												<div class="add-to-cart">
+													<a th:href="@{/user/product(id=${randGoodsMap.get('3').getId()})}">&nbsp;点击查看详情&nbsp;</a>
+												</div>
+												<div class="add-to-cart">
+													<a th:href="@{/user/add-cart(id=${randGoodsMap.get('3').getId()})}">&nbsp;加入到购物车&nbsp;</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('3')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('3').getId()})}">
+													[[${randGoodsMap.get('3').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('3').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('3')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- single-product end -->							
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3">
+					<!-- widget-recent start -->
+					<aside class="widget top-product-widget">
+						<h3 class="sidebar-title">看了又看</h3>
+						<ul>
+							<li>
+								<div class="single-product">
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('4')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('4').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('4').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('4').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('4')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/15.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/16.jpg}" alt="" />
+										</a>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('4')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('4').getId()})}">
+													[[${randGoodsMap.get('4').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('4').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('4')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="single-product">
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('5')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('5').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('5').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('5').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('5')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/15.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/16.jpg}" alt="" />
+										</a>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('5')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('5').getId()})}">
+													[[${randGoodsMap.get('5').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('5').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('5')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</li>
+							<li>
+								<div class="single-product">
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('6')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('6').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('6').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('6').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('6')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/15.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/16.jpg}" alt="" />
+										</a>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('6')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('6').getId()})}">
+													[[${randGoodsMap.get('6').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('6').getPrice()}]]</span>
+											</div>
+										</div>								
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('6')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</li>
+							<li>
+								<div class="single-product">
+									<div class="product-img">
+										<a target="_blank" th:if="${randGoodsMap.get('7')}!=null" th:href="@{/user/product(id=${randGoodsMap.get('7').getId()})}">
+											<img class="primary-image" th:src="@{${randGoodsMap.get('7').getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoodsMap.get('7').getImg()}}" alt="" />
+										</a>
+										<a target="_blank" th:unless="${randGoodsMap.get('7')}!=null" href="#">
+											<img class="primary-image" th:src="@{/image/user/home/product/15.jpg}" alt="" />
+											<img class="secondary-image" th:src="@{/image/user/home/product/16.jpg}" alt="" />
+										</a>
+									</div>
+									<div class="product-content" th:if="${randGoodsMap.get('7')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a target="_blank" th:href="@{/user/product(id=${randGoodsMap.get('7').getId()})}">
+													[[${randGoodsMap.get('7').getName()}]]
+												</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoodsMap.get('7').getPrice()}]]</span>
+											</div>
+										</div>
+									</div>
+									<div class="product-content" th:unless="${randGoodsMap.get('7')}!=null">
+										<div class="pro-info">
+											<h2 class="product-name"><a href="#">product-name</a></h2>
+											<div class="price-box">
+												<span class="new-price">￥0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</aside>
+					<!-- widget-recent end -->				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- brand-area start -->
+		<div th:include="user/common/model::brand"></div>
+	<!-- brand-area end -->	
+	<!-- footer start -->
+		<footer th:include="user/common/model::footer"></footer>
+	<!-- footer end -->
+		<!-- JS -->
+		<script th:include="user/common/model::alertMsg"></script>
+
+		<!-- jquery js -->
+		<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
+
+		<!-- price-slider js -->
+		<script th:src="@{/js/user/home/price-slider.js}"></script>
+
+		<!-- bootstrap js -->
+		<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
+
+		<!-- owl.carousel.min js -->
+		<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
+
+		<!-- jquery.scrollUp js -->
+		<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
+
+		<!-- mixitup js -->
+		<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
+
+		<!-- fancybox js -->
+		<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
+
+		<!-- jquery-counterup js -->
+		<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
+		<script th:src="@{/js/user/home/waypoints.min.js}"></script>
+
+		<!-- jquery-meanmenu js -->
+		<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
+
+		<!-- RS-Plugin JS
+		============================================ -->
+		<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+		<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+		<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
+
+		<!-- plugins js -->
+		<script th:src="@{/js/user/home/plugins.js}"></script>
+
+		<!-- main js -->
+		<script th:src="@{/js/user/home/main.js}"></script>
+
+    </body>
+</html>

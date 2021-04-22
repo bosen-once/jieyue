@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TEST</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        img {
+            opacity: 0.3;
+        }
+        img:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<!-- /image/pay/pay.jpg -->
+<body th:background="@{/image/error/404.jpg}" >
+    <img th:src="@{/image/user/po.jpg}">
+</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysAdminMapper">
+
+    <resultMap id="SysAdminMap" type="com.example.jieyue.common.entity.SysAdmin">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mark" jdbcType="INTEGER" property="mark" />
+    </resultMap>
+
+    <select id="selectById" resultType="com.example.jieyue.common.entity.SysAdmin">
+        select * from sys_admin where id = #{id};
+    </select>
+
+    <select id="selectByEmail" resultType="com.example.jieyue.common.entity.SysAdmin">
+        select email,password from sys_admin where email = #{email};
+    </select>
+
+    <select id="getAdminInfo" resultType="com.example.jieyue.common.entity.SysAdmin">
+        select id,email,name,mark from sys_admin where email = #{email} and mark != 0;
+    </select>
+
+    <select id="findAll" resultType="com.example.jieyue.common.entity.SysAdmin">
+        select * from sys_admin;
+    </select>
+
+    <update id="updateMarkById">
+        update sys_admin set mark = #{mark} where id = #{id};
+    </update>
+
+    <update id="updateMark">
+        update sys_admin set mark = #{mark} where email = #{email};
+    </update>
+
+    <update id="update">
+        update sys_admin set name = #{name},password = #{password} where email = #{email};
+    </update>
+
+    <insert id="insert">
+        insert into sys_admin(id,name,password,email,mark) values(default,#{name},#{password},#{email},#{mark});
+    </insert>
+
+    <delete id="deleteById">
+        delete from sys_admin where id = #{id};
+    </delete>
+</mapper>

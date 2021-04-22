@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysGoodsMapper">
+
+    <resultMap id="SysGoodsMap" type="com.example.jieyue.common.entity.SysGoods">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="describe" jdbcType="VARCHAR" property="describe" />
+        <result column="img" jdbcType="VARCHAR" property="img" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="state" jdbcType="INTEGER" property="state" />
+        <result column="merchant" jdbcType="INTEGER" property="merchant" />
+        <result column="stock" jdbcType="INTEGER" property="stock" />
+    </resultMap>
+
+    <select id="findAll" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods order by id desc;
+    </select>
+
+    <select id="findLimitByMt" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods where merchant = #{merchant} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <select id="goodsCount" resultType="INTEGER">
+        select count(*) from sys_goods where merchant = #{merchant};
+    </select>
+
+    <select id="allGoodsCount" resultType="INTEGER">
+        select count(*) from sys_goods;
+    </select>
+
+    <select id="findMerchantRand" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods where merchant = #{merchant} order by rand() limit #{num};
+    </select>
+
+    <select id="findRand" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods order by rand() limit #{num};
+    </select>
+
+    <select id="findAllDesc" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods order by id desc limit #{num};
+    </select>
+
+    <select id="findAllEsc" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods limit #{num};
+    </select>
+
+    <select id="findById" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods where id = #{id};
+    </select>
+
+    <select id="search" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods where `name` like concat(concat('%',#{keyword}),'%') or `describe` like concat(concat('%',#{keyword}),'%');
+    </select>
+
+    <select id="findByMt" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods where merchant = #{merchant};
+    </select>
+
+    <select id="findByMtLimit" resultType="com.example.jieyue.common.entity.SysGoods">
+        select * from sys_goods where merchant = #{merchant} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <insert id="insert1">
+        insert into sys_goods values(default,#{name},#{describe},default,#{price},default,#{merchant},#{stock});
+    </insert>
+
+    <update id="updateState">
+        update sys_goods set state = #{state} where id = #{id};
+    </update>
+
+    <update id="addStock">
+        update sys_goods set stock = stock + #{stock} where id = #{id};
+    </update>
+
+    <update id="delStock">
+        update sys_goods set stock = stock - #{stock} where id = #{id};
+    </update>
+
+    <update id="updateGoods1">
+        update sys_goods set name = #{name}, `describe` = #{describe}, price = #{price},merchant = #{merchant}, stock = #{stock} where id = #{id};
+    </update>
+
+    <update id="updateGoods2">
+        update sys_goods set name = #{name}, `describe` = #{describe},price = #{price},merchant = #{merchant}, stock = #{stock}, img = #{imgUrl} where id = #{id};
+    </update>
+
+    <insert id="insert2">
+        insert into sys_goods values(default,#{name},#{describe},#{img},#{price},default,#{merchant},#{stock});
+    </insert>
+
+    <delete id="deleteById">
+        delete from sys_goods where id = #{id};
+    </delete>
+
+    <select id="countByMerchant" resultType="INTEGER">
+        select count(*) from sys_goods where merchant = #{merchant};
+    </select>
+
+</mapper>

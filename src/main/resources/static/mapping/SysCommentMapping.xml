@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jieyue.common.mapper.SysCommentMapper">
+
+    <resultMap id="SysCommentMap" type="com.example.jieyue.common.entity.SysComment">
+        <id property="id" jdbcType="INTEGER" column="id" />
+        <result column="user" jdbcType="INTEGER" property="user" />
+        <result column="goods" jdbcType="INTEGER" property="goods" />
+        <result column="merchant" jdbcType="INTEGER" property="merchant" />
+        <result column="context" jdbcType="VARCHAR" property="context" />
+        <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    </resultMap>
+
+    <select id="findById" resultMap="SysCommentMap">
+        select * from sys_comment where id = #{id};
+    </select>
+
+    <select id="findByGoodsLimit" resultMap="SysCommentMap">
+        select * from sys_comment where goods = #{goods} order by id desc limit #{preNum},#{sufNum};
+    </select>
+
+    <insert id="insert">
+        insert into sys_comment values(default,#{user},#{goods},#{merchant},#{context},#{createTime});
+    </insert>
+
+    <delete id="deleteById">
+        delete from sys_comment where id = #{id};
+    </delete>
+
+    <select id="getAllCountByGoods" resultType="int">
+        select count(*) from sys_comment where goods = #{id};
+    </select>
+
+    <select id="getAllCountByMt" resultType="int">
+        select count(*) from sys_comment where merchant = #{merchant};
+    </select>
+
+</mapper>
