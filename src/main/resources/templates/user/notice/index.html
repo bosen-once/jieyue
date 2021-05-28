@@ -80,11 +80,15 @@
     <script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
     <style>
         table {
-            background: #bcc2d8;
+            background: #bcc2e4;
             border-radius: 20px;
             width: 85%;
             height: 100px;
             color: darkslategrey;
+        }
+        pre {
+            background: #bcc2e4;
+            border: 0;
         }
         .context{
             position: relative;
@@ -134,8 +138,10 @@
                 <table th:each="notice : ${noticeList}">
                     <tr style="height: 36px">
                         <td style="width: 50px;"></td>
-                        <td style="position:relative;font-size: 24px"
-                            th:text="${notice.getTitle()}">
+                        <td style="position:relative;font-size: 24px">
+                            <br/><br/>
+                            <b>[[${notice.getTitle()}]]</b>
+                            <br/><br/>
                         </td>
                         <td>
                             <a href="#" th:onclick="delNotice('[[${notice.getId()}]]')" style="font-weight: bold;font-size: 30px;float: right;
@@ -161,12 +167,14 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <hr/>
+                            <hr style="color: black"/>
                         </td>
                     </tr>
                     <tr style="overflow-x: hidden;">
                         <td style="width: 50px;"></td>
-                        <td class="context" th:text="'系统消息：'+${notice.getContext()}"></td>
+                        <td class="context">
+                            <pre>[[${notice.getContext()}]]</pre>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="3">
