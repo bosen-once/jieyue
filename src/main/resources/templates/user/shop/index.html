@@ -1,325 +1,325 @@
 <!doctype html>
 <html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<!-- Basic page needs
-    ============================================ -->
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>[[${merchant.getName()}]]</title>
-	<meta name="description" content="">
+    <head>
+		<!-- Basic page needs
+		============================================ -->	
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>[[${merchant.getName()}]]</title>
+        <meta name="description" content="">
+		
+		<!-- Mobile specific metas
+		============================================ -->		
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- fonts
+		============================================ -->		
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>	
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-	<!-- Mobile specific metas
-    ============================================ -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Favicon
+		============================================ -->
+		<link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
 
-	<!-- fonts
-    ============================================ -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<!-- CSS  -->
 
-	<!-- Favicon
-    ============================================ -->
-	<link rel="shortcut icon" type="image/x-icon" th:href="@{/image/user/home/favicon.png}">
+		<!-- Bootstrap CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
 
-	<!-- CSS  -->
+		<!-- font-awesome CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
 
-	<!-- Bootstrap CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/bootstrap.min.css}">
+		<!-- owl.carousel CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
 
-	<!-- font-awesome CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/font-awesome.min.css}">
+		<!-- owl.theme CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
 
-	<!-- owl.carousel CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/owl.carousel.css}">
+		<!-- owl.transitions CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
 
-	<!-- owl.theme CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/owl.theme.css}">
+		<!-- fancybox CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
 
-	<!-- owl.transitions CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/owl.transitions.css}">
+		<!-- animate CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
 
-	<!-- fancybox CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/fancybox/jquery.fancybox.css}">
+		<!-- meanmenu CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all" />
 
-	<!-- animate CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/animate.css}">
+		<!-- normalize CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
 
-	<!-- meanmenu CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/meanmenu.min.css}" media="all" />
+		<!-- RS-slider CSS
+		============================================ -->
+		<link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen" />
 
-	<!-- normalize CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/normalize.css}">
+		<!-- main CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/main.css}">
 
-	<!-- RS-slider CSS
-    ============================================ -->
-	<link rel="stylesheet" type="text/css" th:href="@{/lib/user/home/rs-plugin/css/settings.css}" media="screen" />
+		<!-- style CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/style.css}">
 
-	<!-- main CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/main.css}">
+		<!-- responsive CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
 
-	<!-- style CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/style.css}">
+		<!-- modernizr js
+		============================================ -->
+		<script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
 
-	<!-- responsive CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/responsive.css}">
+		<!-- jquery-ui CSS
+		============================================ -->
+		<link rel="stylesheet" th:href="@{/css/user/home/jquery-ui.css}">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-	<!-- modernizr js
-    ============================================ -->
-	<script th:src="@{/js/user/home/vendor/modernizr-2.8.3.min.js}"></script>
+        <!-- Add your site or application content here -->
 
-	<!-- jquery-ui CSS
-    ============================================ -->
-	<link rel="stylesheet" th:href="@{/css/user/home/jquery-ui.css}">
-</head>
-<body>
-<!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-
-<!-- Add your site or application content here -->
-
-<!-- header start -->
-<header class="header-home" th:include="user/common/model::header"></header>
-<!-- header end -->
-<!-- shop-header-area start -->
-<div class="shop-header-area" style="position: relative;top: 200px">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<div class="shop-header-title">
-					<h3>
-						<img width="50px" style="border-radius: 100%" th:src="@{${merchant.getHeader()}}">
-						[[${merchant.getName()}]]
-					</h3>
-					<div class="title-icon">
-						<span><i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i></span>
+		<!-- header start -->
+		<header class="header-home" th:include="user/common/model::header"></header>
+		<!-- header end -->
+	<!-- shop-header-area start -->
+	<div class="shop-header-area" style="position: relative;top: 200px">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="shop-header-title">
+						<h3>
+							<img width="50px" style="border-radius: 100%" th:src="@{${merchant.getHeader()}}">
+							[[${merchant.getName()}]]
+						</h3>
+						<div class="title-icon">
+							<span><i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i></span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- shop-header-area end -->
-<!-- breadcrumb-area start -->
-<div class="breadcrumb-area" style="position: relative;top: 200px">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumb">
-					<ul>
-						<li><a th:href="@{/}">商城主页</a> <i class="fa fa-angle-right"></i></li>
-						<li>[[${merchant.getName()}]]</li>
-					</ul>
+	<!-- shop-header-area end -->
+	<!-- breadcrumb-area start -->
+	<div class="breadcrumb-area" style="position: relative;top: 200px">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="breadcrumb">
+						<ul>
+							<li><a th:href="@{/}">商城主页</a> <i class="fa fa-angle-right"></i></li>
+							<li>[[${merchant.getName()}]]</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- breadcrumb-area end -->
-<!-- blog-area start -->
-<div class="shop-area" style="position: relative;top: 200px">
-	<div class="container">
-		<div class="row">
-			<!-- shop-left-sidebar start -->
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-				<!-- widget-recent start -->
-				<aside class="widget top-product-widget">
-					<h3 class="sidebar-title">店内推荐</h3>
-					<ul>
-						<li th:if="${randGoodsMap.size()!=0}" th:each="randGoods : ${randGoodsMap.values()}">
-							<div class="single-product">
-								<div class="product-img">
-									<a href="#">
-										<img class="primary-image" th:src="@{${randGoods.getImg()}}" alt="" />
-										<img class="secondary-image" th:src="@{${randGoods.getImg()}}" alt="" />
-									</a>
+	<!-- breadcrumb-area end -->
+	<!-- blog-area start -->
+	<div class="shop-area" style="position: relative;top: 200px">
+		<div class="container">
+			<div class="row">
+				<!-- shop-left-sidebar start -->
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<!-- widget-recent start -->
+					<aside class="widget top-product-widget">
+						<h3 class="sidebar-title">店内推荐</h3>
+						<ul>
+							<li th:if="${randGoodsMap.size()!=0}" th:each="randGoods : ${randGoodsMap.values()}">
+								<div class="single-product">
+									<div class="product-img">
+										<a href="#">
+											<img class="primary-image" th:src="@{${randGoods.getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${randGoods.getImg()}}" alt="" />
+										</a>
+									</div>
+									<div class="product-content">
+										<div class="pro-info">
+											<h2 class="product-name">
+												<a th:href="@{/user/product(id=${randGoods.getId()})}">
+													[[${randGoods.getName()}]]
+												</a>
+											</h2>
+											<div class="price-box">
+												<span class="new-price">￥[[${randGoods.getPrice()}]]</span>
+												<span class="old-price">￥9999.99</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="product-content">
-									<div class="pro-info">
+							</li>
+						</ul>
+					</aside>
+					<!-- widget-recent end -->
+				</div>
+				<!-- blog-left-sidebar end -->
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+					<!-- toolbar start -->
+					<div class="toolbar">
+						<div class="view-mode">
+							<a class="active"><i class="fa fa-th-large"></i></a>
+						</div>
+						<div class="toolbar-form">
+							<form action="#">
+								<div class="tolbar-select">
+									<select>
+									  <option value="volvo">Sort by popularity</option>
+									  <option value="saab">Default sorting</option>
+									  <option value="mercedes">Sort by average rating</option>
+									  <option value="audi">Sort by newness</option>
+									  <option value="audi">Sort by price: low to high</option>
+									  <option value="audi">Sort by price: high to low</option>
+									</select>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- toolbar end -->
+					<div class="clear"></div>
+					<div class="row">
+						<div class="grid-view">
+							<div th:if="${goodsMap.size()==0}">
+								<table style="border: 1px solid grey;text-align: center;width: 100%">
+									<tr height="300px">
+										<td style="font-size: 16px">
+											这里是空的！！！
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- single-product start -->
+							<div th:if="${goodsMap.size()!=0}" th:each="goods : ${goodsMap.values()}" class="col-lg-4 col-md-4 col-sm-4">
+								<div class="single-product">
+									<div class="product-img">
+										<a th:href="@{/user/product(id=${goods.getId()})}">
+											<img class="primary-image" th:src="@{${goods.getImg()}}" alt="" />
+											<img class="secondary-image" th:src="@{${goods.getImg()}}" alt="" />
+										</a>
+										<div class="actions">
+											<div class="action-buttons">
+												<div class="add-to-cart">
+													<a th:href="@{/user/product(id=${goods.getId()})}">&nbsp;点击查看详情&nbsp;</a>
+												</div>
+												<div class="add-to-cart">
+													<a th:href="@{/user/add-cart(id=${goods.getId()},num=1)}">&nbsp;加入到购物车&nbsp;</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product-content">
 										<h2 class="product-name">
-											<a th:href="@{/user/product(id=${randGoods.getId()})}">
-												[[${randGoods.getName()}]]
+											<a th:href="@{/user/product(id=${goods.getId()})}">
+												[[${goods.getName()}]]
 											</a>
 										</h2>
+										<div class="pro-rating">
+											<a><i class="fa fa-star"></i></a>
+											<a><i class="fa fa-star"></i></a>
+											<a><i class="fa fa-star"></i></a>
+											<a><i class="fa fa-star"></i></a>
+											<a><i class="fa fa-star"></i></a>
+										</div>
 										<div class="price-box">
-											<span class="new-price">￥[[${randGoods.getPrice()}]]</span>
+											<span class="new-price">￥[[${goods.getPrice()}]]</span>
 											<span class="old-price">￥9999.99</span>
 										</div>
 									</div>
 								</div>
 							</div>
-						</li>
-					</ul>
-				</aside>
-				<!-- widget-recent end -->
-			</div>
-			<!-- blog-left-sidebar end -->
-			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-				<!-- toolbar start -->
-				<div class="toolbar">
-					<div class="view-mode">
-						<a class="active"><i class="fa fa-th-large"></i></a>
-					</div>
-					<div class="toolbar-form">
-						<form action="#">
-							<div class="tolbar-select">
-								<select>
-									<option value="volvo">Sort by popularity</option>
-									<option value="saab">Default sorting</option>
-									<option value="mercedes">Sort by average rating</option>
-									<option value="audi">Sort by newness</option>
-									<option value="audi">Sort by price: low to high</option>
-									<option value="audi">Sort by price: high to low</option>
-								</select>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- toolbar end -->
-				<div class="clear"></div>
-				<div class="row">
-					<div class="grid-view">
-						<div th:if="${goodsMap.size()==0}">
-							<table style="border: 1px solid grey;text-align: center;width: 100%">
-								<tr height="300px">
-									<td style="font-size: 16px">
-										这里是空的！！！
-									</td>
-								</tr>
-							</table>
 						</div>
-						<!-- single-product start -->
-						<div th:if="${goodsMap.size()!=0}" th:each="goods : ${goodsMap.values()}" class="col-lg-4 col-md-4 col-sm-4">
-							<div class="single-product">
-								<div class="product-img">
-									<a th:href="@{/user/product(id=${goods.getId()})}">
-										<img class="primary-image" th:src="@{${goods.getImg()}}" alt="" />
-										<img class="secondary-image" th:src="@{${goods.getImg()}}" alt="" />
+					</div>
+					<!-- pagination start -->
+					<div th:if="${goodsMap.size()!=0}" class="shop-pagination">
+						<div class="pagination">
+							<ul>
+								<li th:each="curPage : ${#numbers.sequence(1,allPage)}">
+									<a th:if="${page==curPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${curPage})}" style="background: orangered;color: white">
+										<b>[[${page}]]</b>
 									</a>
-									<div class="actions">
-										<div class="action-buttons">
-											<div class="add-to-cart">
-												<a th:href="@{/user/product(id=${goods.getId()})}">&nbsp;点击查看详情&nbsp;</a>
-											</div>
-											<div class="add-to-cart">
-												<a th:href="@{/user/add-cart(id=${goods.getId()},num=1)}">&nbsp;加入到购物车&nbsp;</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="product-content">
-									<h2 class="product-name">
-										<a th:href="@{/user/product(id=${goods.getId()})}">
-											[[${goods.getName()}]]
-										</a>
-									</h2>
-									<div class="pro-rating">
-										<a><i class="fa fa-star"></i></a>
-										<a><i class="fa fa-star"></i></a>
-										<a><i class="fa fa-star"></i></a>
-										<a><i class="fa fa-star"></i></a>
-										<a><i class="fa fa-star"></i></a>
-									</div>
-									<div class="price-box">
-										<span class="new-price">￥[[${goods.getPrice()}]]</span>
-										<span class="old-price">￥9999.99</span>
-									</div>
-								</div>
-							</div>
-						</div>
+									<a th:if="${page!=curPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${curPage})}">
+										[[${page}]]
+									</a>
+								</li>
+								<li>
+									<a th:if="${page < allPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${page+1})}">
+										<i class="fa fa-chevron-right"></i>
+									</a>
+									<a th:unless="${page < allPage}" onclick="alert('当前已是最后一页')">
+										<i class="fa fa-chevron-right"></i>
+									</a>
+								</li>
+							</ul>
+						</div>					
 					</div>
+					<!-- pagination end -->
 				</div>
-				<!-- pagination start -->
-				<div th:if="${goodsMap.size()!=0}" class="shop-pagination">
-					<div class="pagination">
-						<ul>
-							<li th:each="curPage : ${#numbers.sequence(1,allPage)}">
-								<a th:if="${page==curPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${curPage})}" style="background: orangered;color: white">
-									<b>[[${curPage}]]</b>
-								</a>
-								<a th:if="${page!=curPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${curPage})}">
-									[[${curPage}]]
-								</a>
-							</li>
-							<li>
-								<a th:if="${page < allPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${page+1})}">
-									<i class="fa fa-chevron-right"></i>
-								</a>
-								<a th:unless="${page < allPage}" onclick="alert('当前已是最后一页')">
-									<i class="fa fa-chevron-right"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- pagination end -->
 			</div>
 		</div>
 	</div>
-</div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<!-- blog-area end -->
-<!-- brand-area start -->
-<div th:include="user/common/model::brand"></div>
-<!-- brand-area end -->
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<!-- blog-area end -->
+	<!-- brand-area start -->
+		<div th:include="user/common/model::brand"></div>
+	<!-- brand-area end -->
 
-<!-- footer start -->
-<footer th:include="user/common/model::footer"></footer>
-<!-- footer end -->
+		<!-- footer start -->
+		<footer th:include="user/common/model::footer"></footer>
+		<!-- footer end -->
 
-<!-- JS -->
+		<!-- JS -->
 
-<!-- jquery js -->
-<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
+		<!-- jquery js -->
+		<script th:src="@{/js/user/home/vendor/jquery-1.12.0.min.js}"></script>
 
-<!-- price-slider js -->
-<script th:src="@{/js/user/home/price-slider.js}"></script>
+		<!-- price-slider js -->
+		<script th:src="@{/js/user/home/price-slider.js}"></script>
 
-<!-- bootstrap js -->
-<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
+		<!-- bootstrap js -->
+		<script th:src="@{/js/user/home/bootstrap.min.js}"></script>
 
-<!-- owl.carousel.min js -->
-<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
+		<!-- owl.carousel.min js -->
+		<script th:src="@{/js/user/home/owl.carousel.min.js}"></script>
 
-<!-- jquery.scrollUp js -->
-<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
+		<!-- jquery.scrollUp js -->
+		<script th:src="@{/js/user/home/jquery.scrollUp.min.js}"></script>
 
-<!-- mixitup js -->
-<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
+		<!-- mixitup js -->
+		<script th:src="@{/js/user/home/jquery.mixitup.min.js}"></script>
 
-<!-- fancybox js -->
-<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
+		<!-- fancybox js -->
+		<script th:src="@{/js/user/home/fancybox/jquery.fancybox.pack.js}"></script>
 
-<!-- jquery-counterup js -->
-<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
-<script th:src="@{/js/user/home/waypoints.min.js}"></script>
+		<!-- jquery-counterup js -->
+		<script th:src="@{/js/user/home/jquery.counterup.min.js}"></script>
+		<script th:src="@{/js/user/home/waypoints.min.js}"></script>
 
-<!-- jquery-meanmenu js -->
-<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
+		<!-- jquery-meanmenu js -->
+		<script th:src="@{/js/user/home/jquery.meanmenu.js}"></script>
 
-<!-- RS-Plugin JS
-============================================ -->
-<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
-<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
-<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
+		<!-- RS-Plugin JS
+		============================================ -->
+		<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+		<script type="text/javascript" th:src="@{/lib/user/home/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+		<script th:src="@{/lib/user/home/rs-plugin/rs.home.js}"></script>
 
-<!-- plugins js -->
-<script th:src="@{/js/user/home/plugins.js}"></script>
+		<!-- plugins js -->
+		<script th:src="@{/js/user/home/plugins.js}"></script>
 
-<!-- main js -->
-<script th:src="@{/js/user/home/main.js}"></script>
+		<!-- main js -->
+		<script th:src="@{/js/user/home/main.js}"></script>
 
-</body>
+    </body>
 </html>
