@@ -64,13 +64,21 @@
                     <th>会员标记</th>
                 </tr>
                 <tr th:each="user : ${userList}" style="height: 100px">
-                    <td>
-                        <img th:src="@{${user.getHeader()}}" style="width: 80px;border-radius: 100%">
+                    <td height="80px">
+                        <img th:src="@{${user.getHeader()}}" style="width: 60px;border-radius: 100%">
                     </td>
-                    <td th:text="${user.getId()}"></td>
-                    <td th:text="${user.getUsername()}"></td>
-                    <td th:text="${user.getEmail()}"></td>
-                    <td th:text="${user.getMark()}"></td>
+                    <td>
+                        <b>[[${user.getId()}]]</b>
+                    </td>
+                    <td>
+                        <b>[[${user.getUsername()}]]</b>
+                    </td>
+                    <td>
+                        <b>[[${user.getEmail()}]]</b>
+                    </td>
+                    <td>
+                        <b>[[${user.getMark()}]]</b>
+                    </td>
                 </tr>
                 <tr style="height: 100px">
                     <td colspan="5">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>商品列表</title>
+    <title>用户列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="" />
@@ -78,8 +78,8 @@
                         <th>会员标记</th>
                     </tr>
                     <tr th:each="user : ${userList}" style="height: 100px">
-                        <td>
-                            <img th:src="@{${user.getHeader()}}" style="width: 80px;border-radius: 100%">
+                        <td height="80px">
+                            <img th:src="@{${user.getHeader()}}" style="width: 60px;border-radius: 100%">
                         </td>
                         <td th:text="${user.getId()}"></td>
                         <td th:text="${user.getUsername()}"></td>

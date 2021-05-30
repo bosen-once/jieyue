@@ -131,7 +131,7 @@
                         <table th:if="${orderList.size()} == 0">
                             <tr style="height: 400px">
                                 <td style="font-size: 24px">
-                                    您还未在本网站购买任何商品
+                                    ！！！这里是空的！！！
                                 </td>
                             </tr>
                         </table>
@@ -152,7 +152,7 @@
                                     <td class="product-thumbnail">
                                         <a target="_blank"
                                            th:href="@{/user/product(id=${goodsList.get(stat.index).getId()})}">
-                                            <img th:src="@{${goodsList.get(stat.index).getImg()}}" alt=""/>
+                                            <img th:src="@{${goodsList.get(stat.index).getImg()}}" width="100%" alt=""/>
                                         </a>
                                     </td>
                                     <td class="product-name">

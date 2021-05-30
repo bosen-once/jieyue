@@ -23,7 +23,7 @@
             color: grey;
             height: 35px;
             width: 80px;
-            font-size: 16px;
+            font-size: 12px;
             border-radius: 10px;
         }
         form input:hover{
@@ -65,7 +65,7 @@
             这里还没有任何商户信息！！
         </h3>
         <!-- /. PAGE INNER  -->
-        <table style="text-align: center;background:ghostwhite;font-size: 18px;position: relative;left: 5%;width: 90%">
+        <table style="text-align: center;background:ghostwhite;font-size: 14px;position: relative;left: 5%;width: 90%">
             <tr style="height: 35px;background: orangered;color: white">
                 <th>商户logo</th>
                 <th>ID</th>
@@ -77,14 +77,14 @@
             </tr>
             <!--/*@thymesVar id="mtList" type="jdk"*/-->
             <tr th:each="mt : ${mtList} " style="height: 100px">
-                <td>
-                    <img th:src="@{${mt.getHeader()}}" style="border-radius: 100%;width: 80px">
+                <td height="80px">
+                    <img th:src="@{${mt.getHeader()}}" style="border-radius: 100%;width: 60px">
                 </td>
                 <td>[[${mt.getId()}]]</td>
                 <td>[[${mt.getName()}]]</td>
                 <td>[[${mt.getEmail()}]]</td>
-                <td th:if="${mt.getState()}==1">已启用</td>
-                <td th:if="${mt.getState()}==0">未启用</td>
+                <td th:if="${mt.getState()}==1" style="font-weight: bold; color: deepskyblue">已启用</td>
+                <td th:if="${mt.getState()}==0" style="font-weight: bold; color: orangered">未启用</td>
                 <td>
                     <form th:action="@{/admin/merchant/update-ratio}" method="post">
                         <br/>
@@ -99,12 +99,12 @@
                         <input type="submit" value="删除" style="width: 65px;"
                                onclick="if (confirm('确认删除该商户？')==false)return false;">
                     </form>
-                    <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=0)}" method="post">
-                        <input th:if="${mt.getState()}==1" type="submit" value="停用" style="width: 65px;background: deepskyblue;color: white"
+                    <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=0,id=${mt.getId()})}" method="post">
+                        <input th:if="${mt.getState()}==1" type="submit" value="停用" style="width: 65px;background: deepskyblue; color: white; font-weight: bold"
                                onclick="if (confirm('确认停用该商户？')==false)return false; ">
                     </form>
-                    <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=1)}" method="post">
-                        <input th:if="${mt.getState()}==0" type="submit" value="启用" style="width: 65px;background: gold;color: white"
+                    <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=1,id=${mt.getId()})}" method="post">
+                        <input th:if="${mt.getState()}==0" type="submit" value="启用" style="width: 65px;background: orangered; color: white; font-weight: bold"
                                onclick="if (confirm('确认启用商户？')==false)return false; ">
                     </form>
                 </td>

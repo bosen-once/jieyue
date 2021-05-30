@@ -50,5 +50,5 @@ public interface SysOrderMapper {
 
     // 收益
     float websiteProfitCount();
-    float merchantProfitCount(int merchantId);
+    Float merchantProfitCount(int merchantId);
 }

@@ -45,6 +45,10 @@ public class MerchantLoginController {
             case 1:
                 // 登陆成功
                 SysMt merchant = loginService.getMerchantInfo(email);
+                if (merchant.getState() == 0) {
+                    modelAndView.addObject("msg","您的账号处于停用状态，请等待管理员处理");
+                    break;
+                }
                 session.setAttribute("merchant",merchant);
                 break;
         }
@@ -65,27 +69,21 @@ public class MerchantLoginController {
      * 注册
      */
     @RequestMapping("sign-up")
-    public ModelAndView signUp(ModelAndView modelAndView,String email,String name,String password){
-        modelAndView.setViewName("redirect:/merchant/login");
+    public String signUp(String email,String name,String password){
         int serviceRes = loginService.signUp(email,name,password);
         switch (serviceRes){
             case -1:
-                modelAndView.addObject("msg","验证邮件发送失败，请重试");
-                break;
+                return "验证邮件发送失败，请重试";
             case 0:
-                modelAndView.addObject("msg","必填信息不能为空");
-                break;
+                return "必填信息不能为空";
             case 1:
-                modelAndView.addObject("msg","验证信息已发送至邮箱，请留意接收");
-                break;
+                return "验证信息已发送至邮箱，请留意接收";
             case 2:
-                modelAndView.addObject("msg","该邮箱已被注册");
-                break;
+                return "该邮箱已被注册";
             case 3:
-                modelAndView.addObject("msg","邮箱格式不正确");
-                break;
+                return "邮箱格式不正确";
         }
-        return modelAndView;
+        return null;
     }
 
     /*
@@ -104,7 +102,7 @@ public class MerchantLoginController {
                 break;
             case 1:
                 modelAndView.setViewName("redirect:/merchant/login");
-                modelAndView.addObject("msg","注册成功");
+                modelAndView.addObject("msg","注册成功，请等待管理员的审核");
                 break;
         }
         return modelAndView;

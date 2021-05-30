@@ -29,7 +29,10 @@ public class MerchantHomeController {
         int commentCount = homeService.getCommandCount(merchant.getId());
         int userCount = homeService.getUserCount(merchant.getId());
         int orderCount = homeService.getOrderCount(merchant.getId());
-        float profit = orderMapper.merchantProfitCount(merchant.getId());
+        float profit = 0;
+        if (orderMapper.merchantProfitCount(merchant.getId()) != null) {
+            profit = orderMapper.merchantProfitCount(merchant.getId());
+        }
 
         modelAndView.addObject("commentCount",commentCount);
         modelAndView.addObject("profit",profit);

@@ -69,11 +69,11 @@
         select * from sys_order where order_mark = #{orderMark};
     </select>
     
-    <select id="merchantProfitCount" resultType="FLOAT">
+    <select id="merchantProfitCount" resultType="java.lang.Float">
         select sum((order_price-merchant_ratio*order_price)/1) from sys_order where order_merchant = #{merchantId} and order_state = 1;
     </select>
 
-    <select id="websiteProfitCount" resultType="FLOAT">
+    <select id="websiteProfitCount" resultType="java.lang.Float">
         select sum((merchant_ratio*order_price)/1) from sys_order where order_state = 1;
     </select>
     

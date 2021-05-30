@@ -68,34 +68,27 @@ public class UserLoginController {
      * 注册请求
      */
     @RequestMapping("sign-up")
-    public ModelAndView signUp(ModelAndView modelAndView,String email,String username,String password,String repwd){
+    public String signUp(String email,String username,String password,String repwd){
         int result = service.singup(email,username,password,repwd);
         if (result==0){
-            // 必填信息不能为空！
-            modelAndView.addObject("msg","必填信息不能为空！");
+            return "必填信息不能为空！";
         }
         if (result==4){
-            // 该邮箱已被注册
-            modelAndView.addObject("msg","该邮箱已被注册");
+            return "该邮箱已被注册";
         }
         if (result==3){
-            // 邮箱格式不正确
-            modelAndView.addObject("msg","邮箱格式不正确");
+            return "邮箱格式不正确";
         }
         if (result==2){
-            // 两次密码输入不一致
-            modelAndView.addObject("msg","两次密码输入不一致");
+            return "两次密码输入不一致";
         }
         if (result==1){
-            // 验证邮件已发送，请留意您的邮箱
-            modelAndView.addObject("msg","验证邮件已发送，请留意您的邮箱");
+            return "验证邮件已发送，请留意您的邮箱";
         }
         if (result==-1){
-            // 验证邮件发送失败，请重试
-            modelAndView.addObject("msg","注册超时，请重试");
+            return "注册超时，请重试";
         }
-        modelAndView.setViewName("redirect:login");
-        return modelAndView;
+        return "网络出现错误！！";
     }
 
     /*
@@ -112,7 +105,7 @@ public class UserLoginController {
             modelAndView.setViewName("redirect:login");
         }
         if (res==1){
-            modelAndView.addObject("msg","注册成功");
+            modelAndView.addObject("msg","注册成功，请完成登录");
             modelAndView.setViewName("redirect:login");
 
         }

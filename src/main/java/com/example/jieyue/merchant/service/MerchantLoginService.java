@@ -83,7 +83,7 @@ public class MerchantLoginService {
             }
         }
         // 发送注册验证邮件
-        boolean res = mailService.sendHtmlMail(email,"捷阅网商户注册验证","<a href='http://"+this.sitrUrl+"merchant/sign-check?email="+email+"'>点击此链接完成注册验证</a>");
+        boolean res = mailService.sendHtmlMail(email,"捷阅网商户注册验证","<a href='http://"+this.sitrUrl+"/merchant/sign-check?email="+email+"'>点击此链接完成注册验证</a>");
         if (res){
             return 1;
         }else{

@@ -16,7 +16,7 @@
     </select>
 
     <select id="selectByEmail" resultType="com.example.jieyue.common.entity.SysUser">
-        select email,password from sys_user where email = #{email};
+        select email,password,mark from sys_user where email = #{email};
     </select>
 
     <select id="getUserInfo" resultType="com.example.jieyue.common.entity.SysUser">

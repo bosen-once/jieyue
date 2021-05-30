@@ -43,18 +43,65 @@
         </div>
         <div class="cont_form_sign_up"> <a href="#" onClick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
           <h2>SIGN UP</h2>
-          <form th:action="@{/user/sign-up}" method="post">
-            <input type="text" placeholder="邮箱" name="email"/>
-            <input type="text" placeholder="昵称" name="username"/>
-            <input type="password" placeholder="密码" name="password"/>
-            <input type="password" placeholder="确认密码" name="repwd"/>
-            <button class="btn_sign_up" onClick="cambiar_sign_up()">注册</button>
-          </form>
+          <br/><br/>
+          <input style="border: 0;width: 80%;height: 40px;border-radius: 5px;text-align: left;padding-left: 10px" id="email" type="text" placeholder="邮箱" name="email"/>
+          <br/><br/>
+          <input style="border: 0;width: 80%;height: 40px;border-radius: 5px;text-align: left;padding-left: 10px" id="username" type="text" placeholder="昵称" name="username"/>
+          <br/><br/>
+          <input style="border: 0;width: 80%;height: 40px;border-radius: 5px;text-align: left;padding-left: 10px" id="password" type="password" placeholder="密码" name="password"/>
+          <br/><br/>
+          <input style="border: 0;width: 80%;height: 40px;border-radius: 5px;text-align: left;padding-left: 10px" id="repwd" type="password" placeholder="确认密码" name="repwd"/>
+          <br/><br/>
+          <button type="button" id="button" class="btn_sign_up" onclick="button()">注册</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  if (sessionStorage.getItem("user_sign_num") > 0) {
+    sessionStorage.setItem("user_sign_num", sessionStorage.getItem("user_sign_num"));
+    change();
+  }
+  function button() {
+    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var repwd = document.getElementById("repwd").value;
+
+    $.ajax({
+      type: "POST",
+      url: "/user/sign-up?email="+email+"&username="+username+"&password="+password+"&repwd="+repwd,
+      contentType: "application/json; charset=utf-8",
+      success: function (msg) {
+        alert(msg);
+      },
+      error: function () {
+        alert("网络出现了问题！！")
+      }
+    });
+    sessionStorage.setItem("user_sign_num", 60);
+    change();
+  }
+
+  function change() {
+    var button = document.getElementById("button");
+    button.style.background = "grey";
+    button.disabled = true;
+    var time = setInterval(function () {
+      var num = sessionStorage.getItem("user_sign_num");
+      if (num <= 0) {
+        button.style.background = "orangered";
+        button.disabled = false;
+        button.innerText = "重新发送验证码";
+        clearInterval(time);
+      } else {
+        button.innerText = "重新发送验证码（"+num+")";
+      }
+      sessionStorage.setItem("user_sign_num", --num);
+    } , 1000);
+  }
+</script>
 <script th:src="@{/js/user/index.js}"></script>
 <script th:include="user/common/model::alertMsg"></script>
 </body>

@@ -150,7 +150,7 @@
                                 </td>
                                 <td class="product-thumbnail">
                                     <a th:href="@{/user/product(id=${cart.get('goodsId')})}">
-                                        <img th:src="@{${cart.get('goodsImg')}}" alt=""/>
+                                        <img th:src="@{${cart.get('goodsImg')}}" width="100%" alt=""/>
                                     </a>
                                 </td>
                                 <td class="product-name">
@@ -162,20 +162,20 @@
                                     </a>
                                 </td>
                                 <td class="product-price">
-											<span class="amount">
+											<span class="amount" style="color: gold">
 												￥[[${cart.get("goodsPrice")}]]
 											</span>
                                 </td>
                                 <td class="product-quantity">
-                                    [[${cart.get("goodsMerchant")}]]
+                                    <a th:href="@{/user/shop(id = ${cart.get('merchantId')})}">[[${cart.get("goodsMerchant")}]]</a>
                                 </td>
-                                <td class="product-subtotal">
+                                <td class="product-subtotal" style="color: red">
                                     <input hidden="hidden" th:id="'goodsStock'+${stat.index}" th:value="${cart.get('goodsStock')}">
                                     <input hidden="hidden" th:id="'goodsState'+${stat.index}" th:value="${cart.get('goodsState')}">
                                     [[${cart.get("goodsStock")}]]
                                 </td>
                                 <td class="product-subtotal">
-                                    <input onclick="cartGoods()" th:id="'goodsNum'+${stat.index}" type="number" min="1" th:value="${cart.get('goodsNum')}"/>
+                                    <input onclick="cartGoods()" th:id="'goodsNum'+${stat.index}" type="number" min="1" th:max="${cart.get('goodsStock')}" th:value="${cart.get('goodsNum')}"/>
                                 </td>
                                 <td class="product-remove">
                                     <a onclick="if (confirm('将该商品移出购物车？')==false)return false; "
@@ -239,7 +239,7 @@
             var checkbox = document.getElementById("checkbox" + i);
             if (goodsStock.value < 1 || goodsStock.value < goodsNum.value || goodsState.value != 1){
                 checkbox.checked = false;
-                alert("购物车中存在库存不足，或已下架的商品！");
+                alert("您的购物车中存在超出库存，或者已下架的商品！");
             }
             if (checkbox.checked){
                 var goodsId = document.getElementById("goodsId" + i);

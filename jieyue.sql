@@ -11,7 +11,7 @@
  Target Server Version : 50716
  File Encoding         : 65001
 
- Date: 22/04/2021 14:57:16
+ Date: 30/05/2021 17:25:45
 */
 
 SET NAMES utf8mb4;
@@ -119,6 +119,7 @@ INSERT INTO `sys_comment` VALUES (19, 1, 44, 8, '测试测试测试测试测试�
 INSERT INTO `sys_comment` VALUES (20, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247780833);
 INSERT INTO `sys_comment` VALUES (21, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247784508);
 INSERT INTO `sys_comment` VALUES (22, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247789686);
+
 -- ----------------------------
 -- Table structure for sys_goods
 -- ----------------------------
@@ -285,7 +286,7 @@ CREATE TABLE `sys_order`  (
   `merchant_ratio` float(11, 1) NOT NULL DEFAULT 1.0 COMMENT '订单创建时商户的费率',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_id`(`order_id`) USING BTREE COMMENT '订单号唯一'
-) ENGINE = InnoDB AUTO_INCREMENT = 95 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 94 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_order
@@ -384,6 +385,6 @@ CREATE TABLE `sys_user`  (
 INSERT INTO `sys_user` VALUES (1, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'bosen_once@163.com', 1, '/data/header/user/1.jpg');
 INSERT INTO `sys_user` VALUES (3, 'bosen_once@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 'bosen_once@qq.com', 1, '/data/header/user/default.jpg');
 INSERT INTO `sys_user` VALUES (4, 'test111', 'e10adc3949ba59abbe56e057f20f883e', '806317173@qq.com', 0, '/data/header/user/default.jpg');
-INSERT INTO `sys_user` VALUES (5, 'lalalal', 'e10adc3949ba59abbe56e057f20f883e', '2390025289@qq.com', 0, '/data/header/user/default.jpg');
+INSERT INTO `sys_user` VALUES (5, 'lalalal', 'e10adc3949ba59abbe56e057f20f883e', '2390025288@qq.com', 0, '/data/header/user/default.jpg');
 
 SET FOREIGN_KEY_CHECKS = 1;

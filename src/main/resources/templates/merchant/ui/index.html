@@ -54,22 +54,24 @@
         <section class="wrapper">
             <table style="text-align: center">
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <h4>商户头像（推荐logo长宽比例1:1）</h4>
                         <form th:action="@{/merchant/update-header}" method="post" enctype="multipart/form-data">
                             <!--/*@thymesVar id="lowImg" type="com.example.jieyue.common.entity.SysMtUi"*/-->
-                            <img th:src="@{${session.merchant.getHeader()}}" width="320px" height="320" onclick="upImg('headerInput')" id="header">
+                            <img th:src="@{${session.merchant.getHeader()}}" width="240" height="240" onclick="upImg('headerInput')" id="header" style="border-radius: 100%">
                             <input style="display: none;" id="headerInput" type="file" name="img" onchange="showImg(this,'header')">
                             <br/>
                             <input type="submit" value="修改" style="background: purple;border-radius: 5px;color: white">
                         </form>
                     </td>
+                </tr>
+                <tr>
                     <td>
                         <h4>商城首页的店铺推荐海报（推荐400x320）</h4>
                         <form th:action="@{/merchant/update-home-img}" method="post" enctype="multipart/form-data">
                             <!--/*@thymesVar id="homeImg" type="com.example.jieyue.common.entity.SysMtUi"*/-->
-                            <img th:if="${homeImg}!=null" th:src="@{${homeImg.getUrl()}}" width="400px" height="320px" onclick="upImg('homeInput400')" id="home400">
-                            <img th:unless="${homeImg}!=null" th:src="@{/image/user/home/banner/7.jpg}" width="400px" height="320px" onclick="upImg('homeInput400')" id="home400">
+                            <img th:if="${homeImg}!=null" th:src="@{${homeImg.getUrl()}}" width="300" height="240" onclick="upImg('homeInput400')" id="home400">
+                            <img th:unless="${homeImg}!=null" th:src="@{/image/user/home/banner/7.jpg}" width="300" height="240" onclick="upImg('homeInput400')" id="home400">
                             <input style="display: none;" id="homeInput400" type="file" name="img" onchange="showImg(this,'home400')">
                             <input type="number" name="width" value="400" hidden>
                             <input type="number" name="height" value="320" hidden>
@@ -78,14 +80,12 @@
                             <a style="color: purple" th:if="${homeImg}!=null" th:href="@{/merchant/del-home-img(id=${homeImg.getId()})}">删除</a>
                         </form>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+                    <td>
                         <h4>商城首页的店铺推荐海报（推荐600x310,点击图片选择）</h4>
                         <form th:action="@{/merchant/update-home-img}" method="post" enctype="multipart/form-data">
                             <!--/*@thymesVar id="lowImg" type="com.example.jieyue.common.entity.SysMtUi"*/-->
-                            <img th:if="${lowImg}!=null" th:src="@{${lowImg.getUrl()}}" width="600px" height="310px" onclick="upImg('homeInput600')" id="home600">
-                            <img th:unless="${lowImg}!=null" th:src="@{/image/user/home/blog/blog1.jpg}" width="600px" height="310px" onclick="upImg('homeInput600')" id="home600">
+                            <img th:if="${lowImg}!=null" th:src="@{${lowImg.getUrl()}}" width="450" height="235" onclick="upImg('homeInput600')" id="home600">
+                            <img th:unless="${lowImg}!=null" th:src="@{/image/user/home/blog/blog1.jpg}" width="450" height="235" onclick="upImg('homeInput600')" id="home600">
                             <input style="display: none;" id="homeInput600" type="file" name="img" onchange="showImg(this,'home600')">
                             <input type="number" name="width" value="600" hidden>
                             <input type="number" name="height" value="310" hidden>
