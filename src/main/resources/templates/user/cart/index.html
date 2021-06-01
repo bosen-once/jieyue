@@ -237,7 +237,7 @@
             var goodsStock = document.getElementById("goodsStock" + i);
             var goodsState = document.getElementById("goodsState" + i);
             var checkbox = document.getElementById("checkbox" + i);
-            if (goodsStock.value < 1 || goodsStock.value < goodsNum.value || goodsState.value != 1){
+            if (goodsStock.value < 1 || BigInt.valueOf(goodsStock.value) < BigInt.valueOf(goodsNum.value) || goodsState.value != 1){
                 checkbox.checked = false;
                 alert("您的购物车中存在超出库存，或者已下架的商品！");
             }
