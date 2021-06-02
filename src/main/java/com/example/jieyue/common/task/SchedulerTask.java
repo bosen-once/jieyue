@@ -40,7 +40,7 @@ public class SchedulerTask {
     /*
      * 每分钟执行一次，检查是否有过期的订单，若过期将其删除，并恢复库存
      */
-    @Scheduled(cron="* */1 * * * ?")
+    @Scheduled(cron="0 0/1 * * * ?")
     @Transactional
     public void delOverOrder(){
         long time = 2*60*60*1000;// 订单过期时间，两小时
@@ -60,7 +60,7 @@ public class SchedulerTask {
     /*
      * 每分钟执行一次，对已创建了两小时订单的二维码进行删除
      */
-    @Scheduled(cron="* */1 * * * ?")
+    @Scheduled(cron="0 0/1 * * * ?")
     public void delQRCode(){
         long time = 2*60*60*1000;// 订单过期时间，两小时
         List<SysOrder> list = orderMapper.findAll();
@@ -74,7 +74,7 @@ public class SchedulerTask {
     /*
      * 每分钟执行一次，对消息队列的消息执行发送
      */
-    @Scheduled(cron="* */1 * * * ?")
+    @Scheduled(cron="0 0/1 * * * ?")
     public void sendNotice(){
         while (redisTemplate.opsForList().size("notice")!=0){
             Map<String,String> map = (Map<String,String>)redisTemplate.opsForList().rightPop("notice");
@@ -100,7 +100,7 @@ public class SchedulerTask {
     /*
      * 每分钟执行一次，邮箱发送队列的执行发送
      */
-    @Scheduled(cron="* */1 * * * ?")
+    @Scheduled(cron="0 0/1 * * * ?")
     public void sendEmail(){
         while (redisTemplate.opsForList().size("email")!=0){
             Map<String,String> map = (Map<String,String>)redisTemplate.opsForList().rightPop("email");
