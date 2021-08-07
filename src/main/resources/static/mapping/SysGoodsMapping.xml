@@ -34,15 +34,15 @@
     </select>
 
     <select id="findRand" resultType="com.example.jieyue.common.entity.SysGoods">
-        select * from sys_goods order by rand() limit #{num};
+        select * from sys_goods where state = 1 order by rand() limit #{num};
     </select>
 
     <select id="findAllDesc" resultType="com.example.jieyue.common.entity.SysGoods">
-        select * from sys_goods order by id desc limit #{num};
+        select * from sys_goods where state = 1 order by id desc limit #{num};
     </select>
 
     <select id="findAllEsc" resultType="com.example.jieyue.common.entity.SysGoods">
-        select * from sys_goods limit #{num};
+        select * from sys_goods where state = 1 limit #{num};
     </select>
 
     <select id="findById" resultType="com.example.jieyue.common.entity.SysGoods">
@@ -50,7 +50,7 @@
     </select>
 
     <select id="search" resultType="com.example.jieyue.common.entity.SysGoods">
-        select * from sys_goods where `name` like concat(concat('%',#{keyword}),'%') or `describe` like concat(concat('%',#{keyword}),'%');
+        select * from sys_goods where `name` and state = 1 like concat(concat('%',#{keyword}),'%') or `describe` like concat(concat('%',#{keyword}),'%');
     </select>
 
     <select id="findByMt" resultType="com.example.jieyue.common.entity.SysGoods">
