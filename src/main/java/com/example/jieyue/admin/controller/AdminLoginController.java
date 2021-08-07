@@ -26,7 +26,7 @@ public class AdminLoginController {
      */
     @RequestMapping({"login",""})
     public ModelAndView index(ModelAndView modelAndView){
-        modelAndView.setViewName("admin/login/index");
+        modelAndView.setViewName("/admin/login/index");
         return modelAndView;
     }
 

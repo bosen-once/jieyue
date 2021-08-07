@@ -25,7 +25,7 @@
     </select>
 
     <select id="findById" resultType="com.example.jieyue.common.entity.SysMt">
-        select id,name,header from sys_mt where id = #{id};
+        select id,name,state,header from sys_mt where id = #{id};
     </select>
 
     <select id="findPage" resultType="com.example.jieyue.common.entity.SysMt">

@@ -11,7 +11,7 @@
  Target Server Version : 50716
  File Encoding         : 65001
 
- Date: 07/08/2021 18:14:31
+ Date: 07/08/2021 18:49:51
 */
 
 SET NAMES utf8mb4;
@@ -110,19 +110,49 @@ CREATE TABLE `sys_comment`  (
   `goods` int(11) NOT NULL,
   `merchant` int(11) NOT NULL,
   `context` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `create_time` bigint(19) NOT NULL,
+  `create_time` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_comment
 -- ----------------------------
-INSERT INTO `sys_comment` VALUES (17, 1, 40, 9, 'PUMA彪马官方 新款条纹棒球帽 ARCHIVE LOGO 022554 粗呢蓝-条纹-09 均码', 1607241751568);
-INSERT INTO `sys_comment` VALUES (18, 1, 38, 8, '阿迪达斯官网adidas 三叶草TEE男装短袖上衣 DV1922 DV1925DV1929 粉蓝 XL(参考身高:188~192CM)', 1610197695733);
-INSERT INTO `sys_comment` VALUES (19, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247776515);
-INSERT INTO `sys_comment` VALUES (20, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247780833);
-INSERT INTO `sys_comment` VALUES (21, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247784508);
-INSERT INTO `sys_comment` VALUES (22, 1, 44, 8, '测试测试测试测试测试测试测试测试测试测试测试测试测试', 1610247789686);
+INSERT INTO `sys_comment` VALUES (25, 1, 12, 5, '耐克NIKE 男子 板鞋 经典 板鞋 COURT VISION MID 休闲鞋 CD5466-101白色42码', 1615988609112);
+INSERT INTO `sys_comment` VALUES (26, 1, 12, 5, '耐克NIKE 男子 板鞋 经典 板鞋 COURT VISION MID 休闲鞋 CD5466-101白色42码', 1615988693324);
+INSERT INTO `sys_comment` VALUES (27, 1, 12, 5, '耐克NIKE 男子 板鞋 经典 板鞋 COURT VISION MID 休闲鞋 CD5466-101白色42码', 1615988697577);
+INSERT INTO `sys_comment` VALUES (28, 1, 11, 5, '耐克NIKE 男子 板鞋 AJ1 乔1 AIR JORDAN 1 LOW SE 休闲鞋 CK3022-005黑色44码\r\n', 1616727058835);
+INSERT INTO `sys_comment` VALUES (29, 1, 11, 5, '耐克NIKE 男子 板鞋 AJ1 乔1 AIR JORDAN 1 LOW SE 休闲鞋 CK3022-005黑色44码\r\n', 1616727061866);
+INSERT INTO `sys_comment` VALUES (30, 1, 11, 5, '耐克NIKE 男子 板鞋 AJ1 乔1 AIR JORDAN 1 LOW SE 休闲鞋 CK3022-005黑色44', 1616727068620);
+INSERT INTO `sys_comment` VALUES (31, 1, 44, 8, '测试商品！！！！勿拍', 1616738590017);
+INSERT INTO `sys_comment` VALUES (32, 1, 44, 8, '测试商品！！！！勿拍', 1616738593903);
+INSERT INTO `sys_comment` VALUES (33, 1, 44, 8, '测试商品！！！！勿拍', 1616738597935);
+INSERT INTO `sys_comment` VALUES (34, 1, 45, 13, '回力官方旗舰 国潮手绘皮卡丘帆布鞋高帮男鞋联名爆改涂鸦鞋子2021新款春季潮流板鞋 黄色闪电（五天内发货） 42', 1617111760695);
+INSERT INTO `sys_comment` VALUES (35, 1, 45, 13, '回力官方旗舰 国潮手绘皮卡丘帆布鞋高帮男鞋联名爆改涂鸦鞋子2021新款春季潮流板鞋 黄色闪电（五天内发货） 42', 1617111764783);
+INSERT INTO `sys_comment` VALUES (36, 1, 45, 13, '回力官方旗舰 国潮手绘皮卡丘帆布鞋高帮男鞋联名爆改涂鸦鞋子2021新款春季潮流板鞋 黄色闪电（五天内发货） 42', 1617111768764);
+INSERT INTO `sys_comment` VALUES (37, 1, 45, 13, '回力官方旗舰 国潮手绘皮卡丘帆布鞋高帮男鞋联名爆改涂鸦鞋子2021新款春季潮流板鞋 黄色闪电（五天内发货） 42', 1617111781185);
+INSERT INTO `sys_comment` VALUES (38, 1, 46, 13, '回力官方旗舰 国潮手绘高帮帆布鞋女士2021新款春季樱花鞋爆改休闲鞋男 缤纷樱花473SH（五天内发货） 42', 1617111806109);
+INSERT INTO `sys_comment` VALUES (39, 1, 46, 13, '回力官方旗舰 国潮手绘高帮帆布鞋女士2021新款春季樱花鞋爆改休闲鞋男 缤纷樱花473SH（五天内发货） 42', 1617111809179);
+INSERT INTO `sys_comment` VALUES (40, 1, 46, 13, '回力官方旗舰 国潮手绘高帮帆布鞋女士2021新款春季樱花鞋爆改休闲鞋男 缤纷樱花473SH（五天内发货） 42', 1617111812815);
+INSERT INTO `sys_comment` VALUES (41, 1, 47, 13, '回力官方旗舰 本命年高帮帆布鞋男鞋嘻哈透气男女休闲鞋潮流百搭学生情侣鞋子【国潮系列】 花布WXY-A363T 39', 1617111825697);
+INSERT INTO `sys_comment` VALUES (42, 1, 47, 13, '回力官方旗舰 本命年高帮帆布鞋男鞋嘻哈透气男女休闲鞋潮流百搭学生情侣鞋子【国潮系列】 花布WXY-A363T 39', 1617111828717);
+INSERT INTO `sys_comment` VALUES (43, 1, 47, 13, '回力官方旗舰 本命年高帮帆布鞋男鞋嘻哈透气男女休闲鞋潮流百搭学生情侣鞋子【国潮系列】 花布WXY-A363T 39', 1617111832251);
+INSERT INTO `sys_comment` VALUES (44, 1, 48, 13, '回力官方旗舰 板鞋女鞋2021秋冬季新款马卡龙撞色低帮透气百搭休闲运动小白鞋子女 白糖果WXYA562C 35', 1617111850625);
+INSERT INTO `sys_comment` VALUES (45, 1, 48, 13, '回力官方旗舰 板鞋女鞋2021秋冬季新款马卡龙撞色低帮透气百搭休闲运动小白鞋子女 白糖果WXYA562C 35', 1617111853711);
+INSERT INTO `sys_comment` VALUES (46, 1, 48, 13, '回力官方旗舰 板鞋女鞋2021秋冬季新款马卡龙撞色低帮透气百搭休闲运动小白鞋子女 白糖果WXYA562C 35', 1617111857226);
+INSERT INTO `sys_comment` VALUES (47, 1, 74, 11, '这是一只用于测试的海绵宝宝，勿拍！！！', 1617113112104);
+INSERT INTO `sys_comment` VALUES (48, 1, 74, 11, '这是一只用于测试的海绵宝宝，勿拍！！！', 1617113115302);
+INSERT INTO `sys_comment` VALUES (49, 1, 74, 11, '这是一只用于测试的海绵宝宝，勿拍！！！', 1617113118469);
+INSERT INTO `sys_comment` VALUES (50, 1, 73, 14, '安踏女休闲鞋2021春季新款轻便跑步鞋子潮流时尚女鞋老爹鞋女运动鞋子百搭猫爪鞋官方旗舰网店 象牙白/迷雾紫/浅雾灰-5 6.5(女37.5)', 1617113128909);
+INSERT INTO `sys_comment` VALUES (51, 1, 73, 14, '安踏女休闲鞋2021春季新款轻便跑步鞋子潮流时尚女鞋老爹鞋女运动鞋子百搭猫爪鞋官方旗舰网店 象牙白/迷雾紫/浅雾灰-5 6.5(女37.5)', 1617113131491);
+INSERT INTO `sys_comment` VALUES (52, 1, 73, 14, '安踏女休闲鞋2021春季新款轻便跑步鞋子潮流时尚女鞋老爹鞋女运动鞋子百搭猫爪鞋官方旗舰网店 象牙白/迷雾紫/浅雾灰-5 6.5(女37.5)', 1617113135673);
+INSERT INTO `sys_comment` VALUES (53, 1, 72, 14, '安踏脉冲2代男鞋男2021春季新款男士户外休闲鞋旅游鞋官方旗舰网店912118852 浅米白/墨水蓝-1 8.5(男42)', 1617113146086);
+INSERT INTO `sys_comment` VALUES (54, 1, 72, 14, '安踏脉冲2代男鞋男2021春季新款男士户外休闲鞋旅游鞋官方旗舰网店912118852 浅米白/墨水蓝-1 8.5(男42)', 1617113148955);
+INSERT INTO `sys_comment` VALUES (55, 1, 72, 14, '安踏脉冲2代男鞋男2021春季新款男士户外休闲鞋旅游鞋官方旗舰网店912118852 浅米白/墨水蓝-1 8.5(男42)', 1617113152297);
+INSERT INTO `sys_comment` VALUES (56, 1, 71, 14, '安踏官方旗舰老爹鞋女鞋2021春季新款ins时尚休闲运动鞋女潮鞋子女士休闲鞋男鞋情侣鞋 安踏白/烟雾紫-8 6.5(女37.5)', 1617113164057);
+INSERT INTO `sys_comment` VALUES (57, 1, 71, 14, '安踏官方旗舰老爹鞋女鞋2021春季新款ins时尚休闲运动鞋女潮鞋子女士休闲鞋男鞋情侣鞋 安踏白/烟雾紫-8 6.5(女37.5)', 1617113166989);
+INSERT INTO `sys_comment` VALUES (58, 1, 71, 14, '安踏官方旗舰老爹鞋女鞋2021春季新款ins时尚休闲运动鞋女潮鞋子女士休闲鞋男鞋情侣鞋 安踏白/烟雾紫-8 6.5(女37.5)', 1617113169875);
+INSERT INTO `sys_comment` VALUES (59, 1, 70, 12, '李宁拖鞋女鞋夏季新品Disney迪士尼米奇联名款女子轻便情侣鞋条纹魔术贴凉鞋官方旗舰网 标准白/标准黑-3 37.5', 1618918721874);
+INSERT INTO `sys_comment` VALUES (60, 1, 70, 12, '李宁拖鞋女鞋夏季新品Disney迪士尼米奇联名款女子轻便情侣鞋条纹魔术贴凉鞋官方旗舰网 标准白/标准黑-3 37.5', 1618918725838);
 
 -- ----------------------------
 -- Table structure for sys_goods
@@ -222,7 +252,7 @@ CREATE TABLE `sys_mt`  (
 INSERT INTO `sys_mt` VALUES (5, 'Nike耐克', 'nike@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 1.0, 0, '/data/header/merchant/5/20210322192948971290.jpg');
 INSERT INTO `sys_mt` VALUES (8, 'Adidas阿迪达斯', 'adidas@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 1.0, 0, '/data/header/merchant/8/20210322193005818751.jpg');
 INSERT INTO `sys_mt` VALUES (9, 'Puma彪马', 'puma@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 1.0, 0, '/data/header/merchant/9/20210322193031653785.jpg');
-INSERT INTO `sys_mt` VALUES (11, 'TEST测试商户', 'bosen_once@163.com', 'e10adc3949ba59abbe56e057f20f883e', 1.0, 0, '/data/header/merchant/11/20210330220121874813.jpeg');
+INSERT INTO `sys_mt` VALUES (11, 'TEST测试商户', 'bosen_once@163.com', 'e10adc3949ba59abbe56e057f20f883e', 1.0, 1, '/data/header/merchant/11/20210330220121874813.jpeg');
 INSERT INTO `sys_mt` VALUES (12, 'LI-NING李宁', 'lining@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 0.1, 1, '/data/header/merchant/12/20210330170610424273.jpeg');
 INSERT INTO `sys_mt` VALUES (13, 'WARRIOR回力', 'warrior@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 0.1, 1, '/data/header/merchant/13/20210330170639894124.jpeg');
 INSERT INTO `sys_mt` VALUES (14, 'ANTA安踏', 'anta@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 0.1, 1, '/data/header/merchant/14/20210330170723131771.jpeg');

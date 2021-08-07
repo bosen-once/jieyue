@@ -88,6 +88,8 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <!-- Add your site or application content here -->
+
 		<!-- header start -->
 		<header class="header-home" th:include="user/common/model::header"></header>
 		<!-- header end -->
@@ -104,6 +106,9 @@
 						<div class="title-icon">
 							<span><i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i></span>
 						</div>
+						<p th:if="${merchant.getState() == 0}" style="color: red;font-size: 14px">
+							<br/>(该商户已被停用)
+						</p>
 					</div>
 				</div>
 			</div>
@@ -245,10 +250,10 @@
 							<ul>
 								<li th:each="curPage : ${#numbers.sequence(1,allPage)}">
 									<a th:if="${page==curPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${curPage})}" style="background: orangered;color: white">
-										<b>[[${page}]]</b>
+										<b>[[${curPage}]]</b>
 									</a>
 									<a th:if="${page!=curPage}" th:href="@{/user/shop(id=${merchant.getId()},page=${curPage})}">
-										[[${page}]]
+										[[${curPage}]]
 									</a>
 								</li>
 								<li>
