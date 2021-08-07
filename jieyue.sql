@@ -11,7 +11,7 @@
  Target Server Version : 50716
  File Encoding         : 65001
 
- Date: 07/08/2021 18:49:51
+ Date: 07/08/2021 19:03:46
 */
 
 SET NAMES utf8mb4;
@@ -285,8 +285,8 @@ INSERT INTO `sys_mt_ui` VALUES (15, '/data/mtui/13/20210330191433420565.jpg', 40
 INSERT INTO `sys_mt_ui` VALUES (16, '/data/mtui/13/20210330191441571457.jpg', 600, 310, 13);
 INSERT INTO `sys_mt_ui` VALUES (17, '/data/mtui/14/20210330191733928362.jpg', 400, 320, 14);
 INSERT INTO `sys_mt_ui` VALUES (18, '/data/mtui/14/20210330191638457952.jpg', 600, 310, 14);
-INSERT INTO `sys_mt_ui` VALUES (19, '/data/mtui/11/20210330220129225458.jpg', 400, 320, 11);
-INSERT INTO `sys_mt_ui` VALUES (20, '/data/mtui/11/20210330220136233367.jpeg', 600, 310, 11);
+INSERT INTO `sys_mt_ui` VALUES (19, '/data/mtui/11/20210807190318252283.jpg', 400, 320, 11);
+INSERT INTO `sys_mt_ui` VALUES (20, '/data/mtui/11/20210807190324130420.jpg', 600, 310, 11);
 
 -- ----------------------------
 -- Table structure for sys_notice
