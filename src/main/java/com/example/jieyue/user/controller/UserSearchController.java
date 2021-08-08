@@ -1,6 +1,7 @@
 package com.example.jieyue.user.controller;
 
 import com.example.jieyue.common.entity.SysGoods;
+import com.example.jieyue.common.index.GoodsIndex;
 import com.example.jieyue.user.service.UserSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class UserSearchController {
     @RequestMapping("/user/search")
     public ModelAndView index(ModelAndView modelAndView,String keyword){
         // 获取返回的商品列表
-        List<SysGoods> goodsList = searchService.searchGoods(keyword);
+        List<GoodsIndex> goodsList = searchService.esSearchGoods(keyword);
         modelAndView.addObject("goodsList",goodsList);
 
         modelAndView.setViewName("user/search/index");

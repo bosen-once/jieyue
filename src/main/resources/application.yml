@@ -19,6 +19,12 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${site-url}:3306/jieyue?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9200
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
   mvc:
     static-path-pattern: /*/**
   mail:
