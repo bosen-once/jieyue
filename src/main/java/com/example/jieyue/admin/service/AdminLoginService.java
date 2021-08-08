@@ -128,12 +128,6 @@ public class AdminLoginService {
         if (admin!=null && admin.getMark()==0){
             int res1 = adminMapper.updateMark(1,email);
             if (res1 == 1){
-                // 设置用户角色,设置失败则回滚
-                if (adminRoleMapper.updateStatus(1,admin.getId()) != 1){
-                    // 执行回滚
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return 0;
-                }
                 return 1;
             }else{
                 return 0;

@@ -110,7 +110,7 @@
                 button.innerText = "重新发送验证码";
                 clearInterval(time);
             } else {
-                button.innerText = "重新发送验证码（"+num+"）";
+                button.innerText = "重新发送验证码("+num+")";
             }
             sessionStorage.setItem("admin_sign_num", --num);
         } , 1000);

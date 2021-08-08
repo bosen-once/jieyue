@@ -39,6 +39,11 @@ public class AdminLoginController {
         if (result==1){
             // 登陆成功
             SysAdmin admin = service.adminInfo(email);
+            if (admin == null) {
+                modelAndView.addObject("msg","账号不存在或处于停用状态！");
+                modelAndView.setViewName("redirect:login");
+                return modelAndView;
+            }
             session.setAttribute("admin",admin);
             modelAndView.setViewName("redirect:/admin/home");
         }else if (result==-1){

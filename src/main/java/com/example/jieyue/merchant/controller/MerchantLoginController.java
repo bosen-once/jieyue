@@ -33,15 +33,16 @@ public class MerchantLoginController {
      */
     @RequestMapping("do-login")
     public ModelAndView doLogin(ModelAndView modelAndView, String email, String password, HttpSession session){
-        modelAndView.setViewName("redirect:/merchant/home");
         int serviceRes = loginService.doLogin(email,password);
         switch (serviceRes){
             case 0:
                 modelAndView.addObject("msg","必填信息不能为空");
-                break;
+                modelAndView.setViewName("redirect:login");
+                return modelAndView;
             case -1:
                 modelAndView.addObject("msg","邮箱或密码错误");
-                break;
+                modelAndView.setViewName("redirect:login");
+                return modelAndView;
             case 1:
                 // 登陆成功
                 SysMt merchant = loginService.getMerchantInfo(email);
@@ -52,6 +53,7 @@ public class MerchantLoginController {
                 session.setAttribute("merchant",merchant);
                 break;
         }
+        modelAndView.setViewName("redirect:/merchant/home");
         return modelAndView;
     }
 

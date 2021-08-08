@@ -30,7 +30,7 @@ spring:
   mail:
     host: smtp.163.com
     username: bosen_once@163.com
-    password: IORQCTROCDAKWPZS
+    password: NPXUIZJPLJIYXNWH
     properties.mail.smtp.port: 25
     from: bosen_once@163.com
     default-encoding: utf-8
