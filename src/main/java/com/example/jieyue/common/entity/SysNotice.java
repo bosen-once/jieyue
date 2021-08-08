@@ -1,6 +1,15 @@
 package com.example.jieyue.common.entity;
 
-public class SysNotice {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class SysNotice implements Serializable {
     private int id;
     private int type;
     private String title;

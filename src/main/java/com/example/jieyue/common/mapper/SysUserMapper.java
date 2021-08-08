@@ -12,6 +12,7 @@ public interface SysUserMapper {
     List<SysUser> findLimit(int preNum,int sufNum);
     int userCount();
     List<SysUser> findAll();
+    List<Integer> getAllId();
     int insert(@Param("username") String username,@Param("password") String password,
                @Param("email") String email,@Param("mark") int mark);
     SysUser selectByEmail(String email);

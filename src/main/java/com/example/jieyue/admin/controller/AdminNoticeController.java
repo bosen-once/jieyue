@@ -28,7 +28,7 @@ public class AdminNoticeController {
         if (isEmptyUtil.strings(title,context)){
             modelAndView.addObject("msg","必填信息不能为空");
         }else{
-            noticeService.send(title,context,type);
+            noticeService.sendByRabbitMQ(title,context,type);
             modelAndView.addObject("msg","系统消息发送成功");
         }
         modelAndView.setViewName("redirect:/admin/notice");

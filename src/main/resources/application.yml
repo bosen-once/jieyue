@@ -25,6 +25,17 @@ spring:
       cluster-name: elasticsearch
       repositories:
         enabled: true
+  rabbitmq:
+    addresses: ${site-url}:5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 15000
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 10
+        acknowledge-mode: manual
   mvc:
     static-path-pattern: /*/**
   mail:
