@@ -13,6 +13,10 @@
         select * from sys_access;
     </select>
 
+    <select id="findById" resultMap="SysAccessMap">
+        select * from sys_access where id = #{id} and status = 1;
+    </select>
+
     <select id="countByName" resultType="INTEGER">
         select count(*) from sys_access where name = #{name};
     </select>

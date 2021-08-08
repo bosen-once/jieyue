@@ -101,15 +101,28 @@
             <td th:text="${admin.getName()}"></td>
             <td th:text="${admin.getEmail()}"></td>
             <td>
-                <form style="display: inline;">
+                <form method="post" th:action="@{/admin/rbac/update-admin-role}" style="display: inline;">
                     <label style="display: inline;">
                         <select name="role" style="display: inline;width: 150px">
-                            <option th:each="role : ${roleList}" th:value=" ${role.getId()}">
-                                [[${role.getName()}]]
+                            <option name="role" th:value="0" selected disabled style="background: lightgrey">
+                                未定义角色
+                            </option>
+                            <div th:each="role : ${roleList}">
+                                <div th:each="adminRole : ${adminRoleList}">
+                                    <div th:if="${role.getId() eq adminRole.getRoleId() && adminRole.getAdminId() eq admin.getId()}">
+                                        <option name="role" th:value="0" selected disabled style="background: lightgrey">
+                                            [[${role.getName()}]]
+                                        </option>
+                                    </div>
+                                </div>
+                            </div>
+                            <option th:each="role : ${roleList}" name="role" th:value="${role.getId()}" th:text="${role.getName()}">
+                                <input name="role" th:value="${role.getId()}"/>
+                                <input name="admin" th:value="${admin.getId()}"/>
                             </option>
                         </select>
                         <input name="admin" th:value="${admin.getId()}" hidden="hidden">
-                        <input value="修改" type="submit" style="width: 50px;height: 30px">
+                        <input value="修改" type="submit" style="width: 50px;height: 30px;background: deepskyblue;color: white">
                     </label>
                 </form>
             </td>

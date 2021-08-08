@@ -9,6 +9,10 @@ import java.util.List;
 public interface SysAdminRoleMapper {
     List<SysAdminRole> findAll();
 
+    int updateRoleByAdminId(int adminId, int roleId);
+
+    int countByAdminId(int adminId);
+
     SysAdminRole findByAdminId(int adminId);
 
     int insert(int adminId,int roleId);

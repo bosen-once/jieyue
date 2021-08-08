@@ -1,5 +1,6 @@
 package com.example.jieyue.common.component;
 
+import com.example.jieyue.common.entity.*;
 import com.example.jieyue.common.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,16 +25,6 @@ import java.util.regex.Pattern;
  */
 @Component
 public class LoginHandlerInterceptor implements HandlerInterceptor {
-    @Autowired
-    SysAdminMapper adminMapper;
-    @Autowired
-    SysRoleMapper roleMapper;
-    @Autowired
-    SysAccessMapper accessMapper;
-    @Autowired
-    SysAdminRoleMapper adminRoleMapper;
-    @Autowired
-    SysRoleAccessMapper roleAccessMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -77,15 +69,5 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
-    }
-
-    /**
-     * <p>管理员权限判断</p>
-     * @author Bosen
-     * 2020/12/7 7:09
-     */
-    public boolean checkAdminAccess(int adminId,String url){
-        int roleId = adminRoleMapper.findByAdminId(adminId).getRoleId();
-        return false;
     }
 }

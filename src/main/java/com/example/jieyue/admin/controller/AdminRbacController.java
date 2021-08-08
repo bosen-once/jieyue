@@ -6,9 +6,11 @@ import com.example.jieyue.common.mapper.*;
 import com.example.jieyue.common.utils.IsEmptyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,37 +40,50 @@ public class AdminRbacController {
         List<SysRole> roleList = roleMapper.findAll();
         // 权限列表
         List<SysAccess> accessList = accessMapper.findAll();
+        // 用户角儿关联表
+        List<SysAdminRole> adminRoleList = adminRoleMapper.findAll();
+        // 角色权限关联表
+        List<SysRoleAccess> roleAccessList = roleAccessMapper.findAll();
 
         modelAndView.addObject("adminList",adminList);
         modelAndView.addObject("roleList",roleList);
         modelAndView.addObject("accessList",accessList);
+        modelAndView.addObject("adminRoleList",adminRoleList);
+        modelAndView.addObject("roleAccessList",roleAccessList);
 
         modelAndView.setViewName("admin/rbac/index");
         return modelAndView;
     }
 
-    /*
-     * 编辑管理员的角色页面
-     * todo
-     */
-    @RequestMapping("/admin/rbac/update-admin-role")
-    public ModelAndView updateAdminRole(ModelAndView modelAndView,int adminId){
-        // 获取管理员角色信息
-        SysAdminRole adminRole = adminRoleMapper.findByAdminId(adminId);
-
-        modelAndView.addObject("adminRole",adminRole);
-        modelAndView.setViewName("updateRoleAccess");
+    @RequestMapping("/admin/alert")
+    public ModelAndView adminAlert(ModelAndView modelAndView) {
+        modelAndView.setViewName("admin/rbac/alert");
         return modelAndView;
     }
 
     /*
-     * 执行编辑管理员的角色操作
-     * todo
+     * 编辑管理员的角色页面
      */
-    @RequestMapping("/admin/rbac/update-admin-role-action")
-    public ModelAndView updateAdminRoleAction(ModelAndView modelAndView,int adminId,String roles){
-
-        modelAndView.setViewName("updateRoleAccess");
+    @RequestMapping("/admin/rbac/update-admin-role")
+    public ModelAndView updateAdminRole(ModelAndView modelAndView, HttpServletRequest request, int admin, @RequestParam(defaultValue = "0") int role) {
+        modelAndView.setViewName("redirect:/admin/rbac");
+        if (role == 0) {
+            modelAndView.addObject("msg","未对管理员角色进行修改");
+            return modelAndView;
+        }
+        int sql = 0;// sql执行结果接收变量
+        if (adminRoleMapper.countByAdminId(admin) == 0) {
+            // 此管理员还未设置角色
+            sql = adminRoleMapper.insert(admin, role);
+        } else {
+            // 修改管理员角色
+            sql = adminRoleMapper.updateRoleByAdminId(admin, role);
+        }
+        if (sql == 1) {
+            modelAndView.addObject("msg", "设置管理员角色成功！");
+        } else {
+            modelAndView.addObject("msg", "设置管理员角色失败！");
+        }
         return modelAndView;
     }
 

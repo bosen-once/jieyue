@@ -9,6 +9,8 @@ import java.util.List;
 public interface SysAccessMapper {
     List<SysAccess> findAll();
 
+    SysAccess findById(int id);
+
     int countByName(String name);
 
     int insert(String name,String url);

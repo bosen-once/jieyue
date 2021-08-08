@@ -13,6 +13,14 @@
         select * from sys_admin_role;
     </select>
 
+    <select id="countByAdminId" resultType="java.lang.Integer">
+        select count(*) from sys_admin_role where admin_id = #{adminId};
+    </select>
+
+    <update id="updateRoleByAdminId">
+        update sys_admin_role set role_id = #{roleId} where admin_id = #{adminId};
+    </update>
+
     <select id="findByAdminId" resultMap="SysAccessRoleMap">
         select * from sys_admin_role where admin_id = #{adminId};
     </select>

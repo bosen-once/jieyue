@@ -1,6 +1,7 @@
 package com.example.jieyue.common.config;
 
 import com.example.jieyue.common.component.LoginHandlerInterceptor;
+import com.example.jieyue.common.component.RBACHandlerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -29,6 +30,13 @@ public class AdminWebMvcConfigurer implements WebMvcConfigurer {
                         "/admin/login","/admin/do-login","/admin/sign-up","/admin/sign-check",
                         "/css/**","/js/**","/image/**","/fonts/**","/mapping/**","/data/**",
                         "/lib/*/*/**"
+                );
+        registry.addInterceptor(new RBACHandlerInterceptor())
+                .addPathPatterns("/admin/**")
+                .excludePathPatterns(
+                        "/admin/login","/admin/logout","/admin/do-login","/admin/sign-up","/admin/sign-check",
+                        "/css/**","/js/**","/image/**","/fonts/**","/mapping/**","/data/**",
+                        "/lib/*/*/**", "/admin/home", "/admin"
                 );
     }
 
