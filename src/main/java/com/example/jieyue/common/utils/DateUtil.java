@@ -12,8 +12,8 @@ import java.util.Date;
  */
 @Component
 public class DateUtil {
-    /*
-     * 获取纯年月日时分秒的字符串
+    /**
+     * <p>获取纯年月日时分秒的字符串</p>
      */
     public String getNMDHIS(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

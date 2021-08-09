@@ -22,8 +22,8 @@ public class UserProductService {
     @Autowired
     SysUserMapper userMapper;
     
-    /*
-     * 整合用户信息和评论信息
+    /**
+     * <p>整合用户信息和评论信息</p>
      */
     public List<Map> getCommentList(int goods, int page, int num){
         List<SysComment> commentInfo = getCommentInfo(goods,page,num);
@@ -44,16 +44,16 @@ public class UserProductService {
         return list;
     }
     
-    /*
-     * 获取当前商品总评论页数
+    /**
+     * <p>获取当前商品总评论页数</p>
      */
     public int getAllCountPage(int goods,int num){
         int count = commentMapper.getAllCountByGoods(goods);
         return (int)Math.ceil((double)count/(double)num);
     }
     
-    /*
-     * 通过id值获取商品对象
+    /**
+     * <p>通过id值获取商品对象</p>
      */
     public SysGoods getGoods(int id){
         return goodsMapper.findById(id);
@@ -61,7 +61,6 @@ public class UserProductService {
 
     /**
      * <p>获取商品评论列表</p>
-     *
      * @param goods 商品id
      * @param page 评论的页数
      * @param num 一页评论的条数
@@ -70,8 +69,8 @@ public class UserProductService {
         return commentMapper.findByGoodsLimit(goods,(page-1)*num,page*num);
     }
     
-    /*
-     * 获取评论对应的商户信息
+    /**
+     * <p>获取评论对应的商户信息</p>
      */
     public SysUser getUserInfo(int userId){
         return userMapper.selectById(userId);
@@ -79,13 +78,9 @@ public class UserProductService {
     
     /**
      * <p>添加商品评论</p>
-     *
      * @return
      *-1 添加失败
      * 1 添加成功
-     *
-     * @author Bosen
-     * 2020/11/28 14:32
      */
     public int addComment(int goodsId,int merchant,String context,HttpServletRequest request){
         // 获取发表评论的用户信息

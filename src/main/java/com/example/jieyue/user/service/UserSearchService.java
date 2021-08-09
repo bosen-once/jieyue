@@ -20,7 +20,7 @@ public class UserSearchService {
     /**
      * <p>mysql通过关键字模糊查找商品</p>
      */
-    public List<SysGoods> searchGoods(String keyword){
+    public List<SysGoods> mysqlSearchGoods(String keyword){
         return goodsMapper.search(keyword);
     }
 

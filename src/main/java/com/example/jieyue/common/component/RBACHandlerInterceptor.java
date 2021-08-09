@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * <p>权限检查拦截器</p>
+ * @author Bosen
+ * @date 2021/8/9 22:40
+ */
 @Component
 public class RBACHandlerInterceptor implements HandlerInterceptor {
-
-    private static SysAdminMapper adminMapper;
-
+    
     private static SysRoleMapper roleMapper;
 
     private static SysAccessMapper accessMapper;
@@ -22,11 +25,6 @@ public class RBACHandlerInterceptor implements HandlerInterceptor {
     private static SysAdminRoleMapper adminRoleMapper;
 
     private static SysRoleAccessMapper roleAccessMapper;
-
-    @Autowired
-    public void setAdminMapper(SysAdminMapper adminMapper) {
-        RBACHandlerInterceptor.adminMapper = adminMapper;
-    }
 
     @Autowired
     public void setRoleMapper(SysRoleMapper roleMapper) {
@@ -69,8 +67,9 @@ public class RBACHandlerInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-    /*
-     * 检查权限
+
+    /**
+     * <p>检查权限</p>
      */
     public boolean checkRbac(HttpServletRequest request) {
         try {

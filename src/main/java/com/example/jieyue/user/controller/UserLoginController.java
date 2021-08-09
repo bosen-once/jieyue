@@ -22,8 +22,9 @@ import javax.servlet.http.HttpSession;
 public class UserLoginController {
     @Autowired
     private UserLoginService service;
-    /*
-     * 登陆页面
+
+    /**
+     * <p>登陆页面</p>
      */
     @RequestMapping("login")
     public ModelAndView index(ModelAndView modelAndView){
@@ -31,8 +32,8 @@ public class UserLoginController {
         return modelAndView;
     }
     
-    /*
-     * 退出登陆
+    /**
+     * <p>退出登陆</p>
      */
     @RequestMapping("logout")
     public ModelAndView logout(ModelAndView modelAndView,HttpServletRequest request){
@@ -41,8 +42,8 @@ public class UserLoginController {
         return modelAndView;
     }
 
-    /*
-     * 登陆请求
+    /**
+     * <p>登陆请求</p>
      */
     @RequestMapping("do-login")
     public ModelAndView doLogin(HttpSession session, ModelAndView modelAndView, String email, String password){
@@ -64,8 +65,8 @@ public class UserLoginController {
         return modelAndView;
     }
 
-    /*
-     * 注册请求
+    /**
+     * <p>注册请求</p>
      */
     @RequestMapping("sign-up")
     public String signUp(String email,String username,String password,String repwd){
@@ -91,8 +92,8 @@ public class UserLoginController {
         return "网络出现错误！！";
     }
 
-    /*
-     * 验证邮件确认注册
+    /**
+     * <p>验证邮件确认注册</p>
      */
     @RequestMapping("sign-check")
     public ModelAndView singCheck(ModelAndView modelAndView,@Param("email") String email){

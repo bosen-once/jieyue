@@ -28,8 +28,8 @@ public class MerchantLoginController {
         return modelAndView;
     }
     
-    /*
-     * 登录
+    /**
+     * <p>登录</p>
      */
     @RequestMapping("do-login")
     public ModelAndView doLogin(ModelAndView modelAndView, String email, String password, HttpSession session){
@@ -52,13 +52,15 @@ public class MerchantLoginController {
                 }
                 session.setAttribute("merchant",merchant);
                 break;
+            default:
+                break;
         }
         modelAndView.setViewName("redirect:/merchant/home");
         return modelAndView;
     }
 
-    /*
-     * 退出登录
+    /**
+     * <p>退出登录</p>
      */
     @RequestMapping("logout")
     public ModelAndView logout(ModelAndView modelAndView,HttpServletRequest request){
@@ -67,8 +69,8 @@ public class MerchantLoginController {
         return modelAndView;
     }
 
-    /*
-     * 注册
+    /**
+     * <p>注册</p>
      */
     @RequestMapping("sign-up")
     public String signUp(String email,String name,String password){
@@ -84,12 +86,14 @@ public class MerchantLoginController {
                 return "该邮箱已被注册";
             case 3:
                 return "邮箱格式不正确";
+            default:
+                break;
         }
         return null;
     }
 
-    /*
-     * 邮箱验证
+    /**
+     * <p>邮箱验证</p>
      */
     @RequestMapping("sign-check")
     public ModelAndView singCheck(ModelAndView modelAndView,String email){
@@ -105,6 +109,8 @@ public class MerchantLoginController {
             case 1:
                 modelAndView.setViewName("redirect:/merchant/login");
                 modelAndView.addObject("msg","注册成功，请等待管理员的审核");
+                break;
+            default:
                 break;
         }
         return modelAndView;

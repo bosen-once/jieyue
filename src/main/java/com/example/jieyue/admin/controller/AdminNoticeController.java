@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * <p>后台群发控制器</p>
+ * @author Bosen
+ * @date 2021/8/9 22:24
+ */
 @RestController
 public class AdminNoticeController {
     @Autowired
@@ -15,20 +20,25 @@ public class AdminNoticeController {
     IsEmptyUtil isEmptyUtil;
 
     @RequestMapping("/admin/notice")
-    public ModelAndView index(ModelAndView modelAndView){
+    public ModelAndView index(ModelAndView modelAndView) {
         modelAndView.setViewName("admin/notice/index");
         return modelAndView;
     }
 
-    /*
-     * 系统消息发送  利用redis异步发送
+    /**
+     * <p>系统消息发送  利用redis异步发送</p>
      */
     @RequestMapping("/admin/send-notice")
-    public ModelAndView sendNotice(ModelAndView modelAndView,String title,String context,int type){
+    public ModelAndView sendNotice(ModelAndView modelAndView, String title, String context, int type) {
         if (isEmptyUtil.strings(title,context)){
             modelAndView.addObject("msg","必填信息不能为空");
         }else{
-            noticeService.sendByRabbitMQ(title,context,type);
+            // 发送至redis
+            noticeService.sendByRedis(title, context, type);
+
+            // 发送至RabbitMQ
+            // noticeService.sendByRabbitMQ(title, context, type);
+
             modelAndView.addObject("msg","系统消息发送成功");
         }
         modelAndView.setViewName("redirect:/admin/notice");

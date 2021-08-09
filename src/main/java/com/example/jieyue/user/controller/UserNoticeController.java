@@ -29,8 +29,8 @@ public class UserNoticeController {
         return modelAndView;
     }
     
-    /*
-     * 删除通知信息
+    /**
+     * <p>删除通知信息</p>
      */
     @RequestMapping("/user/del-notice")
     public ModelAndView delNotice(ModelAndView modelAndView,int id){

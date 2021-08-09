@@ -51,6 +51,8 @@ public class UserInfoController {
             case 4:
                 modelAndView.addObject("msg","两次输入的密码不一致");
                 break;
+            default:
+                break;
         }
         modelAndView.setViewName("redirect:/user/info");
         return modelAndView;

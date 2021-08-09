@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author Bosen
+ * @date 2021/8/9 22:51
+ */
 @Service
 public class SysUserService {
     @Autowired

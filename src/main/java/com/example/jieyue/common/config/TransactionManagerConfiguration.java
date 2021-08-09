@@ -8,6 +8,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
+/**
+ * @author Bosen
+ * @date 2021/8/9 22:42
+ */
 @EnableTransactionManagement
 @Configuration
 public class TransactionManagerConfiguration {

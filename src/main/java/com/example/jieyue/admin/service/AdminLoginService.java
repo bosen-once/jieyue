@@ -1,17 +1,14 @@
 package com.example.jieyue.admin.service;
 
 import com.example.jieyue.common.entity.SysAdmin;
-import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.common.mapper.SysAdminMapper;
 import com.example.jieyue.common.mapper.SysAdminRoleMapper;
 import com.example.jieyue.common.service.MailService;
-import com.example.jieyue.common.service.SysUserService;
 import com.example.jieyue.common.utils.IsEmptyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.util.DigestUtils;
 
 /**
@@ -23,15 +20,18 @@ import org.springframework.util.DigestUtils;
 public class AdminLoginService {
     @Autowired
     SysAdminMapper adminMapper;
+    
     @Autowired
     MailService mailService;
+    
     @Autowired
     SysAdminRoleMapper adminRoleMapper;
+    
     @Value("${site-url}")
     String sitrUrl;
 
-    // 判空工具类
     IsEmptyUtil isEmptyUtil = IsEmptyUtil.getInstance();
+    
     /**
      * <p>登陆验证逻辑处理</p>
      * @return int
@@ -59,8 +59,8 @@ public class AdminLoginService {
         }
     }
 
-    /*
-     * 返回用户信息
+    /**
+     * <p>返回用户信息</p>
      */
     public SysAdmin adminInfo(String email){
         return adminMapper.getAdminInfo(email);

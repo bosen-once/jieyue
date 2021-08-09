@@ -37,8 +37,8 @@ public class SchedulerTask {
     @Autowired
     MailService mailService;
 
-    /*
-     * 每分钟执行一次，检查是否有过期的订单，若过期将其删除，并恢复库存
+    /**
+     * <p>每分钟执行一次，检查是否有过期的订单，若过期将其删除，并恢复库存</p>
      */
     @Scheduled(cron="0 0/1 * * * ?")
     @Transactional
@@ -57,8 +57,8 @@ public class SchedulerTask {
         }
     }
 
-    /*
-     * 每分钟执行一次，对已创建了两小时订单的二维码进行删除
+    /**
+     * <p>每分钟执行一次，对已创建了两小时订单的二维码进行删除</p>
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void delQRCode(){
@@ -71,8 +71,8 @@ public class SchedulerTask {
         }
     }
 
-    /*
-     * 每分钟执行一次，对消息队列的消息执行发送
+    /**
+     * <p>每分钟执行一次，对redis消息队列的消息执行发送</p>
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void sendNotice(){
@@ -93,12 +93,14 @@ public class SchedulerTask {
                 case 2:
                     noticeMapper.insert(title,context,type,receive,createTime);
                     break;
+                default:
+                    break;
             }
         }
     }
 
-    /*
-     * 每分钟执行一次，邮箱发送队列的执行发送
+    /**
+     * <p>每分钟执行一次，邮箱发送队列的执行发送</p>
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void sendEmail(){
@@ -107,5 +109,4 @@ public class SchedulerTask {
             mailService.sendHtmlMail(map.get("email"),map.get("title"),map.get("context"));
         }
     }
-
 }

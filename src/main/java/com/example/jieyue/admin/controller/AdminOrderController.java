@@ -21,7 +21,7 @@ public class AdminOrderController {
     AdminOrderService orderService;
 
     @RequestMapping("/admin/order")
-    public ModelAndView index(ModelAndView modelAndView,@RequestParam(defaultValue = "2")int flag, @RequestParam(defaultValue = "1")int page){
+    public ModelAndView index(ModelAndView modelAndView,@RequestParam(defaultValue = "2")int flag, @RequestParam(defaultValue = "1")int page) {
         // 获取订单信息
         List<SysOrder> orderList = orderService.getOrderList(page,18,flag);
         modelAndView.addObject("orderList",orderList);
@@ -37,7 +37,7 @@ public class AdminOrderController {
     }
 
     @RequestMapping("/admin/search-order")
-    public ModelAndView searchOrder(ModelAndView modelAndView,String order){
+    public ModelAndView searchOrder(ModelAndView modelAndView,String order) {
         // 获取订单信息
         List<SysOrder> orderList = orderService.getOrderById(order);
         modelAndView.addObject("orderList",orderList);

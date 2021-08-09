@@ -19,15 +19,15 @@ public class AdminUiService {
     DateUtil dateUtil;
     @Autowired
     SysUiMapper uiMapper;
+
     /**
-     * 文件上传逻辑处理
-     *
+     * <p>文件上传逻辑处理</p>
      * @return
      * null 上传失败
      * 文件名 上传成功
      */
-    public String upImage(MultipartFile file,RedirectAttributes redirectAttributes,
-                         HttpServletRequest request,String url,int weight,int height) {
+    public String upImage(MultipartFile file, RedirectAttributes redirectAttributes,
+                         HttpServletRequest request, String url,int weight,int height) {
         // 设置filename  文件名由年月日时分秒以及六位随机数组成
         String filename = dateUtil.getNMDHIS()+Math.round(Math.random()*(999999-100000)+100000);
         // 接收文件工具类返回的文件位置
@@ -60,8 +60,8 @@ public class AdminUiService {
         }
     }
 
-    /*
-     * 删除海报逻辑处理
+    /**
+     * <p>删除海报逻辑处理</p>
      */
     public boolean delImg(int width,int height){
         if (uiMapper.findByMark(width,height)==null){
@@ -71,10 +71,8 @@ public class AdminUiService {
             int delResult = uiMapper.deleteByMark(width,height);
             if (delResult == 1) {
                 return true;
-            } else {
-                // sql语句执行失败
-                return false;
             }
+            return false;
         }
     }
 }

@@ -10,6 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * <p>后台用户列表控制器</p>
+ * @author Bosen
+ * @date 2021/8/9 22:34
+ */
 @RestController
 public class AdminUserController {
     @Autowired

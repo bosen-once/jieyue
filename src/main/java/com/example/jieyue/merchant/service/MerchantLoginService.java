@@ -21,7 +21,7 @@ public class MerchantLoginService {
     String sitrUrl;
 
     /**
-     * 登录逻辑处理
+     * <p>登录逻辑处理</p>
      * @return
      * 0 必填信息不能为空
      *-1 邮箱或密码错误
@@ -46,7 +46,7 @@ public class MerchantLoginService {
     }
     
     /**
-     * 注册逻辑处理
+     * <p>注册逻辑处理</p>
      * @return
      * 0 必填信息不能为空
      *-1 验证邮件发送失败，请重试
@@ -92,7 +92,7 @@ public class MerchantLoginService {
     }
 
     /**
-     * 验证邮件确认注册
+     * <p>验证邮件确认注册</p>
      * @return int
      *-1 404页面
      * 0 网络超时请重试
@@ -112,8 +112,8 @@ public class MerchantLoginService {
         }
     }
 
-    /*
-     * 获取商户信息
+    /**
+     * <p>获取商户信息</p>
      */
     public SysMt getMerchantInfo(String email){
         return mtMapper.findByEmail(email);

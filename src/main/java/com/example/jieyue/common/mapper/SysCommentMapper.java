@@ -9,7 +9,9 @@ import java.util.List;
 @Repository
 public interface SysCommentMapper {
     SysComment findById(int id);
+
     int getAllCountByGoods(int id);
+
     int getAllCountByMt(int merchant);
 
     List<SysComment> findByGoodsLimit(int goods,int preNum,int sufNum);

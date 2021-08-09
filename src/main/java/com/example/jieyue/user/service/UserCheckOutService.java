@@ -16,8 +16,8 @@ public class UserCheckOutService {
     @Autowired
     SysGoodsMapper goodsMapper;
 
-    /*
-     * 获取商品信息
+    /**
+     * <p>获取商品信息</p>
      */
     public Map<SysGoods,Integer> getGoodsInfo(String ids){
         Map<SysGoods,Integer> map = new HashMap<>();
@@ -28,8 +28,8 @@ public class UserCheckOutService {
         return map;
     }
     
-    /*
-     * 获取总金额
+    /**
+     * <p>获取总金额</p>
      */
     public BigDecimal getGoodsNumPrice(Map<SysGoods,Integer> goodsMap){
         BigDecimal allPrice = new BigDecimal(0.00);
@@ -39,8 +39,8 @@ public class UserCheckOutService {
         return allPrice;
     }
 
-    /*
-     * 将前端发送的ids字符串切割为哈希表
+    /**
+     * <p>将前端发送的ids字符串切割为哈希表</p>
      */
     public Map<Integer,Integer> getIdsMap(String ids){
         String[] idsAndNumArray = ids.split(",");
@@ -54,8 +54,8 @@ public class UserCheckOutService {
         return map;
     }
 
-    /*
-     * 获取对应的cart id
+    /**
+     * <p>获取对应的cart id</p>
      */
     public List<Integer> getCartIds(String ids){
         String[] idsAndNumArray = ids.split(",");

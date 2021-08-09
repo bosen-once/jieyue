@@ -34,8 +34,8 @@ public class AdminNoticeService {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    /*
-     * 将要发送的消息存入redis消息队列
+    /**
+     * <p>将要发送的消息存入redis消息队列</p>
      */
     public void sendByRedis(String title,String context,int type){
         Map<String,String> map = new HashMap<>();
@@ -73,9 +73,14 @@ public class AdminNoticeService {
                     redisTemplate.opsForList().leftPush("notice",map);
                 }
                 break;
+            default:
+                break;
         }
     }
 
+    /**
+     * <p>将要发送的消息存入rabbitMQ消息队列</p>
+     */
     public void sendByRabbitMQ(String title,String context,int type){
         switch (type){
             case 0:

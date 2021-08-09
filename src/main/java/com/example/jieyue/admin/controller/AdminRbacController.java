@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>后台模块RBAC权限管理控制器</p>
+ * @author Bosen
+ * @date 2021/8/9 23:20
+ */
 @RestController
 public class AdminRbacController {
     @Autowired
@@ -55,23 +59,27 @@ public class AdminRbacController {
         return modelAndView;
     }
 
+    /**
+     * <p>权限不足时需要跳转的页面</p>
+     */
     @RequestMapping("/admin/alert")
     public ModelAndView adminAlert(ModelAndView modelAndView) {
         modelAndView.setViewName("admin/rbac/alert");
         return modelAndView;
     }
 
-    /*
-     * 编辑管理员的角色页面
+    /**
+     * <p>编辑管理员的角色页面</p>
      */
     @RequestMapping("/admin/rbac/update-admin-role")
-    public ModelAndView updateAdminRole(ModelAndView modelAndView, HttpServletRequest request, int admin, @RequestParam(defaultValue = "0") int role) {
+    public ModelAndView updateAdminRole(ModelAndView modelAndView, int admin, @RequestParam(defaultValue = "0") int role) {
         modelAndView.setViewName("redirect:/admin/rbac");
         if (role == 0) {
             modelAndView.addObject("msg","未对管理员角色进行修改");
             return modelAndView;
         }
-        int sql = 0;// sql执行结果接收变量
+        // sql执行结果接收变量
+        int sql = 0;
         if (adminRoleMapper.countByAdminId(admin) == 0) {
             // 此管理员还未设置角色
             sql = adminRoleMapper.insert(admin, role);
@@ -87,8 +95,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 添加角色
+    /**
+     * <p>添加角色</p>
      */
     @RequestMapping("/admin/add-role")
     public ModelAndView addRole(ModelAndView modelAndView,String name){
@@ -107,8 +115,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 添加权限
+    /**
+     * <p>添加权限</p>
      */
     @RequestMapping("/admin/add-access")
     public ModelAndView addAccess(ModelAndView modelAndView,String name,String url){
@@ -164,11 +172,11 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 停用管理员
+    /**
+     * <p>停用管理员</p>
      */
     @RequestMapping("/admin/off-admin")
-    public ModelAndView offAdmin(ModelAndView modelAndView,int id){
+    public ModelAndView offAdmin(ModelAndView modelAndView, int id){
         modelAndView.setViewName("redirect:/admin/rbac");
         if (id==1){
             modelAndView.addObject("无法停用此管理员！");
@@ -182,8 +190,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 启用管理员
+    /**
+     * <p>启用管理员</p>
      */
     @RequestMapping("/admin/on-admin")
     public ModelAndView onAdmin(ModelAndView modelAndView,int id){
@@ -196,8 +204,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 停用角色
+    /**
+     * <p>停用角色</p>
      */
     @RequestMapping("/admin/off-role")
     public ModelAndView offRole(ModelAndView modelAndView,int id){
@@ -210,8 +218,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 启用角色
+    /**
+     * <p>启用角色</p>
      */
     @RequestMapping("/admin/on-role")
     public ModelAndView onRole(ModelAndView modelAndView,int id){
@@ -224,8 +232,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 启用权限
+    /**
+     * <p>启用权限</p>
      */
     @RequestMapping("/admin/on-access")
     public ModelAndView onAccess(ModelAndView modelAndView,int id){
@@ -238,8 +246,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 停用权限
+    /**
+     * <p>停用权限</p>
      */
     @RequestMapping("/admin/off-access")
     public ModelAndView offAccess(ModelAndView modelAndView,int id){
@@ -252,8 +260,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 修改权限信息
+    /**
+     * <p>修改权限信息</p>
      */
     @RequestMapping("/admin/update-access")
     public ModelAndView updateAccess(ModelAndView modelAndView,int id,String name,String url){
@@ -266,8 +274,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 修改角儿权限信息页面
+    /**
+     * <p>修改角儿权限信息页面</p>
      */
     @RequestMapping("/admin/role-access")
     public ModelAndView roleAccessIndex(ModelAndView modelAndView,int id){
@@ -290,8 +298,8 @@ public class AdminRbacController {
         return modelAndView;
     }
 
-    /*
-     * 修改角色的权限
+    /**
+     * <p>修改角色的权限</p>
      */
     @RequestMapping("/admin/role-access/action")
     public ModelAndView action(ModelAndView modelAndView,int role,int ... ids){

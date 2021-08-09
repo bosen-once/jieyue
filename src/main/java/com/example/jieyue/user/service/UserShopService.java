@@ -18,15 +18,15 @@ public class UserShopService {
     @Autowired
     SysGoodsMapper goodsMapper;
 
-    /*
-     * 获取商户信息
+    /**
+     * <p>获取商户信息</p>
      */
     public SysMt getMerchantInfo(int merchantId){
         return merchantMapper.findById(merchantId);
     }
 
-    /*
-     * 获取商户商品信息
+    /**
+     * <p>获取商户商品信息</p>
      */
     public Map<Integer,SysGoods> getGoodsList(int merchantId, int page, int num){
         List<SysGoods> list = goodsMapper.findByMtLimit(merchantId,(page-1)*num,page*num);
@@ -37,8 +37,8 @@ public class UserShopService {
         return map;
     }
     
-    /*
-     * 随机获取商品
+    /**
+     * <p>随机获取商品</p>
      */
     public Map<Integer,SysGoods> getRandGoodsMap(int merchant,int num){
         List<SysGoods> list = goodsMapper.findMerchantRand(merchant,num);
@@ -49,8 +49,8 @@ public class UserShopService {
         return map;
     }
     
-    /*
-     * 获取总页数
+    /**
+     * <p>获取总页数</p>
      */
     public int getAllPage(int merchantId,int num){
         int all = goodsMapper.countByMerchant(merchantId);

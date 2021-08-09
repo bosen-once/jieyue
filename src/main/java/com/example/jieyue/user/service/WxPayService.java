@@ -63,8 +63,7 @@ public class WxPayService {
     }
 
     /**
-     * 添加订单
-     *
+     * <p>添加订单</p>
      * @return
      *-1 sql语句执行失败
      * 0 必填信息不能为空
@@ -114,16 +113,16 @@ public class WxPayService {
         return wxCodeUrl(mark,allPrice);
     }
 
-    /*
-     * 分割js传递的数组
+    /**
+     * <p>分割js传递的数组</p>
      */
     public String[] getStringArray(String array){
         List<String> list = new ArrayList<>();
         return array.split(",");
     }
     
-    /*
-     * 总金额运算
+    /**
+     * <p>总金额运算</p>
      */
     public String getAllPrice(String[] prices,String[] nums){
         DecimalFormat dfPrice = new DecimalFormat("#.00");
@@ -138,8 +137,8 @@ public class WxPayService {
         return allPrice.multiply(new BigDecimal(100)).stripTrailingZeros().toPlainString();
     }
 
-    /*
-     * 生成二维码
+    /**
+     * <p>生成二维码</p>
      */
     public String wxCodeUrl(String orderMark,String price){
         Map<String, String> data = new HashMap<>();
@@ -164,10 +163,8 @@ public class WxPayService {
         return codeUrl;
     }
 
-    /*
-     * 生成订单号
-     *
-     * 由三位字母十四位的日期数六位随机数组成
+    /**
+     * <p>生成订单号</p>
      */
     public String getOrderId(){
         String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -193,7 +190,7 @@ public class WxPayService {
     }
 
     /**
-     * 微信支付异步通知验证签名
+     * <p>微信支付异步通知验证签名</p>
      * @param request
      * @return
      */
@@ -231,8 +228,7 @@ public class WxPayService {
     }
 
     /**
-     * 从流中读取微信返回的xml数据
-     *
+     * <p>从流中读取微信返回的xml数据</p>
      * @param httpServletRequest
      * @return
      * @throws IOException
@@ -255,8 +251,7 @@ public class WxPayService {
     }
 
     /**
-     * 设置返回给微信服务器的xml信息
-     *
+     * <p>设置返回给微信服务器的xml信息</p>
      * @param returnCode
      * @param returnMsg
      * @return

@@ -24,8 +24,8 @@ public class UserPayController {
     @Autowired
     SysOrderMapper orderMapper;
 
-    /*
-     * 微信支付
+    /**
+     * <p>微信支付</p>
      */
     @RequestMapping("/user/pay/wx")
     public ModelAndView wx(ModelAndView modelAndView, String nums, String users, String merchants, String goods, String prices,
@@ -51,8 +51,8 @@ public class UserPayController {
         return wxPayService.wxNotify(request);
     }
 
-    /*
-     * 检查订单状态
+    /**
+     * <p>检查订单状态</p>
      */
     @RequestMapping("/user/check-order-status")
     public boolean checkOrderStatus(String orderMark){
@@ -69,8 +69,8 @@ public class UserPayController {
         }
     }
 
-    /*
-     * 订单未支付，重新显示二维码给用户支付
+    /**
+     * <p>订单未支付，重新显示二维码给用户支付</p>
      */
     @RequestMapping("/user/wxpay/index")
     public ModelAndView wxNotify(ModelAndView modelAndView,String mark) {
@@ -83,42 +83,41 @@ public class UserPayController {
         return modelAndView;
     }
 
-    /*
-     * 订单并发安全测试
-     */
-    @Autowired
-    SysGoodsMapper goodsMapper;
-    @Autowired
-    SysMtMapper merchantMapper;
-    @RequestMapping("/user/pay/test")
-    @Transactional
-    public String test() {
-        // 用于测试商品的id值
-        int goodsId = 44;
-        SysGoods goods = goodsMapper.findById(goodsId);
-        if (goods.getStock() > 0){
-            // 生成orderMark
-            String orderMark = wxPayService.getOrderId();
-            // 生成订单号
-            String orderId = wxPayService.getOrderId();
-            // 获取商户信息
-            SysMt merchant = merchantMapper.findById(goods.getMerchant());
-            // 执行sql语句
-            int sql = orderMapper.insert1(orderId, System.currentTimeMillis(), 1, orderMark, 99,
-                    goods.getMerchant(), goods.getPrice(), goodsId, "test", "test",
-                    "test", "123456", "test", 0,merchant.getRatio());
-
-            // 将商品库存做相应的减少
-            int delStock = goodsMapper.delStock(goodsId,1);
-
-            // 库存检查，库存少于零时回滚
-            if (sql != 1 || delStock != 1 || goodsMapper.findById(goodsId).getStock() < 0){
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            }
-
-            return "SUCCESS This is /user/pay/test";
-        }
-        return "ERROR This is /user/pay/test";
-
-    }
+//    /**
+//     * <p>订单并发安全测试</p>
+//     */
+//    @Autowired
+//    SysGoodsMapper goodsMapper;
+//    @Autowired
+//    SysMtMapper merchantMapper;
+//    @RequestMapping("/user/pay/test")
+//    @Transactional
+//    public String test() {
+//        // 用于测试商品的id值
+//        int goodsId = 44;
+//        SysGoods goods = goodsMapper.findById(goodsId);
+//        if (goods.getStock() > 0){
+//            // 生成orderMark
+//            String orderMark = wxPayService.getOrderId();
+//            // 生成订单号
+//            String orderId = wxPayService.getOrderId();
+//            // 获取商户信息
+//            SysMt merchant = merchantMapper.findById(goods.getMerchant());
+//            // 执行sql语句
+//            int sql = orderMapper.insert1(orderId, System.currentTimeMillis(), 1, orderMark, 99,
+//                    goods.getMerchant(), goods.getPrice(), goodsId, "test", "test",
+//                    "test", "123456", "test", 0,merchant.getRatio());
+//
+//            // 将商品库存做相应的减少
+//            int delStock = goodsMapper.delStock(goodsId,1);
+//
+//            // 库存检查，库存少于零时回滚
+//            if (sql != 1 || delStock != 1 || goodsMapper.findById(goodsId).getStock() < 0){
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//            }
+//
+//            return "SUCCESS This is /user/pay/test";
+//        }
+//        return "ERROR This is /user/pay/test";
+//    }
 }

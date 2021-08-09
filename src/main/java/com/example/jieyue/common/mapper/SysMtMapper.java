@@ -9,13 +9,17 @@ import java.util.List;
 @Repository
 public interface SysMtMapper {
     int insert(String name,String email,String password,float ratio,int state);
+
     SysMt findByEmail(String email);
+
     SysMt findById(int id);
 
     int count();
 
     List<SysMt> findPage(int curRow,int pageSize);
+
     List<SysMt> findAll();
+
     int deleteById(int id);
 
     int updateRatio(int id,float ratio);
@@ -25,7 +29,6 @@ public interface SysMtMapper {
     int updateHeader(int id,String header);
 
     int update(String name,String password,String email);
-    // todo
-    int updateName(String name);
 
+    int updateName(String name);
 }

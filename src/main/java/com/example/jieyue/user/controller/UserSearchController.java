@@ -22,10 +22,13 @@ public class UserSearchController {
 
     @RequestMapping("/user/search")
     public ModelAndView index(ModelAndView modelAndView,String keyword){
-        // 获取返回的商品列表
-        List<GoodsIndex> goodsList = searchService.esSearchGoods(keyword);
-        modelAndView.addObject("goodsList",goodsList);
+        // 使用mysql获取返回的商品列表
+        List<SysGoods> goodsList = searchService.mysqlSearchGoods(keyword);
 
+        // 使用es获取返回的商品列表
+        // List<GoodsIndex> goodsList = searchService.esSearchGoods(keyword);
+
+        modelAndView.addObject("goodsList",goodsList);
         modelAndView.setViewName("user/search/index");
         return modelAndView;
     }

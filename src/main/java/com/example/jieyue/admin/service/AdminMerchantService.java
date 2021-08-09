@@ -11,9 +11,9 @@ import java.util.List;
 public class AdminMerchantService {
     @Autowired
     SysMtMapper mtMapper;
+
     /**
      * <p>获取用户的信息</p>
-     *
      * @param curPage 当前页数
      * @param pageSize 一页的条数
      */
@@ -22,8 +22,8 @@ public class AdminMerchantService {
         return mtMapper.findPage(curRow,pageSize);
     }
     
-    /*
-     * 删除商户
+    /**
+     * <p>删除商户</p>
      */
     public int deleteMerchant(int merchantId){
         if (mtMapper.deleteById(merchantId)==1){
@@ -32,8 +32,8 @@ public class AdminMerchantService {
         return -1;
     }
 
-    /*
-     * 修改用户状态
+    /**
+     * <p>修改用户状态</p>
      */
     public int updateMerchantState(String email,int state){
         if (mtMapper.updateState(email,state)==1){
@@ -42,8 +42,8 @@ public class AdminMerchantService {
         return -1;
     }
     
-    /*
-     * 获取商户列表总页数
+    /**
+     * <p>获取商户列表总页数</p>
      */
     public int getMtPage(int pageSize){
         if (mtMapper.count()==0){
@@ -51,9 +51,5 @@ public class AdminMerchantService {
         }else{
             return (int)Math.ceil((double)mtMapper.count()/pageSize);
         }
-    }
-
-    public int updateRatio(float ratio,int id){
-        return 1;
     }
 }

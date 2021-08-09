@@ -2,7 +2,6 @@ package com.example.jieyue.merchant.controller;
 
 import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.entity.SysMt;
-import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.merchant.service.MerchantGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +26,8 @@ public class MerchantGoodsController {
     @Autowired
     MerchantGoodsService goodsService;
 
-    /*
-     * 商品管理页面
+    /**
+     * <p>商品管理页面</p>
      */
     @RequestMapping("/merchant/goods")
     public ModelAndView index(ModelAndView modelAndView, HttpSession session, @RequestParam(defaultValue = "1")int page){
@@ -44,8 +43,8 @@ public class MerchantGoodsController {
         return modelAndView;
     }
 
-    /*
-     * 增加商品
+    /**
+     * <p>增加商品</p>
      */
     @RequestMapping("/merchant/add-goods")
     public ModelAndView addGoods(ModelAndView modelAndView, String name, String describe,
@@ -82,13 +81,15 @@ public class MerchantGoodsController {
             case 2:
                 modelAndView.addObject("msg","必填信息不能为空");
                 break;
+            default:
+                break;
         }
         modelAndView.setViewName("redirect:goods");
         return modelAndView;
     }
     
-    /*
-     * 通过id值删除商品
+    /**
+     * <p>通过id值删除商品</p>
      */
     @RequestMapping("/merchant/del-goods")
     public ModelAndView delGoods(ModelAndView modelAndView,int id){
@@ -102,8 +103,8 @@ public class MerchantGoodsController {
         return modelAndView;
     }
     
-    /*
-     * 上架商品
+    /**
+     * <p>上架商品</p>
      */
     @RequestMapping("/merchant/put-goods")
     public ModelAndView putGoods(ModelAndView modelAndView,int id){
@@ -116,8 +117,8 @@ public class MerchantGoodsController {
         return modelAndView;
     }
 
-    /*
-     * 下架商品
+    /**
+     * <p>下架商品</p>
      */
     @RequestMapping("/merchant/off-goods")
     public ModelAndView OffGoods(ModelAndView modelAndView,int id){
@@ -130,8 +131,8 @@ public class MerchantGoodsController {
         return modelAndView;
     }
 
-    /*
-     * 修改商品信息
+    /**
+     * <p>修改商品信息</p>
      */
     @RequestMapping("/merchant/update-goods")
     public ModelAndView updateGoods(ModelAndView modelAndView, String name, String describe,
@@ -152,7 +153,6 @@ public class MerchantGoodsController {
             modelAndView.setViewName("redirect:goods");
             return modelAndView;
         }
-
         // 修改商品信息
         int res = goodsService.updateGoods(name, describe,priceRes,img,redirectAttributes,stockTemp,request,id);
         switch (res){
@@ -168,8 +168,9 @@ public class MerchantGoodsController {
             case 2:
                 modelAndView.addObject("msg","必填信息不能为空");
                 break;
+            default:
+                break;
         }
-
         modelAndView.setViewName("redirect:goods");
         return modelAndView;
     }

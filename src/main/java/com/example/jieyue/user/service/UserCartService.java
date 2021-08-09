@@ -51,8 +51,8 @@ public class UserCartService {
         return -1;
     }
     
-    /*
-     * 整合购物车完整信息
+    /**
+     * <p>整合购物车完整信息</p>
      */
     public List<Map> getCartList(HttpServletRequest request){
         // 获取用户信息

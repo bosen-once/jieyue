@@ -27,25 +27,25 @@ public class MerchantGoodsService {
     FileUtil fileUtil;
     @Autowired
     DateUtil dateUtil;
-
+    @Autowired
     IsEmptyUtil isEmptyUtil = new IsEmptyUtil();
     
-    /*
-     * 获取全部商品
+    /**
+     * <p>获取全部商品</p>
      */
     public List<SysGoods> getAllGoods(){
         return goodsMapper.findAll();
     }
 
-    /*
-     * 通过id获取商品
+    /**
+     * <p>通过id获取商品</p>
      */
     public SysGoods getGoodsById(int id){
         return goodsMapper.findById(id);
     }
     
-    /*
-     * 获取当前商户的商品列表
+    /**
+     * <p>获取当前商户的商品列表</p>
      */
     public List<SysGoods> getMtGoods(HttpSession session,int page,int num){
         SysMt sysMt = (SysMt) session.getAttribute("merchant");
@@ -54,7 +54,6 @@ public class MerchantGoodsService {
     
     /**
      * <p>添加商品</p>
-     *
      * @return
      *-1 图片上传失败
      * 0 sql语句执行失败
@@ -106,7 +105,6 @@ public class MerchantGoodsService {
 
     /**
      * <p>通过id值删除商品逻辑处理</p>
-     *
      * @return
      *-1 删除失败
      * 1 删除成功
@@ -128,22 +126,22 @@ public class MerchantGoodsService {
         }
     }
 
-    /*
-     * 获取总页数
+    /**
+     * <p>获取总页数</p>
      */
     public int getAllPage(int num,SysMt merchant){
         return (int)Math.ceil((double)goodsMapper.goodsCount(merchant.getId())/(double)num);
     }
 
-    /*
-     * 上架商品
+    /**
+     * <p>上架商品</p>
      */
     public boolean putGoods(int goodId){
         return goodsMapper.updateState(goodId, 1) == 1;
     }
 
-    /*
-     * 下架商品
+    /**
+     * <p>下架商品</p>
      */
     public boolean OffGoods(int goodId){
         return goodsMapper.updateState(goodId, 0) == 1;
@@ -151,7 +149,6 @@ public class MerchantGoodsService {
 
     /**
      * <p>修改商品信息</p>
-     *
      * @return
      *-1 图片上传失败
      * 0 sql语句执行失败

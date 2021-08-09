@@ -20,9 +20,7 @@ public class MerchantWebMvcConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        /*
-         * 网站主页，静态资源，网站作者页面，以及登陆注册所需页面外，未登录时的访问 统一跳转至登陆注册页面
-         */
+        // 登录拦截
         registry.addInterceptor(new LoginHandlerInterceptor())
                 .addPathPatterns("/mer*/**")
                 .excludePathPatterns(

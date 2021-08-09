@@ -1,6 +1,5 @@
 package com.example.jieyue.merchant.controller;
 
-import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.common.entity.SysMtUi;
 import com.example.jieyue.merchant.service.MerchantUiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,8 @@ public class MerchantUiController {
         return modelAndView;
     }
     
-    /*
-     * 删除
+    /**
+     * <p>删除</p>
      */
     @RequestMapping("/merchant/del-home-img")
     public ModelAndView delHomeImg(ModelAndView modelAndView,int id){
@@ -47,13 +46,15 @@ public class MerchantUiController {
             case 0:
                 modelAndView.addObject("msg","图片删除失败");
                 break;
+            default:
+                break;
         }
         modelAndView.setViewName("redirect:ui");
         return modelAndView;
     }
     
-    /*
-     * 修改或添加商户在商城主页的宣传海报
+    /**
+     * <p>修改或添加商户在商城主页的宣传海报</p>
      */
     @RequestMapping("/merchant/update-home-img")
     public ModelAndView updateHomeImg(ModelAndView modelAndView, HttpServletRequest request, MultipartFile img, RedirectAttributes redirectAttributes,int width,int height){
@@ -66,13 +67,15 @@ public class MerchantUiController {
             case 0:
                 modelAndView.addObject("msg","图片修改失败");
                 break;
+            default:
+                break;
         }
         modelAndView.setViewName("redirect:ui");
         return modelAndView;
     }
     
-    /*
-     * 修改用户头像
+    /**
+     * <p>修改用户头像</p>
      */
     @RequestMapping("/merchant/update-header")
     public ModelAndView updateHeader(RedirectAttributes redirectAttributes,HttpServletRequest request,ModelAndView modelAndView,MultipartFile img){

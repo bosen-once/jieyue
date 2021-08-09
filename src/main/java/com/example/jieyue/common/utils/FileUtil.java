@@ -25,8 +25,7 @@ public class FileUtil {
     }
 
     /**
-     * 文件上传逻辑处理
-     *
+     * <p>文件上传逻辑处理</p>
      * @return
      * null 上传失败
      * 文件名 上传成功
@@ -59,8 +58,8 @@ public class FileUtil {
         return url+filename+"."+suffix;
     }
 
-    /*
-     * 获取文件后缀名
+    /**
+     * <p>获取文件后缀名</p>
      */
     public String getSuffixName(String filename){
         String[] strArray = filename.split("\\.");
@@ -68,8 +67,8 @@ public class FileUtil {
         return strArray[suffixIndex];
     }
 
-    /*
-     * 删除文件
+    /**
+     * <p>删除文件</p>
      */
     public void deleteFile(String url){
         File file1 = new File(classpath+url);

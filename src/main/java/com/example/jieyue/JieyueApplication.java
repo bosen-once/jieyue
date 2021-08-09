@@ -12,10 +12,15 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@MapperScan("com.example.jieyue.common.mapper")// mapper扫描
+/**
+ * <p>启动类</p>
+ * @author Bosen
+ * @date 2021/8/9 23:07
+ */
+@MapperScan("com.example.jieyue.common.mapper")
 @SpringBootApplication
 @ServletComponentScan
-@EnableScheduling// 定时任务
+@EnableScheduling
 public class JieyueApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
@@ -27,8 +32,8 @@ public class JieyueApplication extends SpringBootServletInitializer {
         return builder.sources(JieyueApplication.class);
     }
 
-    /*
-     * 处理文件过大上传失败的问题
+    /**
+     * <p>处理文件过大上传失败的问题</p>
      */
     @Bean
     public TomcatServletWebServerFactory containerFactory() {

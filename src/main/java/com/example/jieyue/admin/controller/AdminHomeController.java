@@ -22,8 +22,11 @@ public class AdminHomeController {
     @Autowired
     SysUserMapper userMapper;
 
+    /**
+     * <p>登录页面</p>
+     */
     @RequestMapping("/admin/home")
-    public ModelAndView index(ModelAndView modelAndView){
+    public ModelAndView index(ModelAndView modelAndView) {
         float profit = orderMapper.websiteProfitCount();
         int orderCount = orderMapper.payCount();
         int goodsCount = goodsMapper.allGoodsCount();

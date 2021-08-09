@@ -27,7 +27,6 @@ public class MerchantUiService {
 
     /**
      * <p>获取当前商户的id值</p>
-     *
      * @return
      * -1 无用户的session信息
      */
@@ -39,15 +38,15 @@ public class MerchantUiService {
         return mtUi.getId();
     }
 
-    /*
-     * 获取商户用于商城首页宣传的海报图片对象
+    /**
+     * <p>获取商户用于商城首页宣传的海报图片对象</p>
      */
     public SysMtUi getHomeImg(int width,int height,HttpSession session){
         return mtUiMapper.findByMark(width,height,getMtId(session));
     }
     
-    /*
-     * 删除
+    /**
+     * <p>删除</p>
      */
     public int delHomeImg(int id){
         String url = mtUiMapper.findById(id).getUrl();
@@ -60,8 +59,8 @@ public class MerchantUiService {
         }
     }
 
-    /*
-     * 商户商城首页的宣传海报
+    /**
+     * <p>商户商城首页的宣传海报</p>
      */
     public int updateHomeImg(int width, int height, HttpSession session, MultipartFile img,RedirectAttributes redirectAttributes,
                              HttpServletRequest request){
@@ -93,15 +92,15 @@ public class MerchantUiService {
         }
     }
     
-    /*
-     * 增加商户商城首页的宣传海报
+    /**
+     * <p>增加商户商城首页的宣传海报</p>
      */
     public int addHomeImg(String url,int width, int height,int id){
         return mtUiMapper.insert(url,width,height,id);
     }
 
-    /*
-     * 修改商户头像
+    /**
+     * <p>修改商户头像</p>
      */
     public int updateHeard(RedirectAttributes redirectAttributes,HttpServletRequest request, MultipartFile img){
         // 获取商户信息

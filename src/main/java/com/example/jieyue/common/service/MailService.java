@@ -21,19 +21,19 @@ public class MailService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * Spring Boot 提供了一个发送邮件的简单抽象，使用的是下面这个接口，这里直接注入即可使用
+     * <p>Spring Boot 提供了一个发送邮件的简单抽象，使用的是下面这个接口，这里直接注入即可使用</p>
      */
     @Autowired
     private JavaMailSender mailSender;
 
     /**
-     * 配置文件中我的qq邮箱
+     * <p>配置文件中我的qq邮箱</p>
      */
     @Value("${spring.mail.from}")
     private String from;
 
     /**
-     * 简单文本邮件
+     * <p>简单文本邮件</p>
      * @param to 收件人
      * @param subject 主题
      * @param content 内容
@@ -54,7 +54,7 @@ public class MailService {
     }
 
     /**
-     * html邮件
+     * <p>html邮件</p>
      * @param to 收件人
      * @param subject 主题
      * @param content 内容
@@ -85,7 +85,7 @@ public class MailService {
     }
 
     /**
-     * 带附件的邮件
+     * <p>带附件的邮件</p>
      * @param to 收件人
      * @param subject 主题
      * @param content 内容
@@ -111,8 +111,8 @@ public class MailService {
         }
     }
 
-    /*
-     * 邮箱格式验证
+    /**
+     * <p>邮箱格式验证</p>
      */
     public boolean checkEmail(String email){
         String check = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";

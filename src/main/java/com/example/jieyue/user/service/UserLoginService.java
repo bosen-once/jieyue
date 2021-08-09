@@ -24,8 +24,8 @@ public class UserLoginService {
     @Autowired
     RedisTemplate redisTemplate;
 
-    // 判空工具类
     IsEmptyUtil isEmptyUtil = IsEmptyUtil.getInstance();
+
     /**
      * <p>登陆验证逻辑处理</p>
      * @return int
@@ -53,8 +53,8 @@ public class UserLoginService {
         }
     }
     
-    /*
-     * 返回用户信息
+    /**
+     * <p>返回用户信息</p>
      */
     public SysUser userInfo(String email){
         return service.getUserInfo(email);
@@ -115,7 +115,7 @@ public class UserLoginService {
     }
 
     /**
-     * 验证邮件确认注册
+     * <p>验证邮件确认注册</p>
      * @return int
      *-1 404页面
      * 0 网络超时请重试

@@ -31,7 +31,6 @@ public class UserInfoService {
 
     /**
      * <p>修改用户信息</p>
-     *
      * @return
      *-1 修改信息失败
      * 1 修改信息成功

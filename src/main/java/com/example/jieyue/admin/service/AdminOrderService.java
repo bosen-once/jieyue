@@ -13,23 +13,28 @@ public class AdminOrderService {
     @Autowired
     SysOrderMapper orderMapper;
 
-    /*
-     * 获取订单信息
+    /**
+     * <p>获取订单信息</p>
      */
     public List<SysOrder> getOrderList(int page,int num,int flag){
         switch (flag){
-            case 0:// 未支付
+            // 未支付
+            case 0:
                 return orderMapper.findNotPayLimit((page-1)*num,num);
-            case 1:// 已支付
+            // 已支付
+            case 1:
                 return orderMapper.findPayLimit((page-1)*num,num);
-            case 2:// 全部订单
+            // 全部订单
+            case 2:
                 return orderMapper.findLimit((page-1)*num,num);
+            default:
+                break;
         }
         return null;
     }
 
-    /*
-     * 通过订单号查找
+    /**
+     * <p>通过订单号查找</p>
      */
     public List<SysOrder> getOrderById(String orderId){
         SysOrder order = orderMapper.findByOrderId(orderId);
@@ -40,8 +45,8 @@ public class AdminOrderService {
         return list;
     }
 
-    /*
-     * 获取总页数
+    /**
+     * <p>获取总页数</p>
      */
     public int getAllPage(int flag,int num){
         switch (flag){
@@ -53,6 +58,8 @@ public class AdminOrderService {
                 return (int)Math.ceil((double)orderMapper.orderCount()/(double)num);
             case 3:
                 return 1;
+            default:
+                break;
         }
         return 1;
     }

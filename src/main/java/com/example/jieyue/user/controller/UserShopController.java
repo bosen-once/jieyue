@@ -22,8 +22,8 @@ public class UserShopController {
     @Autowired
     UserShopService shopService;
 
-    /*
-     * 店铺首页
+    /**
+     * <p>店铺首页</p>
      */
     @RequestMapping("/user/shop")
     public ModelAndView index(ModelAndView modelAndView,int id,@RequestParam(defaultValue = "1") int page){

@@ -28,8 +28,8 @@ public class UserHomeService {
     @Autowired
     SysMtUiMapper mtUiMapper;
 
-    /*
-     * 设置缓存  十分钟内有效
+    /**
+     * <p>设置缓存  十分钟内有效</p>
      */
     public void setHomeCache(ModelAndView modelAndView){
         redisTemplate.opsForHash().put("homePageCache","imgMap",modelAndView.getModelMap().get("imgMap"));

@@ -33,8 +33,8 @@ public class UserCartController {
         return modelAndView;
     }
     
-    /*
-     * 添加至购物车
+    /**
+     * <p>添加至购物车</p>
      */
     @RequestMapping("/user/add-cart")
     public ModelAndView addCart(ModelAndView modelAndView, String id, @RequestParam(defaultValue = "1") int num, HttpServletRequest request){
@@ -56,8 +56,8 @@ public class UserCartController {
         return modelAndView;
     }
 
-    /*
-     * 移除购物车商品
+    /**
+     * <p>移除购物车商品</p>
      */
     @RequestMapping("/user/del-cart")
     public ModelAndView delCart(ModelAndView modelAndView,int id){

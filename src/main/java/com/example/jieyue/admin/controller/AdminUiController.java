@@ -35,8 +35,6 @@ public class AdminUiController {
     
     /**
      * <p>文件上传操作</p>
-     * @author Bosen
-     * 2020/11/5 18:56
      */
     @RequestMapping("/admin/up-image")
     public ModelAndView upImage(ModelAndView modelAndView, MultipartFile file, RedirectAttributes redirectAttributes, HttpServletRequest request,int width,int height){
@@ -55,8 +53,8 @@ public class AdminUiController {
         return modelAndView;
     }
 
-    /*
-     * 删除海报
+    /**
+     * <p>删除海报</p>
      */
     @RequestMapping("/admin/del-image")
     public ModelAndView delImg(ModelAndView modelAndView,int width,int height){

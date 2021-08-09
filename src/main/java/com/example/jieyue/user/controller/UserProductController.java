@@ -1,6 +1,5 @@
 package com.example.jieyue.user.controller;
 
-import com.example.jieyue.common.entity.SysComment;
 import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.mapper.SysCommentMapper;
 import com.example.jieyue.user.service.UserHomeService;
@@ -50,8 +49,8 @@ public class UserProductController {
         return modelAndView;
     }
 
-    /*
-     * 添加评论
+    /**
+     * <p>添加评论</p>
      */
     @RequestMapping("/user/product/add-comment")
     public ModelAndView addComment(ModelAndView modelAndView,int goods,int merchant,String context,HttpServletRequest request){
@@ -70,8 +69,8 @@ public class UserProductController {
         return modelAndView;
     }
 
-    /*
-     * 删除评论
+    /**
+     * <p>删除评论</p>
      */
     @RequestMapping("/user/product/del-comment")
     public ModelAndView delComment(ModelAndView modelAndView,int id,int goods){

@@ -13,8 +13,8 @@ public class MerchantOrderService {
     @Autowired
     SysOrderMapper orderMapper;
 
-    /*
-     * 获取订单信息
+    /**
+     * <p>获取订单信息</p>
      */
     public List<SysOrder> getOrderList(int merchantId,int page, int num, int flag){
         switch (flag){
@@ -28,8 +28,8 @@ public class MerchantOrderService {
         return null;
     }
 
-    /*
-     * 获取总页数
+    /**
+     * <p>获取总页数</p>
      */
     public int getAllPage(int merchantId,int flag,int num){
         switch (flag){
@@ -43,8 +43,8 @@ public class MerchantOrderService {
         return 1;
     }
 
-    /*
-     * 通过订单号查找
+    /**
+     * <p>通过订单号查找</p>
      */
     public List<SysOrder> getOrderById(String orderId,int merchant){
         SysOrder order = orderMapper.findByOrderIdAndMt(orderId,merchant);

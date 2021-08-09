@@ -24,8 +24,11 @@ public class AdminMerchantController {
     @Autowired
     SysMtMapper merchantMapper;
 
+    /**
+     * <p>商户模块主页</p>
+     */
     @RequestMapping("")
-    public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
+    public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request) {
         modelAndView.setViewName("/admin/merchant/index");
 
         int pageSize = 10;
@@ -33,22 +36,22 @@ public class AdminMerchantController {
         int num = 1;
         int preNum = 1;
         int nextNum = 1;
-        if (request.getParameter("num")!=null){
+        if (request.getParameter("num")!=null) {
             num = Integer.parseInt(request.getParameter("num"));
         }
-        if (num <= 1){
+        if (num <= 1) {
             preNum = 1;
             nextNum = 2;
         }else{
-            preNum = num-1;
-            if (num>=pageCount-1){
+            preNum = num - 1;
+            if (num>=pageCount - 1) {
                 nextNum = pageCount;
             }else{
                 nextNum = num+1;
             }
         }
         List<SysMt> mtList = merchantService.getMtInfo(num,pageSize);
-        if (mtList.size()<=10){
+        if (mtList.size() <= 10) {
             nextNum = num;
         }
         modelAndView.addObject("mtList",mtList);
@@ -60,14 +63,17 @@ public class AdminMerchantController {
         return modelAndView;
     }
 
+    /**
+     * <p>修改费率</p>
+     */
     @RequestMapping("update-ratio")
-    public ModelAndView updateRatio(ModelAndView modelAndView,String ratio,int id){
+    public ModelAndView updateRatio(ModelAndView modelAndView,String ratio,int id) {
         try {
             float ratioFloat = Float.valueOf(ratio);
             if (ratioFloat > 1.0 || ratioFloat < 0.1 || !checkFloat(ratioFloat)){
                 modelAndView.addObject("msg","费率应在0.1~1.0之间（一位小数）");
             }else{
-                if (merchantMapper.updateRatio(id,ratioFloat)==1){
+                if (merchantMapper.updateRatio(id,ratioFloat) == 1){
                     modelAndView.addObject("msg","修改成功");
                 }else{
                     modelAndView.addObject("msg","修改失败");
@@ -81,11 +87,11 @@ public class AdminMerchantController {
         return modelAndView;
     }
 
-    /*
-     * 删除商户
+    /**
+     * <p>删除商户</p>
      */
     @RequestMapping("delete-merchant")
-    public ModelAndView deleteMerchant(ModelAndView modelAndView,int id){
+    public ModelAndView deleteMerchant(ModelAndView modelAndView,int id) {
         if (merchantService.deleteMerchant(id)==1){
             modelAndView.addObject("msg","删除商户成功！");
         }else{
@@ -95,11 +101,11 @@ public class AdminMerchantController {
         return modelAndView;
     }
 
-    /*
-     * 修改商户状态
+    /**
+     * <p>修改商户状态</p>
      */
     @RequestMapping("update-merchant")
-    public ModelAndView updateMerchant(ModelAndView modelAndView,String email,int state){
+    public ModelAndView updateMerchant(ModelAndView modelAndView,String email,int state) {
         if (merchantService.updateMerchantState(email,state)==1){
             modelAndView.addObject("msg","操作成功！");
         }else{
@@ -109,8 +115,8 @@ public class AdminMerchantController {
         return modelAndView;
     }
 
-    /*
-     * 检查费率是否超过了一位小数
+    /**
+     * <p>检查费率是否超过了一位小数</p>
      */
     public boolean checkFloat(float ratio){
         char[] c = String.valueOf(ratio).split(".")[1].toCharArray();

@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JsonUtil {
+
     /**
      * 字符串转整数型数组
-     * todo
      */
     public int[] jsonToIntArray(String json){
         JSONArray jsonArray = JSON.parseArray(json);
