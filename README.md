@@ -1,5 +1,5 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5c520381e11b4f39a59cbb8781f7a150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网站，并分为用户、商户、后台三大模块。用户模块能够进行商品搜索浏览、在线下单、微信支付等功能；商户模块则可以对收益情况进行查看以及订单成交情况、可对商品进行上下架和增加等操作；后台模块可进行群发消息通知、RBAC权限管理、商户的停用启用以及商城的广告海报设置等功能。
+>jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网站，并分为用户、商户、后台三大模块。用户模块能够进行商品搜索浏览、在线下单、微信支付等功能；商户模块则可以对收益情况以及订单成交情况进行查看、并且可对商品进行上下架和增加删除等操作；后台模块可进行群发消息通知、RBAC权限管理、商户的停用启用以及商城的广告海报设置等功能。
 
 <br/>
 
@@ -31,9 +31,8 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 | Elasticsearch | 7.7.0 | 9200、9300 | 搜索引擎、用于搜索商品的关键字查找 |
 | SpringBoot | 2.3.5 | - | MVC核心框架 |
 | Mybatis | 3.5.0 | - | ORM框架 |
-| Maven | 3.3.9 | - | 项目构建软件 |
-| wxpay-sdk | - | - | 微信支付核心包 |
-| Lombok | - | - | java类的模板插件 |
+| Maven | 3.3.9 | - | 用于构建springboot项目 |
+| wxpay-sdk | - | - | 微信支付工具包 |
 
 <br/>
 
