@@ -1,8 +1,12 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5c520381e11b4f39a59cbb8781f7a150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网站，并分为用户、商户、后台三大模块。用户模块能够进行商品搜索浏览、在线下单、微信支付等功能；商户模块则可以对收益情况进行查看以及订单成交情况、可对商品进行上下架和增加等操作；后台模块可进行群发消息通知、RBAC权限管理、商户的停用启用以及商城的广告海报设置等功能。
 
+<br/>
+
 # 前言
 **网站制作者为大二在读学生，若网站在设计中存在不足之处，还请各位大牛指正！！！**
+
+<br/>
 
 # 快速体验
 **项目地址：**[https://gitee.com/bosen-once/jieyue](https://gitee.com/bosen-once/jieyue)（该项目托管在Gitee中，**期待各位的star！！**）
@@ -14,6 +18,8 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 **后台模块：**[http://47.115.118.34/admin/login](http://47.115.118.34/admin/login)（账号-密码：bosen_once@163.com-123456）
 
 （由于网站制作者为学生党，服务器购置的是最便宜的，因此在访问用户模块主页面时，由于加载的商品图片较多，等待完全加载完成可能需要5~8秒，还请见谅）
+
+<br/>
 
 # 技术选型
 |  技术   | 版本  | 端口 | 说明 |
@@ -29,8 +35,12 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 | wxpay-sdk | - | - | 微信支付核心包 |
 | Lombok | - | - | java类的模板插件 |
 
+<br/>
+
 # 架构图
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d82ef760968c49888a4f569c8c72093f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+<br/>
+
 # 各模块的功能
 ### 用户模块
 |  页面   | 主要功能  | 
@@ -47,7 +57,6 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 | 下单页面 | 当用户在该页面下填好必填和选填的订单信息后，选择微信支付或支付宝支付（暂时只支持微信支付）后，即可生成订单，并且跳转至支付页面。  |
 | 支付页面 | 支付页面会显示支付二维码供用户扫码支付，页面每500ms异步检查订单是否已经完成支付，当用户支付成功后，将会提示用户支付成功，并跳转至用户的购买记录页面。  |
 
-
 ### 商户模块
 |  页面   | 主要功能  | 
 |  ----  | ----  |
@@ -58,6 +67,7 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 | 优惠相关 | 优惠卷功能（暂未实现） |
 | 会员相关 | 查看会员相关信息。 |
 | 订单相关 | 查看有关店铺的订单信息，可以筛选已支付或未支付的订单，并且支持通过订单号为关键字搜索订单。  |
+
 
 ### 后台模块
 |  页面   | 主要功能  | 
@@ -71,7 +81,11 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 | 权限管理 | 后台权限管理使用RBAC思想，即权限管理分为用户、角色、权限三大块，每一个管理员都是一个用户，并且都需要赋予一个角色，这个角色拥有什么权限，由最高权限的管理员进行设置（其中：**最高权限的管理员默认为id为1 的root，该管理员不受RBAC权限的控制**，且其他管理员也无权对其进行任何的操作）。 |
 | 群发消息 | 群发消息给网站用户时，考虑到项目正式运行后，用户量会激增，若群发消息采用同步发送机制，后台管理员会在发送群消息时非常头疼，因此本网站采用RabbitMQ作为消息队列，对群发消息进行异步处理，提高后台管理效率。 |
 
+<br/>
+
 # 相关截图
+<hr/>
+
 ### 用户模块
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6c7f1b9a258240a8b05aa4b40ca74bae.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
@@ -80,12 +94,14 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c75626e3022e46488de8e535c95c12e2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c55768361ac44befa81bef0df1ebeabd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d17e1a1ccdca4cc789344a4f935fada1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+<hr/>
 
 ### 商户模块
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e5135da2d0e14220ad4e246bb943e864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c03ef945cc0646558d36a577e9e8500c.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/57e7fff63939477ea3e994f1009422f8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/4583c3fbc03a4fdb99882d58ebef0610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+<hr/>
 
 ### 后台模块
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b2988d237f2a448e93c37c0fa8bbd757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
@@ -93,10 +109,15 @@ jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/7e1bcaec6ede4d8c82f612088c175d09.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1d1b943375074dfc853ee0c6c15f060e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
+<br/>
 
 # 有关网站制作者
+<hr/>
+
 **CSDN博客**（Bosen的技术分享栈）
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/244df1984ff1425296b83bf1f0f6b404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+<hr/>
 
 **微信公众号**（Bosen的技术分享栈）
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b7f142286cdb4f5d95eaa3e33edd1b58.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+<hr/>
