@@ -1,4 +1,4 @@
-site-url: 127.0.0.1
+site-url: 47.115.118.34
 server:
   port: 80
   tomcat:
@@ -21,7 +21,7 @@ spring:
     url: jdbc:mysql://${site-url}:3306/jieyue?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
   data:
     elasticsearch:
-      cluster-nodes: 127.0.0.1:9200
+      cluster-nodes: ${site-url}:9200
       cluster-name: elasticsearch
       repositories:
         enabled: true
