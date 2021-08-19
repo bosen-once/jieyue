@@ -17,7 +17,7 @@
 
 **后台模块：**[http://47.115.118.34/admin/login](http://47.115.118.34/admin/login)（账号-密码：bosen_once@163.com-123456）
 
-（由于网站制作者为学生党，服务器购置的是最便宜的，因此在访问用户模块主页面时，由于加载的商品图片较多，等待完全加载完成可能需要5~8秒，还请见谅）
+（由于网站制作者为学生党，服务器购置的是最便宜的，因此在访问用户模块主页面时，由于加载的商品图片较多，等待完全加载完成可能需要5~8秒，还请见谅。）
 
 <br/>
 
@@ -83,7 +83,8 @@
 <br/>
 
 # 相关截图
-<hr/>
+
+---
 
 ### 用户模块
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6c7f1b9a258240a8b05aa4b40ca74bae.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
@@ -93,14 +94,16 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c75626e3022e46488de8e535c95c12e2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c55768361ac44befa81bef0df1ebeabd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d17e1a1ccdca4cc789344a4f935fada1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-<hr/>
+
+---
 
 ### 商户模块
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e5135da2d0e14220ad4e246bb943e864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c03ef945cc0646558d36a577e9e8500c.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/57e7fff63939477ea3e994f1009422f8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/4583c3fbc03a4fdb99882d58ebef0610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-<hr/>
+
+---
 
 ### 后台模块
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b2988d237f2a448e93c37c0fa8bbd757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
@@ -111,16 +114,15 @@
 <br/>
 
 # 有关网站制作者
-<hr/>
+
+---
 
 **CSDN博客**（Bosen的技术分享栈）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/f124d2ec7e3b48d9b547716dcfece458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/11049d9376fc46259834997a3e4a8aff.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
-
-
-<hr/>
+---
 
 **微信公众号**（Bosen的技术分享栈）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/a9fa9848d1cb447bad5fef3dea2994ca.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a894d8776e8d454ebb320a731e414e24.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
-<hr/>
+---
