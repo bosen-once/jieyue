@@ -20,7 +20,7 @@ import java.util.Map;
  * @author Bosen
  * @date 2021/8/8 23:30
  */
-@Component
+// @Component
 @Slf4j
 public class NoticeListener {
     @Autowired
