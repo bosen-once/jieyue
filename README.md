@@ -9,7 +9,7 @@
 <br/>
 
 # 快速体验
-**项目地址：（该项目托管在Github与Gitee中，**期待各位的star！！**）
+**项目地址：**（该项目托管在Github与Gitee中，**期待各位的star！！**）
 - Github：[https://github.com/bosen-once/jieyue](https://github.com/bosen-once/jieyue)
 - Gitee：[https://gitee.com/bosen-once/jieyue](https://gitee.com/bosen-once/jieyue)
 
