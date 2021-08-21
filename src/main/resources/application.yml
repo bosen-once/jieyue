@@ -1,6 +1,6 @@
 # site-url: 127.0.0.1
 site-url: 47.115.118.34
-server: 
+server:
   port: 80
   tomcat:
     uri-encoding: utf-8
