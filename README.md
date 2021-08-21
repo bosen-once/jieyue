@@ -1,7 +1,7 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5c520381e11b4f39a59cbb8781f7a150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 >jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网站，并分为用户、商户、后台三大模块。用户模块能够进行商品搜索浏览、在线下单、微信支付等功能；商户模块则可以对收益情况以及订单成交情况进行查看、并且可对商品进行上下架和增加删除等操作；后台模块可进行群发消息通知、RBAC权限管理、商户的停用启用以及商城的广告海报设置等功能。
 
-<br/>
+---
 
 # 前言
 **网站制作者为大二在读学生，若网站在设计中存在不足之处，还请各位大牛指正！！！**
@@ -9,7 +9,9 @@
 <br/>
 
 # 快速体验
-**项目地址：**[https://gitee.com/bosen-once/jieyue](https://gitee.com/bosen-once/jieyue)（该项目托管在Gitee中，**期待各位的star！！**）
+**项目地址：（该项目托管在Github与Gitee中，**期待各位的star！！**）
+- Github：[https://github.com/bosen-once/jieyue](https://github.com/bosen-once/jieyue)
+- Gitee：[https://gitee.com/bosen-once/jieyue](https://gitee.com/bosen-once/jieyue)
 
 **用户模块：**[http://47.115.118.34/user/login](http://47.115.118.34/user/login)（账号-密码：bosen_once@163.com-123456）
 
@@ -34,11 +36,12 @@
 | Maven | 3.3.9 | - | 用于构建springboot项目 |
 | wxpay-sdk | - | - | 微信支付工具包 |
 
-<br/>
+---
 
 # 架构图
-![在这里插入图片描述](https://img-blog.csdnimg.cn/d82ef760968c49888a4f569c8c72093f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-<br/>
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a8b5180113ac4f6eb42bbce6064cb004.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70#pic_center)
+
+---
 
 # 各模块的功能
 ### 用户模块
