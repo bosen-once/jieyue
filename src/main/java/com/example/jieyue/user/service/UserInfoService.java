@@ -59,7 +59,7 @@ public class UserInfoService {
             }
         }
         if (newPwd.equals("")){
-            newPwd = oldPwd;
+            newPwd = user.getPassword();
         }else{
             newPwd = DigestUtils.md5DigestAsHex(newPwd.getBytes());
         }
