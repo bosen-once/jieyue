@@ -1,4 +1,4 @@
-![在这里插入图片描述](https://img-blog.csdnimg.cn/5c520381e11b4f39a59cbb8781f7a150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/5c520381e11b4f39a59cbb8781f7a150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 >jieyue捷阅网是基于springboot开发的轻量级单体架构购物商城网站，并分为用户、商户、后台三大模块。用户模块能够进行商品搜索浏览、在线下单、微信支付等功能；商户模块则可以对收益情况以及订单成交情况进行查看、并且可对商品进行上下架和增加删除等操作；后台模块可进行群发消息通知、RBAC权限管理、商户的停用启用以及商城的广告海报设置等功能。
 
 ---
@@ -6,12 +6,11 @@
 # 前言
 **网站制作者为大二在读学生，若网站在设计中存在不足之处，还请各位大牛指正！！！**
 
+**该网站微服务架构地址：[https://gitee.com/bosen-once/jieyue-spring-cloud](https://gitee.com/bosen-once/jieyue-spring-cloud)**
+
 <br/>
 
 # 快速体验
-**项目地址：**（该项目托管在Github与Gitee中，**期待各位的star！！**）
-- Github：[https://github.com/bosen-once/jieyue](https://github.com/bosen-once/jieyue)
-- Gitee：[https://gitee.com/bosen-once/jieyue](https://gitee.com/bosen-once/jieyue)
 
 **用户模块：**[http://47.115.118.34/user/login](http://47.115.118.34/user/login)（账号-密码：bosen_once@163.com-123456）
 
@@ -39,7 +38,7 @@
 ---
 
 # 架构图
-![在这里插入图片描述](https://img-blog.csdnimg.cn/a8b5180113ac4f6eb42bbce6064cb004.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/a8b5180113ac4f6eb42bbce6064cb004.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70#pic_center)
 
 ---
 
@@ -90,29 +89,31 @@
 ---
 
 ### 用户模块
-![在这里插入图片描述](https://img-blog.csdnimg.cn/6c7f1b9a258240a8b05aa4b40ca74bae.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/6c7f1b9a258240a8b05aa4b40ca74bae.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/5f9ef3b9f62b43538e85acb66a618d08.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/c75626e3022e46488de8e535c95c12e2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/c55768361ac44befa81bef0df1ebeabd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/d17e1a1ccdca4cc789344a4f935fada1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/5f9ef3b9f62b43538e85acb66a618d08.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/c75626e3022e46488de8e535c95c12e2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/b512ac173ddd495d8173995a6c40ee32.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQm9zZW7nmoTmioDmnK_liIbkuqvmoIg=,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://img-blog.csdnimg.cn/a22f2fb9721d457980a2d0bbbaec1e1c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQm9zZW7nmoTmioDmnK_liIbkuqvmoIg=,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://img-blog.csdnimg.cn/c55768361ac44befa81bef0df1ebeabd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/d17e1a1ccdca4cc789344a4f935fada1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/221242677c5b4617b5803b363a8c0d20.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQm9zZW7nmoTmioDmnK_liIbkuqvmoIg=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ---
 
 ### 商户模块
-![在这里插入图片描述](https://img-blog.csdnimg.cn/e5135da2d0e14220ad4e246bb943e864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/c03ef945cc0646558d36a577e9e8500c.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/57e7fff63939477ea3e994f1009422f8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/4583c3fbc03a4fdb99882d58ebef0610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/e5135da2d0e14220ad4e246bb943e864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/c03ef945cc0646558d36a577e9e8500c.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/57e7fff63939477ea3e994f1009422f8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/4583c3fbc03a4fdb99882d58ebef0610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
 ---
 
 ### 后台模块
-![在这里插入图片描述](https://img-blog.csdnimg.cn/b2988d237f2a448e93c37c0fa8bbd757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/8b13321784554869ae08b82a7e6c79c2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/7e1bcaec6ede4d8c82f612088c175d09.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/1d1b943375074dfc853ee0c6c15f060e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/b2988d237f2a448e93c37c0fa8bbd757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/8b13321784554869ae08b82a7e6c79c2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/7e1bcaec6ede4d8c82f612088c175d09.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/1d1b943375074dfc853ee0c6c15f060e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
 <br/>
 
@@ -121,11 +122,11 @@
 ---
 
 **CSDN博客**（Bosen的技术分享栈）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/11049d9376fc46259834997a3e4a8aff.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/11049d9376fc46259834997a3e4a8aff.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
 ---
 
 **微信公众号**（Bosen的技术分享栈）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/a894d8776e8d454ebb320a731e414e24.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/a894d8776e8d454ebb320a731e414e24.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzYwMDg4MA==,size_16,color_FFFFFF,t_70)
 
 ---
