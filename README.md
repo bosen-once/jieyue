@@ -6,7 +6,9 @@
 # 前言
 **网站制作者为大二在读学生，若网站在设计中存在不足之处，还请各位大牛指正！！！**
 
-**该网站微服务架构地址：[https://gitee.com/bosen-once/jieyue-spring-cloud](https://gitee.com/bosen-once/jieyue-spring-cloud)**
+- 网站单体架构地址：[https://gitee.com/bosen-once/jieyue](https://gitee.com/bosen-once/jieyue)
+
+- 微服务架构地址：[https://gitee.com/bosen-once/jieyue-spring-cloud](https://gitee.com/bosen-once/jieyue-spring-cloud)
 
 <br/>
 
