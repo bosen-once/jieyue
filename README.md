@@ -14,13 +14,12 @@
 
 # 快速体验
 
-**用户模块：**[http://47.115.118.34/user/login](http://47.115.118.34/user/login)（账号-密码：bosen_once@163.com-123456）
+**用户模块：**[http://119.91.222.184/user/login](http://119.91.222.184/user/login)（账号-密码：bosen_once@163.com-123456）
 
-**商户模块：**[http://47.115.118.34/merchant/login](http://47.115.118.34/merchant/login)（账号-密码：warrior@qq.com-123456）
+**商户模块：**[http://119.91.222.184/merchant/login](http://119.91.222.184/merchant/login)（账号-密码：warrior@qq.com-123456）
 
-**后台模块：**[http://47.115.118.34/admin/login](http://47.115.118.34/admin/login)（账号-密码：bosen_once@163.com-123456）
+**后台模块：**[http://119.91.222.184/admin/login](http://119.91.222.184/admin/login)（账号-密码：bosen_once@163.com-123456）
 
-（由于网站制作者为学生党，服务器购置的是最便宜的，因此在访问用户模块主页面时，由于加载的商品图片较多，等待完全加载完成可能需要5~8秒，还请见谅。）
 
 <br/>
 
