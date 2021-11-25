@@ -14,7 +14,7 @@
 
 # 快速体验
 
-**用户模块：**[http://119.91.222.184/user/login](http://119.91.222.184/user/login)（账号-密码：bosen_once@163.com-123456）
+**用户模块：**[http://119.91.222.184](http://119.91.222.184)（账号-密码：bosen_once@163.com-123456）
 
 **商户模块：**[http://119.91.222.184/merchant/login](http://119.91.222.184/merchant/login)（账号-密码：warrior@qq.com-123456）
 
