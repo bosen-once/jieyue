@@ -115,7 +115,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img id="header" th:src="@{${session.user.getHeader()}}" width="350" style="border-radius: 100%" onclick="upImg()">
+                                    <img id="header" th:src="@{${session.user.getHeader()}}" width="350" style="border-radius: 100%" onclick="upImgFunction()">
                                     <br>
                                     点击头像上传图片
                                     <input id="upImg" name="img" type="file" style="width: 200px;display: none" onchange="showImg(this,'header')"/>
@@ -183,7 +183,7 @@
                                             reader.readAsDataURL(file)
                                         }
 
-                                        function upImg(){
+                                        function upImgFunction(){
                                             var upImg = document.getElementById("upImg");
                                             upImg.click();
                                         }
