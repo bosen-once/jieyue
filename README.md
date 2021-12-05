@@ -133,7 +133,7 @@
 ![](https://img-blog.csdnimg.cn/bf5814bfd67344dba8ece2211c32f5b9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_20,color_FFFFFF,t_70,g_se,x_16)
 等待项目打包完后，相应的war包会存放在target目录下，名称为 **`ROOT.war`** （如下）
 ![](https://img-blog.csdnimg.cn/2c9057e8e6924c39a2b81154db104876.png)
-### 4.安装docker
+### 4.安装Docker
 docker的安装流程可参考下面这篇文章，笔者在这里就不再赘述了：**[https://www.runoob.com/docker/centos-docker-install.html](https://www.runoob.com/docker/centos-docker-install.html)**
 
 <br/>
