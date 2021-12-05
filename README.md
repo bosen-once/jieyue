@@ -118,6 +118,71 @@
 
 <br/>
 
+# 如何部署？
+---
+### 1.下载源码
+将源码下载下来，使用Idea选择open的方式打开项目（第一次打开需要下载项目对应的第三方依赖，需要等待2~3分钟）
+
+![](https://img-blog.csdnimg.cn/e5e5f9f23bb24fc286caa56564df7857.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_20,color_FFFFFF,t_70,g_se,x_16)
+### 2.配置文件
+修改项目配置文件application.yml，主要将服务器ip地址、MySQL、Redis连接信息按照自己的需求进行修改即可。
+![](https://img-blog.csdnimg.cn/1281208680ff4461a48202f71629a285.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_20,color_FFFFFF,t_70,g_se,x_16)
+![](https://img-blog.csdnimg.cn/0c0547bf787c4877b62557cd2d17e729.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_20,color_FFFFFF,t_70,g_se,x_16)
+### 3.打包项目
+填写好项目配置信息后，就可以开始打包项目了：依次点击 **Build -> Build Artifacts -> jieyue.war -> Build**，项目将会开始打包~！
+![](https://img-blog.csdnimg.cn/bf5814bfd67344dba8ece2211c32f5b9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_20,color_FFFFFF,t_70,g_se,x_16)
+等待项目打包完后，相应的war包会存放在target目录下，名称为 **`ROOT.war`** （如下）
+![](https://img-blog.csdnimg.cn/2c9057e8e6924c39a2b81154db104876.png)
+### 4.安装docker
+docker的安装流程可参考下面这篇文章，笔者在这里就不再赘述了：**[https://www.runoob.com/docker/centos-docker-install.html](https://www.runoob.com/docker/centos-docker-install.html)**
+
+<br/>
+
+### 5.安装MySQL
+5.1：执行如下命令拉取MySQL的docker镜像
+```bash
+docker pull hub.c.163.com/library/mysql:latest
+```
+5.2：镜像拉取后，执行如下命令运行MySQL（注意：MYSQL_ROOT_PASSWORD中的密码需要与项目配置文件中的MySQL密码保持一致）
+```bash
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d hub.c.163.com/library/mysql:latest
+```
+5.3：MySQL运行成功后，需要对MySQL的数据进行初始化，这里笔者推荐使用可视化工具Navicat，填入对应的信息即可成功连接
+![](https://img-blog.csdnimg.cn/3bc392ebdbf249dd93a765bcf8d41733.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_20,color_FFFFFF,t_70,g_se,x_16)
+5.4：新建一个名为jieyue的数据库，创建成功后双击该数据库创立连接，接着右击，选择**运行SQL文件**，运行项目根目录下的`jieyue.sql`文件即可。
+![](https://img-blog.csdnimg.cn/be8eccc8a0084db8a087d8287034cfc3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LqR5Li26KiA,size_19,color_FFFFFF,t_70,g_se,x_16)
+### 6.安装Redis
+6.1：执行如下命令拉取Redis的docker镜像
+```bash
+docker pull hub.c.163.com/library/redis:latest
+```
+6.2：执行如下命令运行Redis
+```bash
+docker run -d -p 6379:6379 --name redis hub.c.163.com/library/redis:latest
+```
+<br/>
+
+### 7.安装Tomcat
+7.1：执行如下命令拉取Tomcat的docker镜像（注意：tomcat的版本需要是`8.5`的）
+```bash
+docker pull hub.c.163.com/library/tomcat:8.5
+```
+7.2：执行如下命令运行Tomcat
+```bash
+docker run -d -p 80:8080 --name tomcat hub.c.163.com/library/tomcat:8.5
+```
+7.3：将前面我们打包好的war包放入到启动好的tomcat容器中（执行下面的命令前，请确认war包在当前目录下）
+```bash
+docker cp ROOT.war tomcat:/usr/local/tomcat/webapps
+```
+7.4：重启tomcat容器
+```bash
+docker restart tomcat
+```
+7.5：重启tomcat后，访问配置文件中填写的服务器ip地址即可（如：笔者这里填写的是199.91.222.184，访问[http://119.91.222.184/](http://119.91.222.184/)，就可以看到网站的主页）至此，捷阅网已成功部署~~！！
+
+<br/>
+
 # 有关网站制作者
 ---
 
