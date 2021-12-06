@@ -6,6 +6,7 @@ import com.example.jieyue.common.entity.SysUser;
 import com.example.jieyue.common.mapper.SysCommentMapper;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.mapper.SysUserMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,9 @@ public class UserProductService {
      * <p>通过id值获取商品对象</p>
      */
     public SysGoods getGoods(int id){
-        return goodsMapper.findById(id);
+        SysGoods goods = goodsMapper.findById(id);
+        goods.setImg(GiteeImgBedUtils.PRE + goods.getImg());
+        return goods;
     }
 
     /**
