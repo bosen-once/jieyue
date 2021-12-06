@@ -29,7 +29,7 @@ public class AdminMerchantController {
      */
     @RequestMapping("")
     public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request) {
-        modelAndView.setViewName("/admin/merchant/index");
+        modelAndView.setViewName("admin/merchant/index");
 
         int pageSize = 10;
         int pageCount = merchantService.getMtPage(pageSize);

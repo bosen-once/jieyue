@@ -39,7 +39,7 @@ public class UserCheckOutController {
             BigDecimal allPrice = checkOutService.getGoodsNumPrice(goodsMap);
             modelAndView.addObject("allPrice",allPrice);
 
-            modelAndView.setViewName("/user/checkout/index");
+            modelAndView.setViewName("user/checkout/index");
         }
         return modelAndView;
     }
