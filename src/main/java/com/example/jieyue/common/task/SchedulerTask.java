@@ -5,7 +5,7 @@ import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.mapper.SysNoticeMapper;
 import com.example.jieyue.common.mapper.SysOrderMapper;
 import com.example.jieyue.common.service.MailService;
-import com.example.jieyue.common.utils.FileUtil;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,8 +28,6 @@ public class SchedulerTask {
     @Autowired
     SysGoodsMapper goodsMapper;
     @Autowired
-    FileUtil fileUtil;
-    @Autowired
     RedisTemplate redisTemplate;
     @Autowired
     SysNoticeMapper noticeMapper;
@@ -43,15 +40,15 @@ public class SchedulerTask {
     @Scheduled(cron="0 0/1 * * * ?")
     @Transactional
     public void delOverOrder(){
-        long time = 2*60*60*1000;// 订单过期时间，两小时
+        // 订单过期时间，两小时
+        long time = 2*60*60*1000;
         List<SysOrder> list = orderMapper.findByState(0);
         for (SysOrder sysOrder : list) {
-            if (System.currentTimeMillis() > sysOrder.getCreateTime()+time){
-                if (orderMapper.deleteById(sysOrder.getId())!=1 ||
+            if (System.currentTimeMillis() > sysOrder.getCreateTime() + time
+                    && sysOrder.getOrderState() == 0){
+                if (orderMapper.deleteById(sysOrder.getId()) != 1 ||
                         goodsMapper.addStock(sysOrder.getGoodsId(),sysOrder.getGoodsNum()) != 1){
                     TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                }else{
-                    fileUtil.deleteFile(sysOrder.getPayCodeUrl());
                 }
             }
         }
@@ -62,11 +59,13 @@ public class SchedulerTask {
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void delQRCode(){
-        long time = 2*60*60*1000;// 订单过期时间，两小时
+        // 订单过期时间，两小时
+        long time = 2*60*60*1000;
         List<SysOrder> list = orderMapper.findAll();
         for (SysOrder sysOrder : list) {
-            if (System.currentTimeMillis() > sysOrder.getCreateTime()+time){
-                fileUtil.deleteFile(sysOrder.getPayCodeUrl());
+            if (System.currentTimeMillis() > sysOrder.getCreateTime() + time
+                    && sysOrder.getOrderState() == 0){
+                GiteeImgBedUtils.delete(sysOrder.getPayCodeUrl());
             }
         }
     }
@@ -83,19 +82,8 @@ public class SchedulerTask {
             int type = Integer.valueOf(map.get("type"));
             int receive = Integer.valueOf(map.get("receive"));
             long createTime = Long.valueOf(map.get("createTime"));
-            switch (type){
-                case 0:
-                    noticeMapper.insert(title,context,type,receive,createTime);
-                    break;
-                case 1:
-                    noticeMapper.insert(title,context,type,receive,createTime);
-                    break;
-                case 2:
-                    noticeMapper.insert(title,context,type,receive,createTime);
-                    break;
-                default:
-                    break;
-            }
+
+            noticeMapper.insert(title,context,type,receive,createTime);
         }
     }
 

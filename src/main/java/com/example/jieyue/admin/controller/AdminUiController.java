@@ -4,6 +4,7 @@ import com.example.jieyue.admin.service.AdminUiService;
 import com.example.jieyue.common.entity.SysUi;
 import com.example.jieyue.user.service.UserHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>网页图片UI设置</p>
@@ -24,6 +26,8 @@ public class AdminUiController {
     AdminUiService adminUiService;
     @Autowired
     UserHomeService userHomeService;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @RequestMapping("/admin/ui")
     public ModelAndView index(ModelAndView modelAndView){
@@ -46,7 +50,7 @@ public class AdminUiController {
                 modelAndView.addObject("msg","文件上传失败");
             }else{
                 modelAndView.addObject("msg","文件上传成功");
-
+                clearCache();
             }
         }
         modelAndView.setViewName("redirect:ui");
@@ -61,9 +65,18 @@ public class AdminUiController {
         modelAndView.setViewName("redirect:ui");
         if (adminUiService.delImg(width,height)){
             modelAndView.addObject("msg","删除成功");
+            clearCache();
         }else{
             modelAndView.addObject("msg","删除失败");
         }
         return modelAndView;
+    }
+
+    /**
+     * <p>清首页缓存</p>
+     */
+    public void clearCache() {
+        Set<String> keys = redisTemplate.keys("*");
+        redisTemplate.delete(keys);
     }
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50716
  File Encoding         : 65001
 
- Date: 07/08/2021 19:03:46
+ Date: 06/12/2021 21:17:08
 */
 
 SET NAMES utf8mb4;
@@ -201,17 +201,17 @@ INSERT INTO `sys_goods` VALUES (39, '棒球帽 ARCHIVE', 'PUMA彪马官方 杨�
 INSERT INTO `sys_goods` VALUES (40, '条纹棒球帽 ARCHIVE', 'PUMA彪马官方 新款条纹棒球帽 ARCHIVE LOGO 022554 粗呢蓝-条纹-09 均码', '/data/goods/9/20201112192208777150.jpg', 0.01, 0, 9, 0);
 INSERT INTO `sys_goods` VALUES (41, '运动休闲手提包', 'PUMA彪马官方娜扎同款新款女子运动休闲手提包 PRIME PUFFA 078192 银色 02 OSFA/均码', '/data/goods/9/20201112192355215509.jpg', 0.01, 0, 9, 0);
 INSERT INTO `sys_goods` VALUES (44, '测试商品(勿拍)', '测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)；测试商品(勿拍)测试商品(勿拍)！！！', '/data/goods/8/20210109201101998677.jpg', 0.01, 0, 8, 82);
-INSERT INTO `sys_goods` VALUES (45, '国潮手绘皮卡丘帆布鞋', '回力官方旗舰 国潮手绘皮卡丘帆布鞋高帮男鞋联名爆改涂鸦鞋子2021新款春季潮流板鞋 黄色闪电（五天内发货） 42', '/data/goods/13/20210330212031740396.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (46, ' 国潮手绘高帮帆布鞋', '回力官方旗舰 国潮手绘高帮帆布鞋女士2021新款春季樱花鞋爆改休闲鞋男 缤纷樱花473SH（五天内发货） 42', '/data/goods/13/20210330212214866150.jpg', 0.01, 1, 13, 9);
-INSERT INTO `sys_goods` VALUES (47, '本命年高帮帆布鞋', '回力官方旗舰 本命年高帮帆布鞋男鞋嘻哈透气男女休闲鞋潮流百搭学生情侣鞋子【国潮系列】 花布WXY-A363T 39', '/data/goods/13/20210330212245424549.jpg', 0.01, 1, 13, 9);
-INSERT INTO `sys_goods` VALUES (48, '板鞋女鞋2021秋冬季新', '回力官方旗舰 板鞋女鞋2021秋冬季新款马卡龙撞色低帮透气百搭休闲运动小白鞋子女 白糖果WXYA562C 35', '/data/goods/13/20210330212317794584.jpg', 0.01, 1, 13, 9);
-INSERT INTO `sys_goods` VALUES (49, '国潮手绘星球宇航员帆布鞋', '回力官方旗舰 国潮手绘星球宇航员帆布鞋情侣2021春夏季新款爆改NASA高帮女士板鞋男鞋子潮鞋子 星球宇航员（下单后五天内发货） 39', '/data/goods/13/20210330212343230193.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (50, '国潮手绘彩虹天使马帆布鞋', '回力官方旗舰 国潮手绘彩虹天使马帆布鞋男鞋子2021春夏季女士新款爆改手绘独角兽高帮板鞋潮鞋布鞋 彩虹天使马（下单后五天内发货） 37', '/data/goods/13/20210330212408614514.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (51, 'ins潮复古老爹鞋', '回力官方旗舰 跑步鞋男鞋2021秋季新款ins潮复古老爹鞋学生透气网面减震休闲运动鞋子男 军绿WXY0170 42', '/data/goods/13/20210330212444207204.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (52, '荧光手绘帆布鞋星际宇航员高帮鞋', '回力官方旗舰 荧光手绘帆布鞋星际宇航员高帮鞋2021新款春季男女鞋潮流休闲鞋国潮板鞋子男 夜光黑色星球宇航员 42', '/data/goods/13/20210330212516740293.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (53, '国潮手绘恶魔小丑高帮帆布鞋', '【手绘】回力官方旗舰 国潮手绘恶魔小丑高帮帆布鞋樱花爆改恶魔系情侣休闲鞋男女鞋涂鸦潮鞋子 恶魔小丑（下单后五天内发货） 42', '/data/goods/13/20210330212538705519.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (54, '国潮手绘浮世绘仙鹤鲸鱼帆布鞋', '【手绘】回力官方旗舰 国潮手绘浮世绘仙鹤鲸鱼帆布鞋男鞋手绘2021春夏季女爆改涂鸦中国风布鞋子 浮世绘仙鹤鲸鱼（下单后五天内发货） 42', '/data/goods/13/20210330212601581309.jpg', 0.01, 1, 13, 10);
-INSERT INTO `sys_goods` VALUES (55, '小雏菊经典情侣高帮', '回力官方旗舰 小雏菊经典情侣高帮帆布休闲鞋男正品板鞋手绘印刷新款女高帮鞋子 黑色花(女生建议选小一码) 35', '/data/goods/13/20210330212628919032.jpg', 0.01, 1, 13, 10);
+INSERT INTO `sys_goods` VALUES (45, '国潮手绘皮卡丘帆布鞋', '回力官方旗舰 国潮手绘皮卡丘帆布鞋高帮男鞋联名爆改涂鸦鞋子2021新款春季潮流板鞋 黄色闪电（五天内发货） 42', '/data/goods/13/20210330212031740396.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (46, ' 国潮手绘高帮帆布鞋', '回力官方旗舰 国潮手绘高帮帆布鞋女士2021新款春季樱花鞋爆改休闲鞋男 缤纷樱花473SH（五天内发货） 42', '/data/goods/13/20210330212214866150.jpg', 0.01, 1, 13, 8);
+INSERT INTO `sys_goods` VALUES (47, '本命年高帮帆布鞋', '回力官方旗舰 本命年高帮帆布鞋男鞋嘻哈透气男女休闲鞋潮流百搭学生情侣鞋子【国潮系列】 花布WXY-A363T 39', '/data/goods/13/20210330212245424549.jpg', 0.01, 1, 13, 8);
+INSERT INTO `sys_goods` VALUES (48, '板鞋女鞋2021秋冬季新', '回力官方旗舰 板鞋女鞋2021秋冬季新款马卡龙撞色低帮透气百搭休闲运动小白鞋子女 白糖果WXYA562C 35', '/data/goods/13/20210330212317794584.jpg', 0.01, 1, 13, 8);
+INSERT INTO `sys_goods` VALUES (49, '国潮手绘星球宇航员帆布鞋', '回力官方旗舰 国潮手绘星球宇航员帆布鞋情侣2021春夏季新款爆改NASA高帮女士板鞋男鞋子潮鞋子 星球宇航员（下单后五天内发货） 39', '/data/goods/13/20210330212343230193.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (50, '国潮手绘彩虹天使马帆布鞋', '回力官方旗舰 国潮手绘彩虹天使马帆布鞋男鞋子2021春夏季女士新款爆改手绘独角兽高帮板鞋潮鞋布鞋 彩虹天使马（下单后五天内发货） 37', '/data/goods/13/20210330212408614514.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (51, 'ins潮复古老爹鞋', '回力官方旗舰 跑步鞋男鞋2021秋季新款ins潮复古老爹鞋学生透气网面减震休闲运动鞋子男 军绿WXY0170 42', '/data/goods/13/20210330212444207204.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (52, '荧光手绘帆布鞋星际宇航员高帮鞋', '回力官方旗舰 荧光手绘帆布鞋星际宇航员高帮鞋2021新款春季男女鞋潮流休闲鞋国潮板鞋子男 夜光黑色星球宇航员 42', '/data/goods/13/20210330212516740293.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (53, '国潮手绘恶魔小丑高帮帆布鞋', '【手绘】回力官方旗舰 国潮手绘恶魔小丑高帮帆布鞋樱花爆改恶魔系情侣休闲鞋男女鞋涂鸦潮鞋子 恶魔小丑（下单后五天内发货） 42', '/data/goods/13/20210330212538705519.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (54, '国潮手绘浮世绘仙鹤鲸鱼帆布鞋', '【手绘】回力官方旗舰 国潮手绘浮世绘仙鹤鲸鱼帆布鞋男鞋手绘2021春夏季女爆改涂鸦中国风布鞋子 浮世绘仙鹤鲸鱼（下单后五天内发货） 42', '/data/goods/13/20210330212601581309.jpg', 0.01, 1, 13, 9);
+INSERT INTO `sys_goods` VALUES (55, '小雏菊经典情侣高帮', '回力官方旗舰 小雏菊经典情侣高帮帆布休闲鞋男正品板鞋手绘印刷新款女高帮鞋子 黑色花(女生建议选小一码) 35', '/data/goods/13/20210330212628919032.jpg', 0.01, 1, 13, 9);
 INSERT INTO `sys_goods` VALUES (56, '国潮蓝手绘经典款帆布鞋', '回力官方旗舰 国潮蓝手绘经典款帆布鞋高帮男女2021春季新款情侣国潮红百搭休闲爆改涂鸦鞋子 国潮蓝（下单后五天内发货） 41', '/data/goods/13/20210330212653590038.jpg', 0.01, 1, 13, 10);
 INSERT INTO `sys_goods` VALUES (57, '运动裤卫裤', '李宁运动裤卫裤女官方旗舰网运动时尚系列女子收口卫裤休闲长裤时尚 黑色A-5 M', '/data/goods/12/20210330213038709716.jpg', 0.01, 1, 12, 10);
 INSERT INTO `sys_goods` VALUES (59, 'T恤短袖女夏季新品', '李宁T恤短袖女夏季新品女子休闲运动短袖T恤青年薄款休闲跑步健身服圆领休闲上衣短袖官方旗舰网 浅桃粉-3 M', '/data/goods/12/20210330213112628569.jpg', 0.01, 1, 12, 10);
@@ -359,7 +359,7 @@ CREATE TABLE `sys_order`  (
   `merchant_ratio` float(11, 1) NOT NULL DEFAULT 1.0 COMMENT '订单创建时商户的费率',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_id`(`order_id`) USING BTREE COMMENT '订单号唯一'
-) ENGINE = InnoDB AUTO_INCREMENT = 94 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_order
@@ -375,6 +375,17 @@ INSERT INTO `sys_order` VALUES (90, 'WVW202012341002151359796', 1607185311336, 1
 INSERT INTO `sys_order` VALUES (91, 'QAK202012341002151746672', 1607185311336, 1607185323819, 1, 1, 'SDW202012341002151596097', 1, 5, 0.01, 19, '', '测试', '测试', '测试', '', 0, '/data/pay/SDW202012341002151596097.jpg', '1', 0.1);
 INSERT INTO `sys_order` VALUES (92, 'YYT202012341004300490850', 1607186580573, 1607186595850, 1, 1, 'NFF202012341004300926613', 1, 8, 0.01, 34, '', '测试', '测试', '测试', '', 0, '/data/pay/NFF202012341004300926613.jpg', '13', 0.1);
 INSERT INTO `sys_order` VALUES (93, 'LID202012341004300509122', 1607186580573, 1607186595850, 1, 1, 'NFF202012341004300926613', 1, 5, 0.01, 19, '', '测试', '测试', '测试', '', 0, '/data/pay/NFF202012341004300926613.jpg', '10', 0.1);
+INSERT INTO `sys_order` VALUES (101, 'GKJ202112340211010176213', 1638796210886, 1638796384928, 1, 1, 'GAU202112340211010908695', 1, 13, 0.01, 45, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/11f3333f-6d68-4adb-9cf6-035a39a4a551.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (102, 'ZSS202112340211024283551', 1638796224161, 1638796384928, 1, 1, 'ELN202112340211024324951', 1, 13, 0.01, 46, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/147fb8b1-18ac-480a-8d57-2c21635d9519.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (103, 'ZDK202112340211037495045', 1638796237222, 1638796384928, 1, 1, 'IJD202112340211037974203', 1, 13, 0.01, 47, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/4801e190-5640-4f14-a593-66029aa2d0ea.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (104, 'UWU202112340211051689881', 1638796251864, 1638796384928, 1, 1, 'NTP202112340211051560839', 1, 13, 0.01, 48, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/896bd6fa-e609-405c-b601-caa56d71659f.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (105, 'LAW202112340211111244316', 1638796271424, 1638796384928, 1, 1, 'EVM202112340211111457150', 1, 13, 0.01, 49, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/814b7cf6-3e81-4356-aa27-023bf2eb0609.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (106, 'QZG202112340211127932176', 1638796287661, 1638796384928, 1, 1, 'CKX202112340211127838508', 1, 13, 0.01, 50, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/2a3ecc4c-62e4-4964-aa75-1c2a3d082ba1.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (107, 'MVF202112340211155962656', 1638796315927, 1638796384928, 1, 1, 'GXI202112340211155762974', 1, 13, 0.01, 51, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/175a4dc6-1077-46ef-b64e-0e2a9ae66ee0.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (108, 'GYV202112340211210918392', 1638796330108, 1638796384928, 1, 1, 'NJY202112340211210411460', 1, 13, 0.01, 52, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/b7e61e0a-fea6-4022-b9bb-a3949220c085.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (109, 'XAB202112340211229316121', 1638796349401, 1638796384928, 1, 1, 'BGA202112340211229992111', 1, 13, 0.01, 53, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/9d358e5a-638e-4437-8a00-d9f942e5f58f.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (110, 'YUL202112340211250396901', 1638796370482, 1638796384928, 1, 1, 'OAX202112340211250369042', 1, 13, 0.01, 54, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/3db2f150-1b6d-41fa-8b6d-eca59c5f39cc.jpg', NULL, 0.0);
+INSERT INTO `sys_order` VALUES (111, 'BHY202112340211304317807', 1638796384928, 1638796384928, 1, 1, 'ETZ202112340211304214293', 1, 13, 0.01, 55, '', 'xxxxxxxxxxxxx', 'Bosen', '123456', '', 0, 'data/pay/87b2e60d-464c-499a-90be-b93e1ea58911.jpg', NULL, 0.0);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -499,7 +510,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'bosen_once@163.com', 1, '/data/header/user/1.jpg');
+INSERT INTO `sys_user` VALUES (1, 'Bosen', 'e10adc3949ba59abbe56e057f20f883e', 'bosen_once@163.com', 1, '/data/header/user/1.jpg');
 INSERT INTO `sys_user` VALUES (3, 'bosen_once@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 'bosen_once@qq.com', 1, '/data/header/user/default.jpg');
 INSERT INTO `sys_user` VALUES (4, 'test111', 'e10adc3949ba59abbe56e057f20f883e', '806317173@qq.com', 0, '/data/header/user/default.jpg');
 INSERT INTO `sys_user` VALUES (5, 'lalalal', 'e10adc3949ba59abbe56e057f20f883e', '2390025288@qq.com', 0, '/data/header/user/default.jpg');

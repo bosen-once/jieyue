@@ -7,6 +7,7 @@ import com.example.jieyue.common.entity.SysUser;
 import com.example.jieyue.common.mapper.SysCartMapper;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.mapper.SysMtMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +64,7 @@ public class UserCartService {
             SysGoods goods = goodsMapper.findById(cart.getGoodsId());
             SysMt merchant = merchantMapper.findById(goods.getMerchant());
             Map<String,String> map = new HashMap<>();
-            map.put("goodsImg",goods.getImg());
+            map.put("goodsImg", GiteeImgBedUtils.PRE + goods.getImg());
             map.put("cartId",cart.getId()+"");
             map.put("goodsId",goods.getId()+"");
             map.put("goodsPrice",goods.getPrice().toPlainString());

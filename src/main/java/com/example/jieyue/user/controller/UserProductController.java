@@ -54,7 +54,7 @@ public class UserProductController {
      */
     @RequestMapping("/user/product/add-comment")
     public ModelAndView addComment(ModelAndView modelAndView,int goods,int merchant,String context,HttpServletRequest request){
-        if (context.equals("")){
+        if ("".equals(context)){
             modelAndView.addObject("msg","评论内容不能为空");
         }else{
             int result = productService.addComment(goods,merchant,context,request);

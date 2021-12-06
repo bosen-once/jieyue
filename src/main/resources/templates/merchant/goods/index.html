@@ -61,6 +61,7 @@
     </style>
 </head>
 <body>
+<img id="loading" th:src="@{/loading.gif}" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 999; display: none; opacity: 0.8"/>
 <section id="container">
     <!--header start-->
     <header class="header fixed-top clearfix" th:include="merchant/common/model::header"></header>
@@ -90,7 +91,7 @@
                             </p>
                         </td>
                         <td style="text-align: center;">
-                            <img th:src="@{/image/user/home/product/5.jpg}" style="width: 144px;height: 181.8px"
+                            <img th:src="@{/image/merchant/default.jpg}" style="width: 144px;height: 181.8px"
                                  id="img0" onclick="upImg('input0')">
                             <input style="display: none" type="file" name="img" id="input0"
                                    onchange="showImg(this,'img0')">
@@ -112,7 +113,7 @@
                                    style="text-align: center;height: 181.8px">
                         </td>
                         <td style="text-align: center;font-weight: bold;">
-                            <input type="submit" value="添加商品" style="text-align: center;height: 181.8px;color: purple">
+                            <input type="submit" onclick="loading()" value="添加商品" style="text-align: center;height: 181.8px;color: purple">
                         </td>
                     </tr>
                 </form>
@@ -157,7 +158,7 @@
                                 <b>删除</b>
                             </button>
                             <button type="submit" style="background: deepskyblue;color: white;border-radius: 5px;width: 50px;height: 30px"
-                                    onclick="if (confirm('确认修改该商品的信息？')==false)return false; ">
+                                    onclick="if (confirm('确认修改该商品的信息？')==false) {return false;} else {loading()} ">
                                 <b>修改</b>
                             </button>
 
@@ -230,6 +231,7 @@
 
     function delGoods(goodsId) {
         if (confirm("确认删除此商品？")) {
+            loading();
             window.location = "/merchant/del-goods?id=" + goodsId;
         }
     }

@@ -4,6 +4,7 @@ import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.mapper.SysMtMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,28 +23,29 @@ public class UserShopService {
      * <p>获取商户信息</p>
      */
     public SysMt getMerchantInfo(int merchantId){
-        return merchantMapper.findById(merchantId);
+        SysMt merchant = merchantMapper.findById(merchantId);
+        merchant.setHeader(GiteeImgBedUtils.PRE + merchant.getHeader());
+        return merchant;
     }
 
     /**
      * <p>获取商户商品信息</p>
      */
     public Map<Integer,SysGoods> getGoodsList(int merchantId, int page, int num){
-        List<SysGoods> list = goodsMapper.findByMtLimit(merchantId,(page-1)*num,page*num);
-        Map<Integer,SysGoods> map = new HashMap<>();
-        for (int i = 0;i < list.size();i++){
-            map.put(i,list.get(i));
-        }
-        return map;
+        return common(goodsMapper.findByMtLimit(merchantId,(page-1)*num,page*num));
     }
     
     /**
      * <p>随机获取商品</p>
      */
     public Map<Integer,SysGoods> getRandGoodsMap(int merchant,int num){
-        List<SysGoods> list = goodsMapper.findMerchantRand(merchant,num);
+        return common(goodsMapper.findMerchantRand(merchant,num));
+    }
+
+    public Map<Integer,SysGoods> common(List<SysGoods> list) {
         Map<Integer,SysGoods> map = new HashMap<>();
         for (int i = 0;i < list.size();i++) {
+            list.get(i).setImg(GiteeImgBedUtils.PRE + list.get(i).getImg());
             map.put(i,list.get(i));
         }
         return map;

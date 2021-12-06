@@ -2,6 +2,7 @@ package com.example.jieyue.admin.service;
 
 import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.common.mapper.SysMtMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,11 @@ public class AdminMerchantService {
      */
     public List<SysMt> getMtInfo(int curPage,int pageSize){
         int curRow = (curPage-1)*pageSize;
-        return mtMapper.findPage(curRow,pageSize);
+        List<SysMt> list = mtMapper.findPage(curRow,pageSize);
+        for (SysMt sysMt : list) {
+            sysMt.setHeader(GiteeImgBedUtils.PRE + sysMt.getHeader());
+        }
+        return list;
     }
     
     /**

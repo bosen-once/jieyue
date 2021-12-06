@@ -270,6 +270,12 @@
 </footer>
 
 <script th:fragment="alertMsg" th:inline="javascript">
+
+    function loading() {
+        var img = document.getElementById("loading");
+        img.style.display = "";
+    }
+
     window.onload = function () {
         if ("[[${param.msg}]]" != "") {
             alert("[[${param.msg}]]");

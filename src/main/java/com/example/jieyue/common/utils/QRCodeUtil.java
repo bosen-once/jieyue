@@ -4,8 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import javax.imageio.ImageIO;
 import com.google.zxing.BarcodeFormat;
@@ -22,6 +21,8 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 二维码生成解析工具类
@@ -51,27 +52,27 @@ public class QRCodeUtil {
      *
      * @param content  二维码包含的内容，文本或网址
      * @param path     生成的二维码图片存放位置
-     * @param filename 生成的二维码图片存放位置
      * @param size     生成的二维码图片尺寸 可以自定义或者默认（250）
      * @param logoPath logo的存放位置
      */
-    public static boolean zxingCodeCreate(String content, String path, String filename,Integer size, String logoPath) {
+    public static String zxingCodeCreate(String content, String path, Integer size, String logoPath) {
         try {
             //图片类型
             String imageType = "jpg";
             //获取二维码流的形式，写入到目录文件中
             BufferedImage image = getBufferedImage(content, size, logoPath);
-
-            //生成二维码存放文件
-            File file = new File(path+filename+".jpg");
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            ImageIO.write(image, imageType, file);
-            return true;
+            //创建一个ByteArrayOutputStream
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            //把BufferedImage写入ByteArrayOutputStream
+            ImageIO.write(image, imageType, os);
+            //ByteArrayOutputStream转成InputStream
+            InputStream input = new ByteArrayInputStream(os.toByteArray());
+            //InputStream转成MultipartFile
+            MultipartFile multipartFile = new MockMultipartFile("file", "file.jpg", "text/plain", input);
+            return GiteeImgBedUtils.upload(path, multipartFile);
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 

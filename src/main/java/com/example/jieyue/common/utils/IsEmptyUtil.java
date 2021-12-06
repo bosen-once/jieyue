@@ -26,7 +26,7 @@ public class IsEmptyUtil {
      */
     public boolean strings(String ... strings){
         for (String string : strings) {
-            if (string==null || string.equals("")){
+            if (string==null || "".equals(string)){
                 return true;
             }
         }
@@ -37,7 +37,7 @@ public class IsEmptyUtil {
      * <p>单个字符串判空操作</p>
      */
     public boolean string(String string){
-        if (string==null || string.equals("")){
+        if (string==null || "".equals(string)){
             return true;
         }else{
             return false;

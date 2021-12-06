@@ -3,15 +3,11 @@ package com.example.jieyue.merchant.service;
 import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
-import com.example.jieyue.common.utils.DateUtil;
-import com.example.jieyue.common.utils.FileUtil;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import com.example.jieyue.common.utils.IsEmptyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +19,6 @@ import java.util.List;
 public class MerchantGoodsService {
     @Autowired
     SysGoodsMapper goodsMapper;
-    @Autowired
-    FileUtil fileUtil;
-    @Autowired
-    DateUtil dateUtil;
     @Autowired
     IsEmptyUtil isEmptyUtil = new IsEmptyUtil();
     
@@ -49,7 +41,11 @@ public class MerchantGoodsService {
      */
     public List<SysGoods> getMtGoods(HttpSession session,int page,int num){
         SysMt sysMt = (SysMt) session.getAttribute("merchant");
-        return goodsMapper.findByMtLimit(sysMt.getId(),(page-1)*num,num);
+        List<SysGoods> list = goodsMapper.findByMtLimit(sysMt.getId(),(page-1)*num,num);
+        for (SysGoods sysGoods : list) {
+            sysGoods.setImg(GiteeImgBedUtils.PRE + sysGoods.getImg());
+        }
+        return list;
     }
     
     /**
@@ -74,20 +70,17 @@ public class MerchantGoodsService {
         SysMt sysMt = (SysMt)request.getSession().getAttribute("merchant");
         int merchant = sysMt.getId();
 
-        if (img.getOriginalFilename().equals("")){
+        if ("".equals(img.getOriginalFilename())){
             // 执行插入
             goodsMapperResult = goodsMapper.insert1(name,describe,price,merchant,stock);
             if(goodsMapperResult != 1){
                 return 0;
             }
         }else{
-            // 设置filename  文件名由年月日时分秒以及六位随机数组成
-            String filename = dateUtil.getNMDHIS()+Math.round(Math.random()*(999999-100000)+100000);
             // 获取商户id，一个商户对应一个文件夹
             int id = ((SysMt) request.getSession().getAttribute("merchant")).getId();
             // 接收文件工具类返回的文件位置
-            String imgUrl = fileUtil.upFile(img,redirectAttributes,request,
-                    "/data/goods/"+id+"/",filename);
+            String imgUrl = GiteeImgBedUtils.upload("/data/goods/" + id, img);
             // 文件上传失败
             if (imgUrl == null){
                 return -1;
@@ -96,7 +89,7 @@ public class MerchantGoodsService {
             goodsMapperResult = goodsMapper.insert2(name,describe,price,merchant,stock,imgUrl);
             if (goodsMapperResult != 1){
                 // sql语句执行失败，将已上传的图片移除
-                fileUtil.deleteFile(imgUrl);
+                GiteeImgBedUtils.delete(imgUrl);
                 return 0;
             }
         }
@@ -117,11 +110,8 @@ public class MerchantGoodsService {
         if (sql!=1){
             return -1;
         }else{
-            // 当文件路径在/data下时，才执行文件的删除
-            if (imgUrl.indexOf("/data") == 0){
-                // 删除源文件，与编译文件中对应的goods图片信息
-                fileUtil.deleteFile(imgUrl);
-            }
+            // 删除源文件，与编译文件中对应的goods图片信息
+            GiteeImgBedUtils.delete(imgUrl);
             return 1;
         }
     }
@@ -176,13 +166,10 @@ public class MerchantGoodsService {
                 return 0;
             }
         }else{
-            // 设置filename  文件名由年月日时分秒以及六位随机数组成
-            String filename = dateUtil.getNMDHIS()+Math.round(Math.random()*(999999-100000)+100000);
             // 获取商户id，一个商户对应一个文件夹
             int id = ((SysMt) request.getSession().getAttribute("merchant")).getId();
             // 接收文件工具类返回的文件位置
-            String imgUrl = fileUtil.upFile(img,redirectAttributes,request,
-                    "/data/goods/"+id+"/",filename);
+            String imgUrl = GiteeImgBedUtils.upload("/data/goods/" + id, img);
             // 文件上传失败
             if (imgUrl == null){
                 return -1;
@@ -192,11 +179,11 @@ public class MerchantGoodsService {
             goodsMapperResult = goodsMapper.updateGoods2(name,describe,price,merchant,stock,goodsId,imgUrl);
             if (goodsMapperResult != 1){
                 // sql语句执行失败，将已上传的图片移除
-                fileUtil.deleteFile(imgUrl);
+                GiteeImgBedUtils.delete(imgUrl);
                 return 0;
             }else{
                 // 新图片已插入，将旧图删除
-                fileUtil.deleteFile(tempGoods.getImg());
+                GiteeImgBedUtils.delete(tempGoods.getImg());
             }
         }
         return 1;

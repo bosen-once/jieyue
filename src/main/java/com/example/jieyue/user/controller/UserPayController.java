@@ -6,6 +6,7 @@ import com.example.jieyue.common.entity.SysOrder;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.mapper.SysMtMapper;
 import com.example.jieyue.common.mapper.SysOrderMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import com.example.jieyue.user.service.WxPayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +35,8 @@ public class UserPayController {
         String orderMark = wxPayService.getOrderId();
         // 添加订单
         String res = wxPayService.addOrder(nums,orderMark,users,merchants,prices,notes,goods,address,name,phone,code,0,carts);
-        if(!res.equals("-1") && !res.equals("0") && !res.equals("")){
-            modelAndView.addObject("orderMark",orderMark);
+        if(!"-1".equals(res) && !"0".equals(res) && !"".equals(res)){
+            modelAndView.addObject("orderMark", orderMark);
             modelAndView.setViewName("redirect:/user/wxpay/index?mark="+orderMark);
         }
         return modelAndView;
@@ -74,10 +75,10 @@ public class UserPayController {
      */
     @RequestMapping("/user/wxpay/index")
     public ModelAndView wxNotify(ModelAndView modelAndView,String mark) {
-        String codeUrl = orderMapper.findByOrderMark(mark).get(0).getPayCodeUrl();
+        String codeUrl = GiteeImgBedUtils.PRE + orderMapper.findByOrderMark(mark).get(0).getPayCodeUrl();
 
-        modelAndView.addObject("codeUrl",codeUrl);
-        modelAndView.addObject("orderMark",mark);
+        modelAndView.addObject("codeUrl", codeUrl);
+        modelAndView.addObject("orderMark", mark);
 
         modelAndView.setViewName("user/pay/wx");
         return modelAndView;

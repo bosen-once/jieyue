@@ -4,6 +4,7 @@ import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.entity.SysOrder;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.mapper.SysOrderMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,9 @@ public class UserOrderService {
     public List<SysGoods> getGoodsList(List<SysOrder> orderList){
         List<SysGoods> list = new ArrayList<>();
         for (SysOrder order : orderList) {
-            list.add(goodsMapper.findById(order.getGoodsId()));
+            SysGoods goods = goodsMapper.findById(order.getGoodsId());
+            goods.setImg(GiteeImgBedUtils.PRE + goods.getImg());
+            list.add(goods);
         }
         return list;
     }

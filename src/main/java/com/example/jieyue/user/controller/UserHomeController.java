@@ -38,9 +38,7 @@ public class UserHomeController{
         Map<String, SysMtUi> lowImg = null;
 
         if (redisTemplate.opsForHash().entries("homePageCache").size() != 0){
-
             Map map = redisTemplate.opsForHash().entries("homePageCache");
-
             // 商城主页宣传海报
             imgMap = (Map<String, SysUi>) map.get("imgMap");
             // 获取热卖商品列表
@@ -52,9 +50,7 @@ public class UserHomeController{
             // 获取商户宣传店铺的海报
             homeImg = (Map<String, SysMtUi>) map.get("homeImg");
             lowImg = (Map<String, SysMtUi>) map.get("lowImg");
-
         }else{
-
             // 商城主页宣传海报
             imgMap = homeService.getImage();
             // 获取热卖商品列表
@@ -67,19 +63,17 @@ public class UserHomeController{
             homeImg = homeService.getMtImg(400,320,3);
             lowImg = homeService.getMtImg(600,310,3);
         }
-
-        modelAndView.addObject("imgMap",imgMap);
-        modelAndView.addObject("escGoodsMap",escGoodsMap);
-        modelAndView.addObject("descGoodsMap",descGoodsMap);
-        modelAndView.addObject("randGoodsMap",randGoodsMap);
-        modelAndView.addObject("homeImg",homeImg);
-        modelAndView.addObject("lowImg",lowImg);
+        modelAndView.addObject("imgMap", imgMap);
+        modelAndView.addObject("escGoodsMap", escGoodsMap);
+        modelAndView.addObject("descGoodsMap", descGoodsMap);
+        modelAndView.addObject("randGoodsMap", randGoodsMap);
+        modelAndView.addObject("homeImg", homeImg);
+        modelAndView.addObject("lowImg", lowImg);
 
         if (redisTemplate.opsForHash().entries("homePageCache").size() == 0){
             // 设置缓存  十分钟内有效
             homeService.setHomeCache(modelAndView);
         }
-
         modelAndView.setViewName("user/home/index");
         return modelAndView;
     }

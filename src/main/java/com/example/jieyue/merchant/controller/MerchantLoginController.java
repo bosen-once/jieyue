@@ -1,6 +1,7 @@
 package com.example.jieyue.merchant.controller;
 
 import com.example.jieyue.common.entity.SysMt;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import com.example.jieyue.merchant.service.MerchantLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,8 @@ public class MerchantLoginController {
                     modelAndView.addObject("msg","您的账号处于停用状态，请等待管理员处理");
                     break;
                 }
-                session.setAttribute("merchant",merchant);
+                merchant.setHeader(GiteeImgBedUtils.PRE + merchant.getHeader());
+                session.setAttribute("merchant", merchant);
                 break;
             default:
                 break;

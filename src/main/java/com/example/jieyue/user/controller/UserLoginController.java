@@ -1,6 +1,7 @@
 package com.example.jieyue.user.controller;
 
 import com.example.jieyue.common.entity.SysUser;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import com.example.jieyue.user.service.UserLoginService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class UserLoginController {
         if (result==1){
             // 登陆成功
             SysUser user = service.userInfo(email);
+            user.setHeader(GiteeImgBedUtils.PRE + user.getHeader());
             session.setAttribute("user",user);
             modelAndView.setViewName("redirect:/");
         }else if (result==-1){

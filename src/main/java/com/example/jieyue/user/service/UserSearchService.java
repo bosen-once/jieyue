@@ -4,6 +4,7 @@ import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.index.GoodsIndex;
 import com.example.jieyue.common.mapper.SysGoodsMapper;
 import com.example.jieyue.common.repository.GoodsIndexRepository;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,11 @@ public class UserSearchService {
      * <p>mysql通过关键字模糊查找商品</p>
      */
     public List<SysGoods> mysqlSearchGoods(String keyword){
-        return goodsMapper.search(keyword);
+        List<SysGoods> list = goodsMapper.search(keyword);
+        for (SysGoods goods : list) {
+            goods.setImg(GiteeImgBedUtils.PRE + goods.getImg());
+        }
+        return list;
     }
 
     /**

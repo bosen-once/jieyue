@@ -3,9 +3,8 @@ package com.example.jieyue.user.service;
 import com.example.jieyue.common.entity.SysUser;
 import com.example.jieyue.common.mapper.SysUserMapper;
 import com.example.jieyue.common.service.MailService;
-import com.example.jieyue.common.utils.FileUtil;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import com.example.jieyue.common.utils.IsEmptyUtil;
-import com.sun.mail.smtp.DigestMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -22,9 +21,6 @@ public class UserInfoService {
 
     @Autowired
     SysUserMapper sysUserMapper;
-
-    @Autowired
-    FileUtil fileUtil;
 
     IsEmptyUtil isEmptyUtil = new IsEmptyUtil();
 
@@ -49,7 +45,7 @@ public class UserInfoService {
 
         SysUser user = sysUserMapper.selectById(id);
 
-        if (!oldPwd.equals("") || !newPwd.equals("") || !rePwd.equals("")){
+        if (!"".equals(oldPwd) || !"".equals(newPwd) || !"".equals(rePwd)){
             oldPwd = DigestUtils.md5DigestAsHex(oldPwd.getBytes());
             if (!user.getPassword().equals(oldPwd)){
                 return 3;
@@ -58,7 +54,7 @@ public class UserInfoService {
                 return 4;
             }
         }
-        if (newPwd.equals("")){
+        if ("".equals(newPwd)){
             newPwd = user.getPassword();
         }else{
             newPwd = DigestUtils.md5DigestAsHex(newPwd.getBytes());
@@ -66,15 +62,18 @@ public class UserInfoService {
         // 更新头像
         String header = user.getHeader();
         if (!img.isEmpty()){
-            if (!user.getHeader().equals("/data/header/user/default.jpg")){
-                fileUtil.deleteFile(user.getHeader());
+            header = GiteeImgBedUtils.upload("/data/header/user/", img);
+            if (!"".equals(header) && null != header &&
+                    !user.getHeader().equals(GiteeImgBedUtils.PRE + "/data/header/user/default.jpg")){
+                GiteeImgBedUtils.delete(user.getHeader());
             }
-            header = fileUtil.upFile(img,redirectAttributes,request,"/data/header/user/",""+id);
         }
-        int sql = sysUserMapper.updateById(username,newPwd,header,email,id);
-        if (sql==1){
+        int sql = sysUserMapper.updateById(username, newPwd, header, email, id);
+        if (sql == 1){
             // 更新用户信息
-            request.getSession().setAttribute("user",sysUserMapper.selectById(id));
+            SysUser newUser = sysUserMapper.selectById(id);
+            newUser.setHeader(GiteeImgBedUtils.PRE + newUser.getHeader());
+            request.getSession().setAttribute("user", newUser);
             return 1;
         }
         return -1;

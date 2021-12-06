@@ -4,8 +4,7 @@ import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.common.entity.SysMtUi;
 import com.example.jieyue.common.mapper.SysMtMapper;
 import com.example.jieyue.common.mapper.SysMtUiMapper;
-import com.example.jieyue.common.utils.DateUtil;
-import com.example.jieyue.common.utils.FileUtil;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,10 +17,6 @@ import javax.servlet.http.HttpSession;
 public class MerchantUiService {
     @Autowired
     SysMtUiMapper mtUiMapper;
-    @Autowired
-    FileUtil fileUtil;
-    @Autowired
-    DateUtil dateUtil;
     @Autowired
     SysMtMapper merchantMapper;
 
@@ -42,7 +37,11 @@ public class MerchantUiService {
      * <p>获取商户用于商城首页宣传的海报图片对象</p>
      */
     public SysMtUi getHomeImg(int width,int height,HttpSession session){
-        return mtUiMapper.findByMark(width,height,getMtId(session));
+        SysMtUi ui = mtUiMapper.findByMark(width,height,getMtId(session));
+        if (ui != null) {
+            ui.setUrl(GiteeImgBedUtils.PRE + ui.getUrl());
+        }
+        return ui;
     }
     
     /**
@@ -51,8 +50,8 @@ public class MerchantUiService {
     public int delHomeImg(int id){
         String url = mtUiMapper.findById(id).getUrl();
         int sql = mtUiMapper.deleteById(id);
-        if (sql==1){
-            fileUtil.deleteFile(url);
+        if (sql == 1){
+            GiteeImgBedUtils.delete(url);
             return 1;
         }else{
             return 0;
@@ -68,11 +67,8 @@ public class MerchantUiService {
         int id = ((SysMt)request.getSession().getAttribute("merchant")).getId();
         SysMtUi sysMtUi = mtUiMapper.findByMark(width,height,id);
 
-        // 设置filename  文件名由年月日时分秒以及六位随机数组成
-        String filename = dateUtil.getNMDHIS()+Math.round(Math.random()*(999999-100000)+100000);
         // 接收文件工具类返回的文件位置
-        String imgUrl = fileUtil.upFile(img,redirectAttributes,request,
-                "/data/mtui/"+id+"/",filename);
+        String imgUrl = GiteeImgBedUtils.upload("/data/mtui/" + id, img);
         if (imgUrl==null){
             // 上传图片失败
             return 0;
@@ -83,10 +79,10 @@ public class MerchantUiService {
             int sql = mtUiMapper.updateUrl(imgUrl,width,height,id);
             if (sql==1){
                 // sql语句执行成功，将旧图删除，加入新图
-                fileUtil.deleteFile(sysMtUi.getUrl());
+                GiteeImgBedUtils.delete(sysMtUi.getUrl());
             }else{
                 // sql语句执行失败，将已上传的新图删除
-                fileUtil.deleteFile(imgUrl);
+                GiteeImgBedUtils.delete(imgUrl);
             }
             return sql;
         }
@@ -105,19 +101,15 @@ public class MerchantUiService {
     public int updateHeard(RedirectAttributes redirectAttributes,HttpServletRequest request, MultipartFile img){
         // 获取商户信息
         SysMt merchant = (SysMt) request.getSession().getAttribute("merchant");
-        // 设置filename  文件名由年月日时分秒以及六位随机数组成
-        String filename = dateUtil.getNMDHIS()+Math.round(Math.random()*(999999-100000)+100000);
-        String headerUrl = fileUtil.upFile(img,redirectAttributes,request,"/data/header/merchant/",filename);
+        String headerUrl = GiteeImgBedUtils.upload("/data/header/merchant/", img);
         int sql = merchantMapper.updateHeader(merchant.getId(),headerUrl);
-        if (sql!=1){
-            fileUtil.deleteFile(headerUrl);
+        if (sql != 1){
+            GiteeImgBedUtils.delete(headerUrl);
             return -1;
         }else{
-            if (!merchant.getHeader().equals("/lib/merchant/images/2.png")){
-                fileUtil.deleteFile(merchant.getHeader());
-            }
+            GiteeImgBedUtils.delete(merchant.getHeader());
             // 修改会话信息
-            merchant.setHeader(headerUrl);
+            merchant.setHeader(GiteeImgBedUtils.PRE + headerUrl);
             request.getSession().setAttribute("merchant",merchant);
         }
         return 1;

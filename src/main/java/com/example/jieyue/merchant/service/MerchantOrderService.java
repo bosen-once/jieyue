@@ -18,12 +18,17 @@ public class MerchantOrderService {
      */
     public List<SysOrder> getOrderList(int merchantId,int page, int num, int flag){
         switch (flag){
-            case 0:// 未支付
+            // 未支付
+            case 0:
                 return orderMapper.findNotPayLimitByMt(merchantId,(page-1)*num,num);
-            case 1:// 已支付
+            // 已支付
+            case 1:
                 return orderMapper.findPayLimitByMt(merchantId,(page-1)*num,num);
-            case 2:// 全部订单
+            // 全部订单
+            case 2:
                 return orderMapper.findLimitByMt(merchantId,(page-1)*num,num);
+            default:
+                break;
         }
         return null;
     }
@@ -33,12 +38,17 @@ public class MerchantOrderService {
      */
     public int getAllPage(int merchantId,int flag,int num){
         switch (flag){
-            case 0:// 未支付
+            // 未支付
+            case 0:
                 return (int)Math.ceil((double)orderMapper.notPayCountByMt(merchantId)/(double)num);
-            case 1:// 已支付
+            // 已支付
+            case 1:
                 return (int)Math.ceil((double)orderMapper.payCountByMt(merchantId)/(double)num);
-            case 2:// 全部订单
+            // 全部订单
+            case 2:
                 return (int)Math.ceil((double)orderMapper.orderCountByMt(merchantId)/(double)num);
+            default:
+                break;
         }
         return 1;
     }
@@ -49,7 +59,7 @@ public class MerchantOrderService {
     public List<SysOrder> getOrderById(String orderId,int merchant){
         SysOrder order = orderMapper.findByOrderIdAndMt(orderId,merchant);
         List<SysOrder> list = new ArrayList<>();
-        if (order!=null){
+        if (order != null){
             list.add(order);
         }
         return list;

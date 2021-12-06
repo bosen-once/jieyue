@@ -8,7 +8,6 @@ import com.example.jieyue.common.mapper.SysMtMapper;
 import com.example.jieyue.common.mapper.SysOrderMapper;
 import com.example.jieyue.common.utils.IsEmptyUtil;
 import com.example.jieyue.common.utils.QRCodeUtil;
-import com.example.jieyue.common.utils.StringUtil;
 import com.example.jieyue.wxpay.config.MyWXPayConfig;
 import com.example.jieyue.wxpay.sdk.WXPay;
 import com.example.jieyue.wxpay.sdk.WXPayConstants;
@@ -28,7 +27,10 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * <p>微信支付服务类</p>
@@ -37,8 +39,6 @@ import java.util.*;
  */
 @Service
 public class WxPayService {
-    @Autowired
-    StringUtil stringUtil;
     @Autowired
     SysOrderMapper orderMapper;
     @Autowired
@@ -91,7 +91,7 @@ public class WxPayService {
             SysMt merchant = merchantMapper.findById(Integer.valueOf(merchantsArr[i]));
             // 执行sql语句
             int sql = -1;
-            if (cartArr[i].equals("0")){
+            if ("0".equals(cartArr[i])){
                 sql = orderMapper.insert1(orderId,createTime,Integer.valueOf(numArr[i]),mark,Integer.valueOf(userArr[i]),
                         Integer.valueOf(merchantsArr[i]),new BigDecimal(dfPrice.format(Double.valueOf(pricesArr[i]))),
                         Integer.valueOf(goodsArr[i]),notes,address,name,phone,code,way,merchant.getRatio());
@@ -117,7 +117,6 @@ public class WxPayService {
      * <p>分割js传递的数组</p>
      */
     public String[] getStringArray(String array){
-        List<String> list = new ArrayList<>();
         return array.split(",");
     }
     
@@ -145,21 +144,20 @@ public class WxPayService {
         data.put("body", "捷阅网商品");
         data.put("out_trade_no", orderMark);
         data.put("device_info", orderMark);
-        BigDecimal temp = new BigDecimal(100);
         data.put("total_fee", price);
         data.put("spbill_create_ip", "123.12.12.123");
-        data.put("notify_url", siteUrl+"/user/wxpay/notify");
+        data.put("notify_url", siteUrl + "/user/wxpay/notify");
         data.put("trade_type", "NATIVE");  // 此处指定为扫码支付
         data.put("product_id", orderMark);
+        String codeUrl = "";
         try {
             Map<String, String> resp = wxPay.unifiedOrder(data);
             System.out.println(resp);
-            QRCodeUtil.zxingCodeCreate(resp.get("code_url"),classPath+"/data/pay/",orderMark,500,"");
+            codeUrl = QRCodeUtil.zxingCodeCreate(resp.get("code_url"), "/data/pay/", 500, "");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String codeUrl = "/data/pay/"+orderMark+".jpg";
-        orderMapper.updateCodeUrl(codeUrl,orderMark);
+        orderMapper.updateCodeUrl(codeUrl, orderMark);
         return codeUrl;
     }
 

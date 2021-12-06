@@ -103,7 +103,7 @@
     </div>
 </div>
 <!-- entry-header-area end -->
-
+<img id="loading" th:src="@{/loading.gif}" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 999; display: none; opacity: 0.8"/>
 <!-- cart-main-area start -->
 <div class="cart-main-area">
     <div class="container">
@@ -170,6 +170,7 @@
                                             var form = document.getElementById("form");
                                             form.action = "/user/update-info";
                                             form.submit();
+                                            loading();
                                         }
 
                                         function showImg(input,id) {

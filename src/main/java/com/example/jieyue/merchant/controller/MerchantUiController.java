@@ -3,6 +3,7 @@ package com.example.jieyue.merchant.controller;
 import com.example.jieyue.common.entity.SysMtUi;
 import com.example.jieyue.merchant.service.MerchantUiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Set;
 
 /**
  * <p>店铺样式设计</p>
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 public class MerchantUiController {
     @Autowired
     MerchantUiService uiService;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @RequestMapping("/merchant/ui")
     public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request){
@@ -42,6 +46,7 @@ public class MerchantUiController {
         switch (res){
             case 1:
                 modelAndView.addObject("msg","图片删除成功");
+                clearCache();
                 break;
             case 0:
                 modelAndView.addObject("msg","图片删除失败");
@@ -63,6 +68,7 @@ public class MerchantUiController {
         switch (res){
             case 1:
                 modelAndView.addObject("msg","图片修改成功");
+                clearCache();
                 break;
             case 0:
                 modelAndView.addObject("msg","图片修改失败");
@@ -85,11 +91,20 @@ public class MerchantUiController {
             int result = uiService.updateHeard(redirectAttributes,request,img);
             if (result==1){
                 modelAndView.addObject("msg","修改logo成功");
+                clearCache();
             }else{
                 modelAndView.addObject("msg","修改logo失败");
             }
         }
         modelAndView.setViewName("redirect:/merchant/ui");
         return modelAndView;
+    }
+
+    /**
+     * <p>清首页缓存</p>
+     */
+    public void clearCache() {
+        Set<String> keys = redisTemplate.keys("*");
+        redisTemplate.delete(keys);
     }
 }

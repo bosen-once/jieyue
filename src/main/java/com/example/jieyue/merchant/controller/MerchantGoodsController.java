@@ -4,6 +4,7 @@ import com.example.jieyue.common.entity.SysGoods;
 import com.example.jieyue.common.entity.SysMt;
 import com.example.jieyue.merchant.service.MerchantGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>商户商品管理页面</p>
@@ -25,6 +27,8 @@ import java.util.List;
 public class MerchantGoodsController {
     @Autowired
     MerchantGoodsService goodsService;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     /**
      * <p>商品管理页面</p>
@@ -77,6 +81,7 @@ public class MerchantGoodsController {
                 break;
             case 1:
                 modelAndView.addObject("msg","添加商品成功");
+                clearCache();
                 break;
             case 2:
                 modelAndView.addObject("msg","必填信息不能为空");
@@ -96,6 +101,7 @@ public class MerchantGoodsController {
         int res = goodsService.delGoods(id);
         if (res == 1){
             modelAndView.addObject("msg","删除成功");
+            clearCache();
         }else{
             modelAndView.addObject("msg","删除失败");
         }
@@ -110,8 +116,9 @@ public class MerchantGoodsController {
     public ModelAndView putGoods(ModelAndView modelAndView,int id){
         if (goodsService.putGoods(id)){
             modelAndView.addObject("msg","上架商品成功");
+            clearCache();
         }else{
-            modelAndView.addObject("msg","上架商品成功");
+            modelAndView.addObject("msg","上架商品失败");
         }
         modelAndView.setViewName("redirect:goods");
         return modelAndView;
@@ -124,8 +131,9 @@ public class MerchantGoodsController {
     public ModelAndView OffGoods(ModelAndView modelAndView,int id){
         if (goodsService.OffGoods(id)){
             modelAndView.addObject("msg","下架商品成功");
+            clearCache();
         }else{
-            modelAndView.addObject("msg","下架商品成功");
+            modelAndView.addObject("msg","下架商品失败");
         }
         modelAndView.setViewName("redirect:goods");
         return modelAndView;
@@ -164,6 +172,7 @@ public class MerchantGoodsController {
                 break;
             case 1:
                 modelAndView.addObject("msg","修改商品成功");
+                clearCache();
                 break;
             case 2:
                 modelAndView.addObject("msg","必填信息不能为空");
@@ -173,5 +182,13 @@ public class MerchantGoodsController {
         }
         modelAndView.setViewName("redirect:goods");
         return modelAndView;
+    }
+
+    /**
+     * <p>清首页缓存</p>
+     */
+    public void clearCache() {
+        Set<String> keys = redisTemplate.keys("*");
+        redisTemplate.delete(keys);
     }
 }

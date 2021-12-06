@@ -2,6 +2,7 @@ package com.example.jieyue.admin.service;
 
 import com.example.jieyue.common.entity.SysUser;
 import com.example.jieyue.common.mapper.SysUserMapper;
+import com.example.jieyue.common.utils.GiteeImgBedUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,11 @@ public class AdminUserService {
      * <p>获取用户信息</p>
      */
     public List<SysUser> getUserList(int page, int num){
-        return userMapper.findLimit((page-1)*num,num);
+        List<SysUser> list = userMapper.findLimit((page-1)*num,num);
+        for (SysUser user : list) {
+            user.setHeader(GiteeImgBedUtils.PRE + user.getHeader());
+        }
+        return list;
     }
 
     /**

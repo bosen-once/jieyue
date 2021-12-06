@@ -25,7 +25,7 @@ public class UserCheckOutController {
 
     @RequestMapping("/user/checkout")
     public ModelAndView index(ModelAndView modelAndView,String ids,@RequestParam(defaultValue = "-1")int num){
-        if(ids == null || ids.equals("")){
+        if(ids == null || "".equals(ids)){
             modelAndView.addObject("msg","请选择您要结算的商品");
             modelAndView.setViewName("redirect:/user/cart");
         }else{
