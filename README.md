@@ -186,7 +186,7 @@ docker build -t jieyue-image .
 ```
 7.4：最后运行容器即可
 ```bash
-docker run -d -p 80:80 --name jieyue jieyue-image
+docker run -d -p 80:80 -e LANG=C.UTF-8 -e TZ="Asia/Shanghai" --name jieyue jieyue-image
 ```
 7.5：使用如下命令可查看项目运行日志（若有如下字眼出现，则表明容器运行成功）
 ```bash
