@@ -33,7 +33,7 @@ public class UserProductService {
         for (SysComment comment : commentInfo) {
             Map<String,String> commentMap = new HashMap<>();
             SysUser user = getUserInfo(comment.getUser());
-            commentMap.put("userHeader",user.getHeader());
+            commentMap.put("userHeader",GiteeImgBedUtils.PRE + user.getHeader());
             commentMap.put("userId",user.getId()+"");
             commentMap.put("commentId",comment.getId()+"");
             commentMap.put("userName",user.getUsername());
