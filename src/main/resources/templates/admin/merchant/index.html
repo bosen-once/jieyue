@@ -95,16 +95,16 @@
                     </form>
                 </td>
                 <td>
-                    <form th:action="@{/admin/merchant/delete-merchant(id=${mt.getId()})}" method="post">
-                        <input type="submit" value="删除" style="width: 65px;"
-                               onclick="if (confirm('确认删除该商户？')==false)return false;">
-                    </form>
+<!--                    <form th:action="@{/admin/merchant/delete-merchant(id=${mt.getId()})}" method="post">-->
+<!--                        <input type="submit" value="删除" style="width: 65px;"-->
+<!--                               onclick="if (confirm('确认删除该商户？')==false)return false;">-->
+<!--                    </form>-->
                     <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=0,id=${mt.getId()})}" method="post">
-                        <input th:if="${mt.getState()}==1" type="submit" value="停用" style="width: 65px;background: deepskyblue; color: white; font-weight: bold"
+                        <input th:if="${mt.getState()}==1" type="submit" value="停用" style="width: 65px;background: orangered; color: white; font-weight: bold"
                                onclick="if (confirm('确认停用该商户？')==false)return false; ">
                     </form>
                     <form th:action="@{/admin/merchant/update-merchant(email=${mt.getEmail()},state=1,id=${mt.getId()})}" method="post">
-                        <input th:if="${mt.getState()}==0" type="submit" value="启用" style="width: 65px;background: orangered; color: white; font-weight: bold"
+                        <input th:if="${mt.getState()}==0" type="submit" value="启用" style="width: 65px;background: deepskyblue; color: white; font-weight: bold"
                                onclick="if (confirm('确认启用商户？')==false)return false; ">
                     </form>
                 </td>

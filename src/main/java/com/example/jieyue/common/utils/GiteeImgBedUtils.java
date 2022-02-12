@@ -84,6 +84,9 @@ public class GiteeImgBedUtils {
      * <p>删除</p>
      */
     public static boolean delete(String path) {
+        if(path.contains("default")) {
+            return true;
+        }
         try {
             String targetUrl = GiteeImgBedUtils.deleteFileUrl(path);
             Map<String, Object> map = getDeleteBodyMap(path);

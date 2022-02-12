@@ -153,16 +153,16 @@
                             </b>
                         </td>
                         <td style="text-align: center;">
-                            <button type="button" style="background: orangered;color: white;border-radius: 5px;width: 50px;height: 30px"
+<!--                            <button type="button" style="background: orangered;color: white;border-radius: 5px;width: 50px;height: 30px"
                                     th:onclick="delGoods('[[${goods.getId()}]]')">
                                 <b>删除</b>
-                            </button>
+                            </button>-->
                             <button type="submit" style="background: deepskyblue;color: white;border-radius: 5px;width: 50px;height: 30px"
                                     onclick="if (confirm('确认修改该商品的信息？')==false) {return false;} else {loading()} ">
                                 <b>修改</b>
                             </button>
 
-                            <button type="button" style="background: grey;color: white;border-radius: 5px;width: 50px;height: 30px"
+                            <button type="button" style="background: orangered;color: white;border-radius: 5px;width: 50px;height: 30px"
                                     th:if="${goods.getState()==1}"
                                     th:onclick="offGoods('[[${goods.getId()}]]')">
                                 <b>下架</b>
